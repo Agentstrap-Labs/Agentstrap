@@ -1,0 +1,131 @@
+<ui:UiPage x:Class="Agentstrap.UI.Elements.Settings.Pages.DeploymentPage"
+      x:Name="DeploymentPageView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+      xmlns:controls="clr-namespace:Agentstrap.UI.Elements.Controls"
+      mc:Ignorable="d"
+      d:DesignHeight="1080" d:DesignWidth="800"
+      Title="Deployment"
+      Scrollable="True">
+
+    <ui:UiPage.Resources>
+        <Style x:Key="ReadOnlyCard" TargetType="Border" BasedOn="{StaticResource AgCard}" />
+    </ui:UiPage.Resources>
+
+    <StackPanel Margin="0,0,14,14">
+        <TextBlock Style="{StaticResource AgPageTitle}" Text="Deployment" />
+        <TextBlock Style="{StaticResource AgPageSubtitle}"
+                   Text="Pins Agentstrap to a Roblox deployment channel and controls how launches and updates behave." />
+
+        <!--  Deployment channel.  -->
+        <TextBlock Style="{StaticResource AgSectionHeader}" Text="Roblox channel" />
+
+        <controls:OptionControl Header="Deployment channel"
+                                Description="Leave empty to follow whatever Roblox releases. Set it to a channel name to pin Agentstrap to that one.">
+            <ui:TextBox Width="200"
+                        Text="{Binding DeploymentChannel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+        </controls:OptionControl>
+
+        <Border Style="{StaticResource ReadOnlyCard}" Margin="0,10,0,0">
+            <StackPanel>
+                <TextBlock Style="{StaticResource AgCardValue}" Margin="0"
+                           Text="{Binding DeploymentStatus, Mode=OneWay}" />
+
+                <StackPanel Margin="0,14,0,0" Orientation="Horizontal">
+                    <ui:Button Appearance="Secondary" Icon="ArrowSync24" Content="Check"
+                               Command="{Binding CheckDeploymentCommand, Mode=OneTime}" />
+
+                    <ui:Button Appearance="Secondary" Margin="8,0,0,0" Icon="Checkmark24" Content="Apply channel"
+                               Command="{Binding ApplyDeploymentChannelCommand, Mode=OneTime}" />
+
+                    <ui:Button Appearance="Secondary" Margin="8,0,0,0" Icon="Dismiss24" Content="Clear"
+                               Command="{Binding ClearDeploymentChannelCommand, Mode=OneTime}" />
+                </StackPanel>
+            </StackPanel>
+        </Border>
+
+        <!--  Launch behaviour.  -->
+        <TextBlock Style="{StaticResource AgSectionHeader}" Text="Launch behaviour" />
+
+        <controls:OptionControl Header="Confirm launches"
+                                Description="Ask before starting Roblox. Recommended, because a second launch can land in a bad state.">
+            <ui:ToggleSwitch IsChecked="{Binding ConfirmLaunches, Mode=TwoWay}" />
+        </controls:OptionControl>
+
+        <controls:OptionControl Header="Background updates"
+                                Description="Keep Roblox up to date while it is running instead of waiting until the next launch.">
+            <ui:ToggleSwitch IsChecked="{Binding BackgroundUpdates, Mode=TwoWay}" />
+        </controls:OptionControl>
+
+        <controls:OptionControl Header="Force Roblox reinstallation"
+                                Description="Reinstall Roblox on the next launch even if the files already look correct. Use this when an update has gone wrong.">
+            <ui:ToggleSwitch IsChecked="{Binding ForceRobloxReinstallation, Mode=TwoWay}" />
+        </controls:OptionControl>
+
+        <controls:OptionControl Header="Process priority"
+                                Description="Applied to the Roblox process while it runs.">
+            <ComboBox Width="160"
+                      ItemsSource="{Binding ProcessPriorityOptions}"
+                      SelectedItem="{Binding RobloxProcessPriority, Mode=TwoWay}" />
+        </controls:OptionControl>
+
+        <Grid Margin="0,10,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="{StaticResource AgCardGap}" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <ui:Button Appearance="Secondary" Grid.Column="0" Style="{StaticResource AgActionButton}"
+                       Icon="Bug24" Content="Open Roblox logs"
+                       Command="{Binding OpenRobloxLogsCommand, Mode=OneTime}" />
+
+            <ui:Button Appearance="Secondary" Grid.Column="2" Style="{StaticResource AgActionButton}"
+                       Icon="Link20" Content="Repair Roblox links"
+                       Command="{Binding RepairRobloxLinkCommand, Mode=OneTime}" />
+        </Grid>
+
+        <!--  Matchmaker.  -->
+        <TextBlock Style="{StaticResource AgSectionHeader}" Text="Matchmaker" />
+
+        <TextBlock Style="{StaticResource AgBody}"
+                   Text="Joins a place automatically on the next launch, optionally preferring a quieter server." />
+
+        <controls:OptionControl Header="Enable matchmaker"
+                                Description="Join the place below as soon as Roblox starts.">
+            <ui:ToggleSwitch IsChecked="{Binding AgentstrapMatchmakerEnabled, Mode=TwoWay}" />
+        </controls:OptionControl>
+
+        <controls:OptionControl Header="Place ID"
+                                Description="The experience to join. Leave empty to pick one at launch time.">
+            <ui:TextBox Width="200"
+                        Text="{Binding AgentstrapMatchmakerPlaceId, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+        </controls:OptionControl>
+
+        <controls:OptionControl Header="Prefer low population servers"
+                                Description="Skip full servers even when the list still has slots, which avoids long queue times.">
+            <ui:ToggleSwitch IsChecked="{Binding AgentstrapMatchmakerPreferLowPopulation, Mode=TwoWay}" />
+        </controls:OptionControl>
+
+        <controls:OptionControl Header="Minimum free slots"
+                                Description="How many free slots a server needs before the matchmaker will join it.">
+            <ComboBox Width="160"
+                      ItemsSource="{Binding MinimumFreeSlotOptions}"
+                      SelectedItem="{Binding AgentstrapMatchmakerMinimumFreeSlots, Mode=TwoWay}" />
+        </controls:OptionControl>
+
+        <Border Style="{StaticResource ReadOnlyCard}" Margin="0,10,0,0">
+            <StackPanel>
+                <TextBlock Style="{StaticResource AgCardValue}" Margin="0"
+                           Text="{Binding AgentstrapMatchmakerStatus, Mode=OneWay}" />
+
+                <ui:Button Appearance="Secondary" Margin="0,14,0,0" HorizontalAlignment="Left"
+                           Icon="Play24" Content="Find a server now"
+                           Command="{Binding FindAndLaunchServerCommand, Mode=OneTime}" />
+            </StackPanel>
+        </Border>
+    </StackPanel>
+</ui:UiPage>

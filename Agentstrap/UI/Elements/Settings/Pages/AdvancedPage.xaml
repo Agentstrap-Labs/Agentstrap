@@ -1,0 +1,134 @@
+<ui:UiPage x:Class="Agentstrap.UI.Elements.Settings.Pages.AdvancedPage"
+      x:Name="AdvancedPageView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+      xmlns:controls="clr-namespace:Agentstrap.UI.Elements.Controls"
+      mc:Ignorable="d"
+      d:DesignHeight="1080" d:DesignWidth="800"
+      Title="Advanced"
+      Scrollable="True">
+
+    <StackPanel Margin="0,0,14,14">
+        <TextBlock Style="{StaticResource AgPageTitle}" Text="Advanced" />
+        <TextBlock Style="{StaticResource AgPageSubtitle}"
+                   Text="NEXUS is Agentstrap's optional feature channel. Developer tools stay locked behind developer mode so they cannot be triggered by accident." />
+
+        <!--  NEXUS.  -->
+        <TextBlock Style="{StaticResource AgSectionHeader}" Text="NEXUS" />
+
+        <controls:OptionControl Header="Enable NEXUS mode"
+                                Description="Pulls feature flags and configuration from the NEXUS channel instead of the defaults.">
+            <ui:ToggleSwitch IsChecked="{Binding NexusModeEnabled, Mode=TwoWay}" />
+        </controls:OptionControl>
+
+        <controls:OptionControl Header="Channel"
+                                Description="Which NEXUS channel to track. Stable is the tested one, preview gets changes first.">
+            <ComboBox Width="160"
+                      ItemsSource="{Binding NexusChannels}"
+                      SelectedItem="{Binding NexusChannel, Mode=TwoWay}" />
+        </controls:OptionControl>
+
+        <controls:OptionControl Header="Verbose logging"
+                                Description="Writes an extra NEXUS log for every flag it resolves, which makes flag problems far easier to trace.">
+            <ui:ToggleSwitch IsChecked="{Binding NexusVerboseLoggingEnabled, Mode=TwoWay}" />
+        </controls:OptionControl>
+
+        <controls:OptionControl Header="Allow mod overrides"
+                                Description="Lets a mod replace NEXUS-provided configuration. Useful when testing, but it can conflict with NEXUS itself.">
+            <ui:ToggleSwitch IsChecked="{Binding NexusAllowModOverrides, Mode=TwoWay}" />
+        </controls:OptionControl>
+
+        <Border Style="{StaticResource AgCard}" Margin="0,10,0,0">
+            <StackPanel>
+                <TextBlock Style="{StaticResource AgCardValue}" Margin="0"
+                           Text="{Binding NexusStatus, Mode=OneWay}" />
+
+                <controls:MarkdownTextBlock Style="{StaticResource AgCardHint}"
+                                            MarkdownText="{Binding NexusDetails, Mode=OneWay}" />
+
+                <StackPanel Margin="0,14,0,0" Orientation="Horizontal">
+                    <ui:Button Appearance="Secondary" Icon="ArrowSync24" Content="Refresh"
+                               Command="{Binding RefreshNexusCommand, Mode=OneTime}" />
+
+                    <ui:Button Margin="8,0,0,0" Icon="ArrowCounterclockwise24"
+                               Content="Reset to defaults" Appearance="Danger"
+                               Command="{Binding ResetNexusCommand, Mode=OneTime}" />
+                </StackPanel>
+            </StackPanel>
+        </Border>
+
+        <!--  Developer tools.  -->
+        <TextBlock Style="{StaticResource AgSectionHeader}" Text="Developer tools" />
+
+        <Border Style="{StaticResource AgCard}" Margin="0,10,0,0">
+            <StackPanel>
+                <TextBlock Style="{StaticResource AgCardValue}" Margin="0"
+                           Text="{Binding DeveloperStatus, Mode=OneWay}" />
+
+                <controls:MarkdownTextBlock Style="{StaticResource AgCardHint}"
+                                            MarkdownText="{Binding DeveloperDetails, Mode=OneWay}" />
+
+                <StackPanel Margin="0,14,0,0" Orientation="Horizontal">
+                    <ui:Button Appearance="Secondary" Icon="ArrowSync24" Content="Refresh tools"
+                               Command="{Binding RefreshDeveloperToolsCommand, Mode=OneTime}" />
+
+                    <ui:Button Appearance="Secondary" Margin="8,0,0,0" Icon="Bug24" Content="Open logs"
+                               Command="{Binding OpenLogsCommand, Mode=OneTime}" />
+
+                    <ui:Button Appearance="Secondary" Margin="8,0,0,0" Icon="Delete24" Content="Clear logs"
+                               Command="{Binding ClearLogsCommand, Mode=OneTime}" />
+                </StackPanel>
+            </StackPanel>
+        </Border>
+
+        <ItemsControl Margin="0,8,0,0" ItemsSource="{Binding DeveloperTools}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <controls:OptionControl Header="{Binding Name}"
+                                            Description="{Binding Description}">
+                        <ui:Button Appearance="Secondary" Icon="Play24" Content="Run"
+                                   Command="{Binding Command, Mode=OneTime}" />
+                    </controls:OptionControl>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+            <ItemsControl.Style>
+                <Style TargetType="ItemsControl">
+                    <Setter Property="Visibility" Value="Collapsed" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding DeveloperToolsUnlocked}" Value="True">
+                            <Setter Property="Visibility" Value="Visible" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </ItemsControl.Style>
+        </ItemsControl>
+
+        <!--  Maintenance.  -->
+        <TextBlock Style="{StaticResource AgSectionHeader}" Text="Maintenance" />
+
+        <Grid Margin="0,10,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="{StaticResource AgCardGap}" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <ui:Button Appearance="Secondary" Grid.Column="0" Style="{StaticResource AgActionButton}"
+                       Icon="DocumentText24" Content="Dump configuration"
+                       Command="{Binding DumpConfigurationCommand, Mode=OneTime}" />
+
+            <ui:Button Appearance="Secondary" Grid.Column="2" Style="{StaticResource AgActionButton}"
+                       Icon="ArrowCounterclockwise24" Content="Restart Agentstrap"
+                       Command="{Binding RestartAppCommand, Mode=OneTime}" />
+        </Grid>
+
+        <controls:OptionControl Header="Copy environment report"
+                                Description="Copies the Agentstrap version, Windows build, locale and install paths to the clipboard. Paste it into a bug report.">
+            <ui:Button Appearance="Secondary" Icon="DocumentCopy24" Content="Copy"
+                       Command="{Binding CopyEnvironmentCommand, Mode=OneTime}" />
+        </controls:OptionControl>
+    </StackPanel>
+</ui:UiPage>

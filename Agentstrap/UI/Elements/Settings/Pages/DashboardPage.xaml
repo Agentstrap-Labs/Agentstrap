@@ -1,0 +1,134 @@
+<ui:UiPage x:Class="Agentstrap.UI.Elements.Settings.Pages.DashboardPage"
+      x:Name="DashboardPageView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+      xmlns:models="clr-namespace:Agentstrap.UI.ViewModels"
+      mc:Ignorable="d"
+      d:DesignHeight="720" d:DesignWidth="900"
+      Title="Command Center"
+      Scrollable="True">
+
+    <StackPanel Margin="0,0,14,14">
+
+        <TextBlock Style="{StaticResource AgPageTitle}" Text="Command Center" />
+        <TextBlock Style="{StaticResource AgPageSubtitle}"
+                   Text="Launch, update and repair Roblox without digging through settings." />
+
+        <!--  Launch.  Starting the game is the reason most people open this window,
+              so both entry points sit above everything informational.  -->
+        <TextBlock Style="{StaticResource AgSectionHeader}" Text="Launch" />
+
+        <Grid Margin="0,10,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="{StaticResource AgCardGap}" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <ui:Button Appearance="Secondary" Grid.Column="0" Style="{StaticResource AgActionButton}"
+                       Icon="Play24" Content="Launch Roblox"
+                       Command="{Binding LaunchRobloxCommand, Mode=OneTime}" />
+
+            <ui:Button Appearance="Secondary" Grid.Column="2" Style="{StaticResource AgActionButton}"
+                       Icon="PlaySettings20" Content="Launch Roblox Studio"
+                       Command="{Binding LaunchRobloxStudioCommand, Mode=OneTime}" />
+        </Grid>
+
+        <!--  Status.  Everything worth knowing without opening another page.  -->
+        <TextBlock Style="{StaticResource AgSectionHeader}" Text="Status" />
+
+        <UniformGrid Margin="0,10,0,0" Columns="3">
+            <Border Style="{StaticResource AgCard}" Margin="0,0,4,0">
+                <StackPanel>
+                    <TextBlock Style="{StaticResource AgCardLabel}" Text="Roblox Player" />
+                    <TextBlock Style="{StaticResource AgCardValue}"
+                               Text="{Binding RobloxInstallStatus, Mode=OneWay}" />
+                    <TextBlock Style="{StaticResource AgCardHint}"
+                               Text="{Binding RobloxInstallDetails, Mode=OneWay}" />
+                </StackPanel>
+            </Border>
+
+            <Border Style="{StaticResource AgCard}" Margin="4,0">
+                <StackPanel>
+                    <TextBlock Style="{StaticResource AgCardLabel}" Text="Last launch" />
+                    <TextBlock Style="{StaticResource AgCardValue}"
+                               Text="{Binding LastLaunchStatus, Mode=OneWay}" />
+                    <TextBlock Style="{StaticResource AgCardHint}"
+                               Text="{Binding LastLaunchTime, Mode=OneWay}" />
+                </StackPanel>
+            </Border>
+
+            <Border Style="{StaticResource AgCard}" Margin="4,0,0,0">
+                <StackPanel>
+                    <TextBlock Style="{StaticResource AgCardLabel}" Text="Agentstrap" />
+                    <TextBlock Style="{StaticResource AgCardValue}"
+                               Text="{Binding AgentstrapVersion, Mode=OneWay}" />
+                    <TextBlock Style="{StaticResource AgCardHint}" Text="Installed build" />
+                </StackPanel>
+            </Border>
+        </UniformGrid>
+
+        <UniformGrid Margin="0,8,0,0" Columns="3">
+            <Border Style="{StaticResource AgCard}" Margin="0,0,4,0">
+                <StackPanel>
+                    <TextBlock Style="{StaticResource AgCardLabel}" Text="NEXUS" />
+                    <TextBlock Style="{StaticResource AgCardValue}"
+                               Text="{Binding NexusMode, Mode=OneWay}" />
+                    <TextBlock Style="{StaticResource AgCardHint}" Text="Feature channel" />
+                </StackPanel>
+            </Border>
+
+            <Border Style="{StaticResource AgCard}" Margin="4,0">
+                <StackPanel>
+                    <TextBlock Style="{StaticResource AgCardLabel}" Text="Process priority" />
+                    <TextBlock Style="{StaticResource AgCardValue}"
+                               Text="{Binding ProcessPriority, Mode=OneWay}" />
+                    <TextBlock Style="{StaticResource AgCardHint}" Text="Applied to Roblox" />
+                </StackPanel>
+            </Border>
+
+            <Border Style="{StaticResource AgCard}" Margin="4,0,0,0">
+                <StackPanel>
+                    <TextBlock Style="{StaticResource AgCardLabel}" Text="Test mode" />
+                    <TextBlock Style="{StaticResource AgCardValue}"
+                               Text="{Binding TestModeText, Mode=OneWay}" />
+                    <TextBlock Style="{StaticResource AgCardHint}" Text="Bypasses server checks" />
+                </StackPanel>
+            </Border>
+        </UniformGrid>
+
+        <!--  Tools.  Each of these jumps somewhere rather than repeating the work.  -->
+        <TextBlock Style="{StaticResource AgSectionHeader}" Text="Tools" />
+
+        <UniformGrid Margin="0,10,0,0" Columns="3">
+            <ui:Button Appearance="Secondary" Style="{StaticResource AgActionButton}" Margin="0,0,4,0"
+                       Icon="ArrowSync24" Content="Check for updates"
+                       Command="{Binding CheckUpdatesCommand, Mode=OneTime}" />
+
+            <ui:Button Appearance="Secondary" Style="{StaticResource AgActionButton}" Margin="4,0"
+                       Icon="Pulse24" Content="Run diagnostics"
+                       Command="{Binding RunDiagnosticsCommand, Mode=OneTime}" />
+
+            <ui:Button Appearance="Secondary" Style="{StaticResource AgActionButton}" Margin="4,0,0,0"
+                       Icon="Bug24" Content="Open logs"
+                       Command="{Binding OpenLogsCommand, Mode=OneTime}" />
+        </UniformGrid>
+
+        <UniformGrid Margin="0,8,0,0" Columns="2">
+            <ui:Button Appearance="Secondary" Style="{StaticResource AgActionButton}" Margin="0,0,4,0"
+                       Icon="WrenchScrewdriver20" Content="Advanced"
+                       Command="{Binding OpenAdvancedCommand, Mode=OneTime}" />
+
+            <ui:Button Appearance="Secondary" Style="{StaticResource AgActionButton}" Margin="4,0,0,0"
+                       Icon="ArrowSync24" Content="Refresh status"
+                       Command="{Binding RefreshInstallStatusCommand, Mode=OneTime}" />
+        </UniformGrid>
+
+        <ui:Button Appearance="Secondary" Style="{StaticResource AgActionButton}" Margin="0,8,0,0"
+                   Icon="Link20" Content="Repair Roblox links"
+                   Command="{Binding RepairLinksCommand, Mode=OneTime}" />
+    </StackPanel>
+</ui:UiPage>

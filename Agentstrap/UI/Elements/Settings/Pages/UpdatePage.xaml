@@ -1,0 +1,224 @@
+<ui:UiPage x:Class="Agentstrap.UI.Elements.Settings.Pages.UpdatePage"
+      x:Name="UpdatePageView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+      xmlns:local="clr-namespace:Agentstrap.UI.Elements.Controls"
+      mc:Ignorable="d"
+      d:DesignHeight="1080" d:DesignWidth="800"
+      Title="Updates"
+      Scrollable="True">
+
+    <ui:UiPage.Resources>
+        <!--  Shared shape for every check row so the four sections line up.  -->
+        <Style x:Key="CheckCard" TargetType="Border" BasedOn="{StaticResource AgCard}" />
+
+        <Style x:Key="CheckHeading" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="15" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="TextWrapping" Value="Wrap" />
+        </Style>
+
+        <!--  Each check reports an optional summary.  One style per summary keeps the
+              collapse trigger tied to the right property instead of letting every
+              summary react to every other one.  -->
+        <Style x:Key="DetailBase" TargetType="local:MarkdownTextBlock">
+            <Setter Property="Margin" Value="0,5,0,0" />
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="TextWrapping" Value="Wrap" />
+            <Setter Property="Foreground" Value="{DynamicResource TextFillColorTertiaryBrush}" />
+        </Style>
+
+        <Style x:Key="ReleaseDetail" TargetType="local:MarkdownTextBlock" BasedOn="{StaticResource DetailBase}">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding ReleaseSummary, Mode=OneWay}" Value="">
+                    <Setter Property="Visibility" Value="Collapsed" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding ReleaseSummary, Mode=OneWay}" Value="{x:Null}">
+                    <Setter Property="Visibility" Value="Collapsed" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="ModsDetail" TargetType="local:MarkdownTextBlock" BasedOn="{StaticResource DetailBase}">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding ModsSummary, Mode=OneWay}" Value="">
+                    <Setter Property="Visibility" Value="Collapsed" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding ModsSummary, Mode=OneWay}" Value="{x:Null}">
+                    <Setter Property="Visibility" Value="Collapsed" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="MigrationDetail" TargetType="local:MarkdownTextBlock" BasedOn="{StaticResource DetailBase}">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding MigrationSummary, Mode=OneWay}" Value="">
+                    <Setter Property="Visibility" Value="Collapsed" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding MigrationSummary, Mode=OneWay}" Value="{x:Null}">
+                    <Setter Property="Visibility" Value="Collapsed" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="NexusDetail" TargetType="local:MarkdownTextBlock" BasedOn="{StaticResource DetailBase}">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding NexusSummary, Mode=OneWay}" Value="">
+                    <Setter Property="Visibility" Value="Collapsed" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding NexusSummary, Mode=OneWay}" Value="{x:Null}">
+                    <Setter Property="Visibility" Value="Collapsed" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="ReleaseStatus" TargetType="TextBlock">
+            <Setter Property="Margin" Value="0,4,0,0" />
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="TextWrapping" Value="Wrap" />
+            <Setter Property="Foreground" Value="{DynamicResource TextFillColorSecondaryBrush}" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding AgentstrapStatus, Mode=OneWay}" Value="">
+                    <Setter Property="Visibility" Value="Collapsed" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding AgentstrapStatus, Mode=OneWay}" Value="{x:Null}">
+                    <Setter Property="Visibility" Value="Collapsed" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </ui:UiPage.Resources>
+
+    <StackPanel Margin="0,0,14,14">
+        <TextBlock Style="{StaticResource AgPageTitle}" Text="Updates" />
+        <TextBlock Style="{StaticResource AgPageSubtitle}"
+                   Text="Check Agentstrap itself, your mods, any pending configuration migrations, and the NEXUS channel. Each section is checked on its own so you can also apply a check on its own." />
+
+        <StackPanel Margin="0,16,0,0" Orientation="Horizontal">
+            <ui:Button Appearance="Secondary" Style="{StaticResource AgActionButton}" Width="220"
+                       Icon="ArrowSync24" Content="Check everything"
+                       Command="{Binding CheckUpdatesCommand, Mode=OneTime}" />
+        </StackPanel>
+
+        <!--  Agentstrap itself.  -->
+        <TextBlock Style="{StaticResource AgSectionHeader}" Text="Agentstrap" />
+
+        <Border Style="{StaticResource CheckCard}" Margin="0,10,0,0">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0" Margin="0,0,16,0">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Style="{StaticResource CheckHeading}"
+                                   Text="{Binding InstalledVersion, Mode=OneWay}" />
+                        <TextBlock Margin="8,0,0,0" FontSize="14"
+                                   Foreground="{DynamicResource TextFillColorTertiaryBrush}"
+                                   Text="{Binding LatestVersion, Mode=OneWay}" />
+                    </StackPanel>
+
+                    <TextBlock Style="{StaticResource ReleaseStatus}"
+                               Text="{Binding AgentstrapStatus, Mode=OneWay}" />
+
+                    <local:MarkdownTextBlock Style="{StaticResource ReleaseDetail}"
+                                             MarkdownText="{Binding ReleaseSummary, Mode=OneWay}" />
+                </StackPanel>
+
+                <StackPanel Grid.Column="1" VerticalAlignment="Center" Orientation="Horizontal">
+                    <ui:Button Appearance="Secondary" Icon="ArrowSync24" Content="Check"
+                               Command="{Binding CheckAgentstrapCommand, Mode=OneTime}" />
+
+                    <ui:Button Appearance="Secondary" Margin="8,0,0,0"
+                               Icon="Open24" Content="Releases"
+                               Command="{Binding OpenReleasesCommand, Mode=OneTime}" />
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <!--  Mods.  -->
+        <TextBlock Style="{StaticResource AgSectionHeader}" Text="Mods" />
+
+        <Border Style="{StaticResource CheckCard}" Margin="0,10,0,0">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0" Margin="0,0,16,0">
+                    <TextBlock Style="{StaticResource CheckHeading}"
+                               Text="{Binding ModsStatus, Mode=OneWay}" />
+
+                    <local:MarkdownTextBlock Style="{StaticResource ModsDetail}"
+                                             MarkdownText="{Binding ModsSummary, Mode=OneWay}" />
+                </StackPanel>
+
+                <StackPanel Grid.Column="1" VerticalAlignment="Center" Orientation="Horizontal">
+                    <ui:Button Appearance="Secondary" Icon="ArrowSync24" Content="Check"
+                               Command="{Binding CheckModsCommand, Mode=OneTime}" />
+
+                    <ui:Button Appearance="Secondary" Margin="8,0,0,0"
+                               Icon="FolderOpen24" Content="Mods folder"
+                               Command="{Binding OpenModsFolderCommand, Mode=OneTime}" />
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <!--  Configuration migrations.  -->
+        <TextBlock Style="{StaticResource AgSectionHeader}" Text="Configuration" />
+
+        <Border Style="{StaticResource CheckCard}" Margin="0,10,0,0">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0" Margin="0,0,16,0">
+                    <TextBlock Style="{StaticResource CheckHeading}"
+                               Text="{Binding MigrationStatus, Mode=OneWay}" />
+
+                    <local:MarkdownTextBlock Style="{StaticResource MigrationDetail}"
+                                             MarkdownText="{Binding MigrationSummary, Mode=OneWay}" />
+                </StackPanel>
+
+                <StackPanel Grid.Column="1" VerticalAlignment="Center" Orientation="Horizontal">
+                    <ui:Button Appearance="Secondary" Icon="ArrowSync24" Content="Check"
+                               Command="{Binding CheckMigrationsCommand, Mode=OneTime}" />
+
+                    <ui:Button Appearance="Secondary" Margin="8,0,0,0"
+                               Icon="Checkmark24" Content="Apply"
+                               Command="{Binding ApplyMigrationsCommand, Mode=OneTime}" />
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <!--  NEXUS.  -->
+        <TextBlock Style="{StaticResource AgSectionHeader}" Text="NEXUS" />
+
+        <Border Style="{StaticResource CheckCard}" Margin="0,10,0,0">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0" Margin="0,0,16,0">
+                    <TextBlock Style="{StaticResource CheckHeading}"
+                               Text="{Binding NexusStatus, Mode=OneWay}" />
+
+                    <local:MarkdownTextBlock Style="{StaticResource NexusDetail}"
+                                             MarkdownText="{Binding NexusSummary, Mode=OneWay}" />
+                </StackPanel>
+
+                <ui:Button Appearance="Secondary" Grid.Column="1" VerticalAlignment="Center"
+                           Icon="ArrowSync24" Content="Check"
+                           Command="{Binding CheckNexusCommand, Mode=OneTime}" />
+            </Grid>
+        </Border>
+    </StackPanel>
+</ui:UiPage>

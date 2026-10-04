@@ -1,0 +1,202 @@
+<ui:UiPage x:Class="Agentstrap.UI.Elements.Settings.Pages.DiagnosticsPage"
+      x:Name="DiagnosticsPageView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+      xmlns:local="clr-namespace:Agentstrap.UI.Elements.Controls"
+      xmlns:models="clr-namespace:Agentstrap.UI.ViewModels.Settings"
+      mc:Ignorable="d"
+      d:DesignHeight="1080" d:DesignWidth="800"
+      Title="Diagnostics"
+      Scrollable="True">
+
+    <ui:UiPage.Resources>
+        <!--  Severity is plain data on the view model, so the palette lives here and
+              follows the light and dark themes instead of being baked into the VM.  -->
+        <Style x:Key="SeverityBadge" TargetType="Border">
+            <Setter Property="Padding" Value="8,2" />
+            <Setter Property="CornerRadius" Value="2" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Severity}" Value="{x:Static models:DiagnosticSeverity.Problem}">
+                    <Setter Property="Background" Value="{DynamicResource SystemFillColorCriticalBackgroundBrush}" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Severity}" Value="{x:Static models:DiagnosticSeverity.Warning}">
+                    <Setter Property="Background" Value="{DynamicResource SystemFillColorCautionBackgroundBrush}" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Severity}" Value="{x:Static models:DiagnosticSeverity.Healthy}">
+                    <Setter Property="Background" Value="{DynamicResource SystemFillColorSuccessBackgroundBrush}" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="SeverityBadgeText" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="11" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Severity}" Value="{x:Static models:DiagnosticSeverity.Problem}">
+                    <Setter Property="Foreground" Value="{DynamicResource SystemFillColorCriticalBrush}" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Severity}" Value="{x:Static models:DiagnosticSeverity.Warning}">
+                    <Setter Property="Foreground" Value="{DynamicResource SystemFillColorCautionBrush}" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Severity}" Value="{x:Static models:DiagnosticSeverity.Healthy}">
+                    <Setter Property="Foreground" Value="{DynamicResource SystemFillColorSuccessBrush}" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="SeverityIcon" TargetType="ui:SymbolIcon">
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="VerticalAlignment" Value="Top" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Severity}" Value="{x:Static models:DiagnosticSeverity.Problem}">
+                    <Setter Property="Foreground" Value="{DynamicResource SystemFillColorCriticalBrush}" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Severity}" Value="{x:Static models:DiagnosticSeverity.Warning}">
+                    <Setter Property="Foreground" Value="{DynamicResource SystemFillColorCautionBrush}" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Severity}" Value="{x:Static models:DiagnosticSeverity.Healthy}">
+                    <Setter Property="Foreground" Value="{DynamicResource SystemFillColorSuccessBrush}" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="ResultTitle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="TextWrapping" Value="Wrap" />
+        </Style>
+
+        <!--  Details are only rendered when the check actually produced some.  -->
+        <Style x:Key="ResultDetails" TargetType="local:MarkdownTextBlock">
+            <Setter Property="Margin" Value="0,6,0,0" />
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="TextWrapping" Value="Wrap" />
+            <Setter Property="Foreground" Value="{DynamicResource TextFillColorTertiaryBrush}" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding HasDetails}" Value="False">
+                    <Setter Property="Visibility" Value="Collapsed" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <!--  One check.  -->
+        <DataTemplate x:Key="ResultTemplate">
+            <Border Style="{StaticResource AgCard}" Margin="0,0,0,8">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <ui:SymbolIcon Grid.Column="0" Margin="0,2,12,0"
+                                   Style="{StaticResource SeverityIcon}"
+                                   Symbol="{Binding SeveritySymbol}" />
+
+                    <StackPanel Grid.Column="1">
+                        <TextBlock Style="{StaticResource ResultTitle}" Text="{Binding Title}" />
+
+                        <TextBlock Style="{StaticResource AgCardHint}" Text="{Binding Summary}" />
+
+                        <local:MarkdownTextBlock Style="{StaticResource ResultDetails}"
+                                                 MarkdownText="{Binding Details}" />
+                    </StackPanel>
+
+                    <Border Grid.Column="2" Margin="12,0,0,0" Style="{StaticResource SeverityBadge}">
+                        <TextBlock Style="{StaticResource SeverityBadgeText}"
+                                   Text="{Binding SeverityLabel}" />
+                    </Border>
+                </Grid>
+            </Border>
+        </DataTemplate>
+
+        <!--  A category and everything under it.  -->
+        <DataTemplate x:Key="GroupTemplate">
+            <StackPanel>
+                <TextBlock Style="{StaticResource AgSectionHeader}" Text="{Binding Title}" />
+
+                <ItemsControl Margin="0,10,0,0"
+                              ItemsSource="{Binding Results}"
+                              ItemTemplate="{StaticResource ResultTemplate}" />
+            </StackPanel>
+        </DataTemplate>
+    </ui:UiPage.Resources>
+
+    <StackPanel Margin="0,0,14,14">
+        <TextBlock Style="{StaticResource AgPageTitle}" Text="Diagnostics" />
+        <TextBlock Style="{StaticResource AgPageSubtitle}"
+                   Text="Runs every Agentstrap health check in one pass and groups the results by what they cover. Nothing here changes your configuration." />
+
+        <UniformGrid Margin="0,16,0,0" Columns="3">
+            <ui:Button Appearance="Secondary" Style="{StaticResource AgActionButton}" Margin="0,0,4,0"
+                       Icon="Pulse24" Content="Run diagnostics"
+                       Command="{Binding RunDiagnosticsCommand, Mode=OneTime}" />
+
+            <ui:Button Appearance="Secondary" Style="{StaticResource AgActionButton}" Margin="4,0"
+                       Icon="DocumentText24" Content="Copy report"
+                       Command="{Binding CopyReportCommand, Mode=OneTime}" />
+
+            <ui:Button Appearance="Secondary" Style="{StaticResource AgActionButton}" Margin="4,0,0,0"
+                       Icon="Bug24" Content="Open logs"
+                       Command="{Binding OpenLogsCommand, Mode=OneTime}" />
+        </UniformGrid>
+
+        <ui:ProgressRing Width="28" Height="28" Margin="0,12,0,0"
+                         HorizontalAlignment="Left"
+                         IsIndeterminate="True">
+            <ui:ProgressRing.Style>
+                <Style TargetType="ui:ProgressRing">
+                    <Setter Property="Visibility" Value="Collapsed" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsRunning}" Value="True">
+                            <Setter Property="Visibility" Value="Visible" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </ui:ProgressRing.Style>
+        </ui:ProgressRing>
+
+        <!--  Overall verdict.  -->
+        <Border Style="{StaticResource AgCard}" Margin="0,18,0,0">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0" Margin="0,0,12,0">
+                    <TextBlock Style="{StaticResource AgCardValue}" Margin="0,0,0,0"
+                               Text="{Binding OverallLabel, Mode=OneWay}" />
+
+                    <TextBlock Style="{StaticResource AgCardHint}"
+                               Text="{Binding Headline, Mode=OneWay}" />
+                </StackPanel>
+
+                <StackPanel Grid.Column="1" VerticalAlignment="Center" Orientation="Horizontal">
+                    <TextBlock Margin="0,0,12,0" FontSize="12"
+                               Foreground="{DynamicResource SystemFillColorCriticalBrush}"
+                               Text="{Binding ProblemCount, Mode=OneWay, StringFormat={}{0} problems}" />
+
+                    <TextBlock Margin="0,0,12,0" FontSize="12"
+                               Foreground="{DynamicResource SystemFillColorCautionBrush}"
+                               Text="{Binding WarningCount, Mode=OneWay, StringFormat={}{0} warnings}" />
+
+                    <TextBlock FontSize="12"
+                               Foreground="{DynamicResource SystemFillColorSuccessBrush}"
+                               Text="{Binding HealthyCount, Mode=OneWay, StringFormat={}{0} healthy}" />
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <!--  Results, grouped by category.  -->
+        <TextBlock Style="{StaticResource AgSectionHeader}" Text="Results" />
+
+        <ItemsControl Margin="0,0,0,0"
+                      ItemsSource="{Binding Groups}"
+                      ItemTemplate="{StaticResource GroupTemplate}" />
+    </StackPanel>
+</ui:UiPage>
