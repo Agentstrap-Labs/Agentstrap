@@ -1,0 +1,85 @@
+<ui:UiPage x:Class="Agentstrap.UI.Elements.Settings.Pages.AppleEmojiPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+      xmlns:models="clr-namespace:Agentstrap.UI.ViewModels.Settings"
+      mc:Ignorable="d"
+      d:DataContext="{d:DesignInstance models:AppleEmojiViewModel, IsDesignTimeCreatable=True}"
+      d:DesignHeight="900" d:DesignWidth="800"
+      Title="AppleEmojiPage"
+      Scrollable="True">
+    <StackPanel Margin="0,0,14,14">
+        <TextBlock Style="{StaticResource AgPageTitle}" Text="Roblox Apple Emoji Mode" />
+        <TextBlock Style="{StaticResource AgPageSubtitle}"
+                   Text="Attempt to display supported emojis in Roblox using Apple's iPhone emoji style through a safe, Roblox specific customization method." />
+
+        <TextBlock Style="{StaticResource AgSectionHeader}" Text="Feature status" />
+        <Border Style="{StaticResource AgCard}" Margin="0,10,0,0">
+            <StackPanel>
+                <TextBlock Style="{StaticResource AgCardLabel}" Text="Current status" />
+                <TextBlock Style="{StaticResource AgBody}" Margin="0,4,0,0" Text="{Binding StatusLabel, Mode=OneWay}" />
+                <TextBlock Style="{StaticResource AgCardHint}" Margin="0,8,0,0" Text="{Binding StatusMessage, Mode=OneWay}" />
+                <TextBlock Style="{StaticResource AgCardHint}" Margin="0,8,0,0" Text="{Binding SimulatedPreview, Mode=OneWay}" />
+            </StackPanel>
+        </Border>
+
+        <TextBlock Style="{StaticResource AgSectionHeader}" Text="Controls" />
+        <Border Style="{StaticResource AgCard}" Margin="0,10,0,0">
+            <StackPanel>
+                <TextBlock Style="{StaticResource AgCardLabel}" Text="Selected Apple style emoji font" />
+                <TextBlock Style="{StaticResource AgBody}" Margin="0,4,0,0" Text="{Binding SelectedFontName, Mode=OneWay}" />
+                <TextBlock Style="{StaticResource AgCardHint}" Margin="0,4,0,0" Text="{Binding SelectedFontPath, Mode=OneWay}" />
+
+                <StackPanel Orientation="Horizontal" Margin="0,16,0,0">
+                    <ui:Button Appearance="Secondary" Style="{StaticResource AgActionButton}" Width="170"
+                               Icon="DocumentAdd16" Content="Select font"
+                               Command="{Binding SelectFontCommand}" />
+                    <ui:Button Style="{StaticResource AgActionButton}" Width="120" Margin="8,0,0,0"
+                               Icon="Play24" Content="Enable"
+                               Command="{Binding EnableCommand}" />
+                    <ui:Button Appearance="Secondary" Style="{StaticResource AgActionButton}" Width="120" Margin="8,0,0,0"
+                               Icon="Stop24" Content="Disable"
+                               Command="{Binding DisableCommand}" />
+                    <ui:Button Appearance="Danger" Style="{StaticResource AgActionButton}" Width="170" Margin="8,0,0,0"
+                               Icon="ArrowReset24" Content="Restore defaults"
+                               Command="{Binding RestoreDefaultsCommand}" />
+                </StackPanel>
+
+                <TextBlock Style="{StaticResource AgCardHint}" Margin="0,12,0,0"
+                           Text="Apple's original emoji designs are proprietary. You must supply a compatible, legally usable Apple style color emoji font. Agentstrap does not download or redistribute one." />
+            </StackPanel>
+        </Border>
+
+        <TextBlock Style="{StaticResource AgSectionHeader}" Text="Compatibility" />
+        <Border Style="{StaticResource AgCard}" Margin="0,10,0,0">
+            <StackPanel>
+                <TextBlock Style="{StaticResource AgCardLabel}" Text="Roblox detected" />
+                <TextBlock Style="{StaticResource AgBody}" Margin="0,4,0,0" Text="{Binding RobloxDetected, Mode=OneWay}" />
+                <TextBlock Style="{StaticResource AgCardHint}" Margin="0,8,0,0"
+                           Text="Rendering inside Roblox is not verified by Agentstrap. A successful application only means the compatible font was copied into the Modifications overlay." />
+                <TextBlock Style="{StaticResource AgCardHint}" Margin="0,8,0,0"
+                           Text="The simulated preview above is not actual Roblox rendering." />
+            </StackPanel>
+        </Border>
+
+        <TextBlock Style="{StaticResource AgSectionHeader}" Text="Diagnostics" />
+        <Border Style="{StaticResource AgCard}" Margin="0,10,0,0">
+            <StackPanel>
+                <UniformGrid Columns="2" Margin="0,0,0,8">
+                    <ui:Button Appearance="Secondary" Style="{StaticResource AgActionButton}" Margin="0,0,4,0"
+                               Icon="ArrowSync24" Content="Refresh"
+                               Command="{Binding RefreshCommand}" />
+                    <ui:Button Appearance="Secondary" Style="{StaticResource AgActionButton}" Margin="4,0,0,0"
+                               Icon="DocumentText24" Content="Copy diagnostic report"
+                               Command="{Binding CopyDiagnosticCommand}" />
+                </UniformGrid>
+
+                <TextBox Style="{StaticResource AgBody}" Margin="0,8,0,0" IsReadOnly="True"
+                         TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Auto"
+                         MinHeight="220" Text="{Binding DiagnosticReport, Mode=OneWay}" />
+            </StackPanel>
+        </Border>
+    </StackPanel>
+</ui:UiPage>

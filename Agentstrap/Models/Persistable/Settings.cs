@@ -54,6 +54,16 @@ namespace Agentstrap.Models.Persistable
         public int? WindowPositionY { get; set; } = null;
         public string WindowTitle { get; set; } = "";
 
+        // Roblox Apple Emoji Mode configuration. This feature never replaces Windows
+        // system fonts; it only records whether a user-supplied, compatible emoji
+        // font should be applied to Roblox through the Modifications overlay.
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        public bool RobloxAppleEmojiModeEnabled { get; set; } = false;
+
+        public string RobloxAppleEmojiModeFontPath { get; set; } = "";
+
+        public string RobloxAppleEmojiModeAppliedHash { get; set; } = "";
+
         // NEXUS configuration
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public bool NexusModeEnabled { get; set; } = false;

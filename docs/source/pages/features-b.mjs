@@ -602,6 +602,31 @@ launches, the contents of Modifications are copied into the client install, repl
   Changing one queues the change; it's copied into the Roblox install the next time Roblox starts.
 </div>
 
+<h2>Roblox Apple Emoji Mode</h2>
+
+<p>Roblox Apple Emoji Mode is a separate settings page. It attempts to make supported Roblox text elements render
+emojis in Apple's iPhone emoji style by replacing Roblox's emoji font through the same Modifications overlay used
+by the emoji font preset. It never changes Windows system fonts.</p>
+
+<div class="callout note">
+  <strong>Where it lives.</strong>
+  Settings &rarr; <strong>Roblox Apple Emoji Mode</strong>.
+</div>
+
+<p>Because Apple's original emoji designs are proprietary, Agentstrap does not ship or download an Apple emoji
+font. You must select a compatible, legally usable Apple style colour emoji font yourself. Agentstrap validates
+the selected file, copies it to <code>content\\fonts\\TwemojiMozilla.ttf</code>, and keeps a backup so the
+previous font can be restored.</p>
+
+<p>Agentstrap cannot observe Roblox's renderer, so the page reports <strong>Rendering unverified</strong> after a
+successful application. It never reports a verified Apple rendering result.</p>
+
+<div class="callout warning">
+  <strong>Supported text elements are unverified.</strong>
+  Roblox may use different text rendering paths in different parts of the client. A font replacement can only
+  affect the paths that actually load <code>TwemojiMozilla.ttf</code>.
+</div>
+
 <h2>Custom font</h2>
 
 <p>You can replace the game's own font with any font file on your machine. Use <strong>Choose</strong> to pick a
