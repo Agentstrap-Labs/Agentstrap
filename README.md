@@ -61,7 +61,7 @@ Agentstrap is only supported for PCs running Windows.
 - Fast Flag management, with rendering presets, preset bundles and a flag validator
 - Custom themes, custom shortcuts, and a configurable bootstrapper
 
-Full documentation for every one of these lives in [`Docs Site/`](Docs%20Site).
+Full documentation for every one of these lives in [`docs/`](dpcs).
 
 ## Installing
 
@@ -139,7 +139,7 @@ dotnet test Agentstrap.Tests/Agentstrap.Tests.csproj
 
 Agentstrap is a fork of [Bloxstrap](https://github.com/bloxstraplabs/bloxstrap) by
 [pizzaboxer](https://github.com/pizzaboxer), and would not exist without it. Roblox and Roblox Studio are
-trademarks of Roblox Corporation.
+trademarks of Roblox Corporation. Okay, maybe it would, but Agentstrap would be WAY worse without Bloxstrap..
 
 [shield-repo-license]:  https://img.shields.io/github/license/agentxco2-dev/Agentstrap
 [shield-repo-releases]: https://img.shields.io/github/downloads/agentxco2-dev/Agentstrap/latest/total?color=981bfe
