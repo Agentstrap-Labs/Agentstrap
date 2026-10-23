@@ -12,6 +12,7 @@ using CommunityToolkit.Mvvm.Input;
 
 using Agentstrap.Models.SettingTasks;
 using Agentstrap.AppData;
+using Agentstrap.UI.ViewModels.Settings;
 
 namespace Agentstrap.UI.ViewModels.Settings
 {
@@ -128,6 +129,8 @@ namespace Agentstrap.UI.ViewModels.Settings
             });
 
         public EmojiModPresetTask EmojiFontTask { get; } = new();
+
+        public AppleEmojiViewModel AppleEmojiMode { get; } = new();
 
         public EnumModPresetTask<Enums.CursorType> CursorTypeTask { get; } =
             new(

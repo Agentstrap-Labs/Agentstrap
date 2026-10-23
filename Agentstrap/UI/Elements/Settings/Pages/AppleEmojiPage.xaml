@@ -76,7 +76,7 @@
                                Command="{Binding CopyDiagnosticCommand}" />
                 </UniformGrid>
 
-                <TextBox Style="{StaticResource AgBody}" Margin="0,8,0,0" IsReadOnly="True"
+                <TextBox Margin="0,8,0,0" IsReadOnly="True"
                          TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Auto"
                          MinHeight="220" Text="{Binding DiagnosticReport, Mode=OneWay}" />
             </StackPanel>

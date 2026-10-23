@@ -132,7 +132,7 @@ Text goes here.
 
 ## Versioning
 
-The docs describe Agentstrap **1.0.0**. The version is set in `source/build.mjs` and appears in the footer of
+The docs describe Agentstrap **1.1.0**. The version is set in `source/build.mjs` and appears in the footer of
 every page.
 
 ## Credits
