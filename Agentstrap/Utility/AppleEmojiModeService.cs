@@ -43,8 +43,6 @@ namespace Agentstrap.Utility
             { "ttc", new byte[] { 0x74, 0x74, 0x63, 0x66 } }
         };
 
-        private const long MaximumFontBytes = 100L * 1024 * 1024;
-
         public AppleEmojiModeService(string modificationsRoot, string backupRoot, Func<bool> isRobloxInstalled)
         {
             ModificationsRoot = modificationsRoot ?? throw new ArgumentNullException(nameof(modificationsRoot));
@@ -224,8 +222,7 @@ namespace Agentstrap.Utility
                 if (info.Length == 0)
                     return (false, "The selected font file is empty.", "");
 
-                if (info.Length > MaximumFontBytes)
-                    return (false, "The selected font file is too large.", "");
+                // No size limit is enforced for user-supplied emoji fonts.
 
                 string extension = Path.GetExtension(fullPath).TrimStart('.').ToLowerInvariant();
 
