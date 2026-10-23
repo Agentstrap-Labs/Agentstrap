@@ -1,0 +1,73 @@
+<ui:UiPage x:Class="Agentstrap.UI.Elements.Settings.Pages.QoLPage"
+      x:Name="QoLPageView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+      xmlns:controls="clr-namespace:Agentstrap.UI.Elements.Controls"
+      xmlns:models="clr-namespace:Agentstrap.UI.ViewModels.Settings"
+      d:DataContext="{d:DesignInstance Type=models:QoLViewModel}"
+      mc:Ignorable="d"
+      d:DesignHeight="1080" d:DesignWidth="800"
+      Title="Quality of Life"
+      Scrollable="True">
+
+    <StackPanel Margin="0,0,14,14">
+        <TextBlock Style="{StaticResource AgPageTitle}" Text="Quality of Life" />
+        <TextBlock Style="{StaticResource AgPageSubtitle}"
+                   Text="Optional extras that make Agentstrap a little nicer to use. Every option here is off or neutral by default." />
+
+        <!--  Update management.  -->
+        <TextBlock Style="{StaticResource AgSectionHeader}" Text="Update management" />
+
+        <controls:OptionControl Header="Check for updates"
+                                Description="Lets Agentstrap check for a newer release when it starts and from the Updates page.">
+            <ui:ToggleSwitch IsChecked="{Binding UpdateCheckingEnabled, Mode=TwoWay}" />
+        </controls:OptionControl>
+
+        <controls:OptionControl Header="Background updates"
+                                Description="Prepares the Roblox installation ahead of time in the background so launches start faster.">
+            <ui:ToggleSwitch IsChecked="{Binding BackgroundUpdatesEnabled, Mode=TwoWay}" />
+        </controls:OptionControl>
+
+        <!--  Custom window attributes.  -->
+        <TextBlock Style="{StaticResource AgSectionHeader}" Text="Custom window attributes" />
+
+        <controls:OptionControl Header="Enable custom window attributes"
+                                Description="Applies the size, position and title below to the Roblox player window once it opens.">
+            <ui:ToggleSwitch IsChecked="{Binding CustomWindowAttributesEnabled, Mode=TwoWay}" />
+        </controls:OptionControl>
+
+        <controls:OptionControl Header="Window size"
+                                Description="Width and height in pixels. Leave a box empty to keep Roblox's own value.">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                <TextBox Width="90" Padding="8,5" PreviewTextInput="ValidateUInt32"
+                         Text="{Binding WindowWidth}" />
+                <TextBlock Margin="8,0" VerticalAlignment="Center" Text="x" />
+                <TextBox Width="90" Padding="8,5" PreviewTextInput="ValidateUInt32"
+                         Text="{Binding WindowHeight}" />
+            </StackPanel>
+        </controls:OptionControl>
+
+        <controls:OptionControl Header="Window position"
+                                Description="Top-left corner in screen pixels. Negative values are allowed for multi-monitor setups.">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                <TextBox Width="90" Padding="8,5" PreviewTextInput="ValidateInt32"
+                         Text="{Binding WindowPositionX}" />
+                <TextBlock Margin="8,0" VerticalAlignment="Center" Text="x" />
+                <TextBox Width="90" Padding="8,5" PreviewTextInput="ValidateInt32"
+                         Text="{Binding WindowPositionY}" />
+            </StackPanel>
+        </controls:OptionControl>
+
+        <controls:OptionControl Header="Window title"
+                                Description="Replaces the title shown on the game window. Leave empty to keep Roblox's title.">
+            <TextBox Width="240" Padding="8,5" Text="{Binding WindowTitle}" />
+        </controls:OptionControl>
+
+        <ui:Button Margin="0,12,0,0" Appearance="Secondary" Style="{StaticResource AgActionButton}"
+                   Icon="ArrowCounterclockwise24" Content="Reset window attributes"
+                   Command="{Binding ResetWindowAttributesCommand, Mode=OneTime}" />
+    </StackPanel>
+</ui:UiPage>

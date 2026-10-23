@@ -1,4 +1,4 @@
-<ui:UiPage x:Class="Agentstrap.UI.Elements.About.Pages.AboutPage"
+﻿<ui:UiPage x:Class="Agentstrap.UI.Elements.About.Pages.AboutPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -47,9 +47,9 @@
         </Grid>
 
         <WrapPanel HorizontalAlignment="Center" Orientation="Horizontal">
-            <ui:Anchor Margin="0,0,8,8" Content="{x:Static resources:Strings.Menu_About_GithubRepository}" Icon="Code24" NavigateUri="https://github.com/AgentXCO4/Agentstrap" />
-            <ui:Anchor Margin="0,0,8,8" Content="{x:Static resources:Strings.Menu_About_HelpInformation}" Icon="BookQuestionMark24" NavigateUri="https://bloxstraplabs.com/wiki/" />
-            <ui:Anchor Margin="0,0,8,8" Content="{x:Static resources:Strings.Menu_About_ReportIssue}" Icon="BookExclamationMark24" NavigateUri="https://github.com/AgentXCO4/Agentstrap/issues" />
+            <ui:Anchor Margin="0,0,8,8" Content="{x:Static resources:Strings.Menu_About_GithubRepository}" Icon="Code24" NavigateUri="https://github.com/agentxco2-dev/Agentstrap" />
+            <ui:Anchor Margin="0,0,8,8" Content="{x:Static resources:Strings.Menu_About_HelpInformation}" Icon="BookQuestionMark24" NavigateUri="https://agentstrap-doc.pages.dev/" />
+            <ui:Anchor Margin="0,0,8,8" Content="{x:Static resources:Strings.Menu_About_ReportIssue}" Icon="BookExclamationMark24" NavigateUri="https://github.com/agentxco2-dev/Agentstrap/issues" />
             <ui:Anchor Margin="0,0,0,8" Content="{x:Static resources:Strings.Menu_About_DiscordServer}" Icon="Chat48" NavigateUri="https://discord.gg/nKjV3mGq6R" />
         </WrapPanel>
 
@@ -103,7 +103,7 @@
 
             <controls:Expander Grid.Column="1" Margin="4,0,4,0" HeaderIcon="AppsAddIn28" HeaderText="{x:Static resources:Strings.Menu_About_Contributors_FeatureIdeas}" IsExpanded="True">
                 <StackPanel>
-                    <controls:MarkdownTextBlock MarkdownText="[Agentstrap](https://github.com/AgentXCO4/Agentstrap)" />
+                    <controls:MarkdownTextBlock MarkdownText="[Agentstrap](https://github.com/agentxco2-dev/Agentstrap)" />
                 </StackPanel>
             </controls:Expander>
 

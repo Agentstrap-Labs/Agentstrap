@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Agentstrap", "Agentstrap\Ag
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wpf.Ui", "wpfui\src\Wpf.Ui\Wpf.Ui.csproj", "{1ADC87D1-8963-4100-845A-18477824718E}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Agentstrap.Tests", "Agentstrap.Tests\Agentstrap.Tests.csproj", "{686CDB8A-A3D3-4CE7-8490-F7A5B1F7BC65}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{1ADC87D1-8963-4100-845A-18477824718E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1ADC87D1-8963-4100-845A-18477824718E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1ADC87D1-8963-4100-845A-18477824718E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{686CDB8A-A3D3-4CE7-8490-F7A5B1F7BC65}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{686CDB8A-A3D3-4CE7-8490-F7A5B1F7BC65}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{686CDB8A-A3D3-4CE7-8490-F7A5B1F7BC65}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{686CDB8A-A3D3-4CE7-8490-F7A5B1F7BC65}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,0 +1,80 @@
+export default [
+  {
+    path: "developers/index.html",
+    title: "AgentXCO2",
+    lede: "The developer behind Agentstrap.",
+    body: `
+<p>Agentstrap is developed and maintained by <a href="https://github.com/agentxco2-dev" target="_blank" rel="noopener"><strong>AgentXCO2</strong></a>.</p>
+
+<div class="card-grid">
+  <a class="card" href="https://github.com/agentxco2-dev" target="_blank" rel="noopener">
+    <span class="card-tag">github</span>
+    <h3>AgentXCO2 on GitHub</h3>
+    <p>Open the organisation's GitHub page &mdash; repositories, releases and issue trackers.</p>
+  </a>
+</div>
+
+<h2>Where to find things</h2>
+
+<div class="table-wrap">
+<table>
+  <thead><tr><th>What</th><th>Link</th></tr></thead>
+  <tbody>
+    <tr>
+      <td><strong>Organisation</strong></td>
+      <td><a href="https://github.com/agentxco2-dev" target="_blank" rel="noopener">github.com/agentxco2-dev</a></td>
+    </tr>
+    <tr>
+      <td><strong>Agentstrap repository</strong></td>
+      <td><a href="https://github.com/agentxco2-dev/Agentstrap" target="_blank" rel="noopener">github.com/agentxco2-dev/Agentstrap</a></td>
+    </tr>
+    <tr>
+      <td><strong>Latest release</strong></td>
+      <td><a href="https://github.com/agentxco2-dev/Agentstrap/releases/latest" target="_blank" rel="noopener">github.com/agentxco2-dev/Agentstrap/releases/latest</a></td>
+    </tr>
+    <tr>
+      <td><strong>Report a bug</strong></td>
+      <td><a href="https://github.com/agentxco2-dev/Agentstrap/issues/new" target="_blank" rel="noopener">github.com/agentxco2-dev/Agentstrap/issues/new</a></td>
+    </tr>
+    <tr>
+      <td><strong>Source code</strong></td>
+      <td><a href="https://github.com/agentxco2-dev/Agentstrap" target="_blank" rel="noopener">github.com/agentxco2-dev/Agentstrap</a></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="callout note">
+  <strong>Agentstrap is a fork of Bloxstrap.</strong>
+  The original project lives at
+  <a href="https://github.com/bloxstraplabs/bloxstrap" target="_blank" rel="noopener">github.com/bloxstraplabs/bloxstrap</a>,
+  and a large part of Agentstrap's existing behaviour comes from there. Credit where it's due.
+</div>
+
+<h2>Reporting a problem</h2>
+
+<p>Before you open an issue, run <a href="../features/diagnostics.html">Diagnostics</a> and paste the report into
+the issue. It saves a round trip and usually answers the question on its own.</p>
+
+<p>If the problem is a crash or a launch failure, attach the relevant file from Agentstrap's log folder as well.
+The Command Center and the Advanced page both have an <strong>Open logs</strong> button.</p>
+
+<div class="callout warning">
+  <strong>Logs contain IP addresses.</strong>
+  Agentstrap's logs record every HTTP request, including ipinfo.io lookups that contain the game server's IP address.
+  Read the log before attaching it to a public issue.
+</div>
+
+<h2>Contributing</h2>
+
+<p>Pull requests are welcome. The project is a WPF application on .NET 10, with the WPF UI library vendored as a
+submodule. Clone the repository, initialise the submodule, and build it with the .NET SDK:</p>
+
+<pre><code>git clone --recurse-submodules https://github.com/agentxco2-dev/Agentstrap
+dotnet build Agentstrap/Agentstrap.csproj -c Release</code></pre>
+
+<p>If you cloned without <code>--recurse-submodules</code>, run <code>git submodule update --init</code> inside the
+repository first &mdash; the build fails without it.</p>
+`,
+  },
+];

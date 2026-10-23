@@ -19,6 +19,80 @@ namespace Agentstrap.UI.ViewModels.Settings
 
         public ICommand OpenFastFlagEditorCommand => new RelayCommand(OpenFastFlagEditor);
 
+        private FastFlagPreset? _selectedPreset;
+
+        public IReadOnlyList<FastFlagPreset> FastFlagPresets => FastFlagManager.Presets;
+
+        public FastFlagPreset? SelectedPreset
+        {
+            get => _selectedPreset;
+
+            set
+            {
+                _selectedPreset = value;
+                OnPropertyChanged(nameof(SelectedPreset));
+                OnPropertyChanged(nameof(SelectedPresetDescription));
+            }
+        }
+
+        public string SelectedPresetDescription => _selectedPreset?.Description ?? "";
+
+        public ICommand ApplyPresetCommand => new RelayCommand(ApplyPreset);
+
+        private void ApplyPreset()
+        {
+            if (_selectedPreset is null)
+                return;
+
+            App.FastFlags.ApplyPreset(_selectedPreset);
+
+            RequestPageReloadEvent?.Invoke(this, EventArgs.Empty);
+        }
+
+        private bool _hasValidated;
+        private string _validationSummary = "";
+
+        public string ValidationSummary
+        {
+            get => _validationSummary;
+
+            private set
+            {
+                _validationSummary = value;
+                OnPropertyChanged(nameof(ValidationSummary));
+            }
+        }
+
+        public Visibility ValidationVisibility => _hasValidated ? Visibility.Visible : Visibility.Collapsed;
+
+        public ICommand ValidateFlagsCommand => new RelayCommand(ValidateFlags);
+
+        private void ValidateFlags()
+        {
+            var invalid = App.FastFlags.Validate();
+
+            _hasValidated = true;
+
+            if (invalid.Count == 0)
+            {
+                ValidationSummary = $"All {App.FastFlags.Prop.Count} fast flags are valid.";
+            }
+            else
+            {
+                var lines = invalid.Take(15)
+                    .Select(x => $"  {x.Name} = {x.Value} ({x.Error})");
+
+                string suffix = invalid.Count > 15 ? $"\n  ...and {invalid.Count - 15} more." : "";
+
+                ValidationSummary =
+                    $"{invalid.Count} of {App.FastFlags.Prop.Count} fast flags look invalid:\n" +
+                    string.Join("\n", lines) + suffix;
+            }
+
+            OnPropertyChanged(nameof(ValidationSummary));
+            OnPropertyChanged(nameof(ValidationVisibility));
+        }
+
         public Visibility CanShowFastFlagEditor => App.IsStudioInstalled ? Visibility.Visible : Visibility.Collapsed;
 
         public bool UseFastFlagManager

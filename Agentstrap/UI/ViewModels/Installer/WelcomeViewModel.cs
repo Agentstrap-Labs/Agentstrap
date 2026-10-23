@@ -5,8 +5,8 @@
         // formatting is done here instead of in xaml, it's just a bit easier
         public string MainText => String.Format(
             Strings.Installer_Welcome_MainText,
-            "[github.com/AgentXCO4/Agentstrap](https://github.com/AgentXCO4/Agentstrap)",
-            "[Help and documentation](https://bloxstraplabs.com/wiki/)"
+            "[github.com/agentxco2-dev/Agentstrap](https://github.com/agentxco2-dev/Agentstrap)",
+            "[Help and documentation](https://agentstrap-doc.pages.dev/)"
         );
 
         public string VersionNotice { get; private set; } = "";

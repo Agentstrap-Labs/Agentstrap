@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Diagnostics &middot; Agentstrap Docs</title>
+<meta name="description" content="Eight health checks that find broken installs, bad permissions, conflicting mods and pending migrations.">
+<meta property="og:title" content="Diagnostics &middot; Agentstrap Docs">
+<meta property="og:description" content="Eight health checks that find broken installs, bad permissions, conflicting mods and pending migrations.">
+<meta property="og:type" content="article">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="icon" href="../assets/Agentstrap.ico" type="image/x-icon">
+</head>
+<body data-page="features/diagnostics.html" data-base="../">
+<header class="topbar">
+  <button class="icon-btn menu-btn" id="menu-btn" aria-label="Toggle navigation">&#9776;</button>
+  <a class="brand" href="../index.html">
+    <span class="brand-mark"><img src="../assets/Agentstrap.ico" alt="" width="26" height="26"></span>
+    Agentstrap <small>Docs</small>
+  </a>
+  <span class="topbar-spacer"></span>
+  <div class="search-wrap">
+    <input id="search" type="search" placeholder="Search docs&hellip;" autocomplete="off" aria-label="Search documentation">
+    <div id="search-results"></div>
+  </div>
+  <button class="icon-btn" id="theme-btn" title="Toggle theme" aria-label="Toggle theme">&#9680;</button>
+</header>
+
+<div class="shell">
+  <aside class="sidebar" id="sidebar"></aside>
+  <main class="content">
+    <h1>Diagnostics</h1>
+    <p class="page-lede">Eight health checks that find broken installs, bad permissions, conflicting mods and pending migrations.</p>
+
+<p>Diagnostics runs every Agentstrap health check in a single pass and groups the results by what they cover. It's
+the fastest way to work out why something isn't working, and the easiest way to give someone enough information to
+help you.</p>
+
+<div class="callout note">
+  <strong>Where it lives.</strong>
+  Settings &rarr; <strong>Diagnostics</strong>, or the <strong>Run diagnostics</strong> button on the
+  <a href="command-center.html">Command Center</a>.
+</div>
+
+<h2 id="running-a-check">Running a check</h2>
+
+<p>Press <strong>Run diagnostics</strong>. The checks run concurrently and a spinner appears while they work. The page
+doesn't run them automatically when you open it &mdash; you always trigger it yourself, so it never surprises you with
+network traffic.</p>
+
+<p>When it finishes you get an overall verdict &mdash; <em>Healthy</em>, <em>Warnings found</em> or
+<em>Problems found</em> &mdash; plus a counter for each severity.</p>
+
+<h2 id="the-eight-checks">The eight checks</h2>
+
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Check</th><th>Category</th><th>What it looks at</th></tr></thead>
+  <tbody>
+    <tr>
+      <td><strong>Roblox installation</strong></td><td>Roblox</td>
+      <td>
+        Whether the Roblox Player executable exists in the current version folder. A missing install is a warning,
+        not a problem &mdash; it gets installed the next time you launch.
+      </td>
+    </tr>
+    <tr>
+      <td><strong>Roblox version state</strong></td><td>Roblox</td>
+      <td>
+        Whether Agentstrap knows which version of Roblox is installed. If the version state can't be read, it reports
+        it as a warning.
+      </td>
+    </tr>
+    <tr>
+      <td><strong>Agentstrap configuration</strong></td><td>Configuration</td>
+      <td>
+        Whether <code>Settings.json</code> loaded correctly. Failing to load is a problem, because Agentstrap falls
+        back to defaults. It also flags non-default settings such as disabled update checking, disabled analytics, a
+        changed web environment or enabled developer mode.
+      </td>
+    </tr>
+    <tr>
+      <td><strong>Missing files</strong></td><td>Filesystem</td>
+      <td>
+        The files and folders Agentstrap expects: <code>Settings.json</code>, <code>State.json</code>, the
+        <code>Logs</code>, <code>Versions</code> and <code>Modifications</code> folders. Missing folders that get
+        recreated on demand are a warning; missing core files are a problem.
+      </td>
+    </tr>
+    <tr>
+      <td><strong>Invalid settings</strong></td><td>Configuration</td>
+      <td>
+        Individually invalid values: a process priority Windows won't accept, an unsupported locale, a custom theme
+        file that no longer exists, a custom icon path that's gone, a matchmaker that's enabled with no place ID, or
+        a negative minimum slot count.
+      </td>
+    </tr>
+    <tr>
+      <td><strong>Mod conflicts</strong></td><td>Mods</td>
+      <td>
+        A recorded custom skybox with no images in the sky folder, an empty custom font file, and mod changes that
+        have been set but not yet applied to Roblox.
+      </td>
+    </tr>
+    <tr>
+      <td><strong>Permissions</strong></td><td>Filesystem</td>
+      <td>
+        Whether Agentstrap can write to its install folder, to <code>%LOCALAPPDATA%\Roblox</code>, and to its temp
+        directory. It does this by creating and deleting a small probe file in each.
+      </td>
+    </tr>
+    <tr>
+      <td><strong>Update state</strong></td><td>Updates</td>
+      <td>
+        Whether there are pending configuration migrations, whether update checking is enabled, and whether a newer
+        Agentstrap release exists. This is the only check that makes a network request.
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<h2 id="copying-the-report">Copying the report</h2>
+
+<p><strong>Copy report</strong> puts a plain-text report on your clipboard, one line per check, with the details
+underneath where there are any. Paste it straight into a bug report.</p>
+
+<p>There's also <strong>Open logs</strong>, which opens Agentstrap's log folder so you can attach the actual log
+files if the report isn't enough.</p>
+
+<div class="callout note">
+  <strong>No file export.</strong>
+  The report goes to the clipboard, not to a file. Paste it into a text editor if you want to keep it.
+</div>
+
+<div class="callout tip">
+  <strong>Diagnostics doesn't change your configuration.</strong>
+  It's a read-only tool. If a check points at a fix &mdash; like pending migrations, which it tells you to apply from
+  the Updates tab &mdash; it says so rather than doing it for you.
+</div>
+
+    <nav class="page-nav" id="page-nav"></nav>
+    <p class="meta">Agentstrap 1.0.0 &middot; These docs describe Agentstrap 1.0.0. Features marked
+    <span class="badge new">new</span> are not present in upstream Bloxstrap.</p>
+  </main>
+</div>
+
+<script src="../assets/site.js"></script>
+</body>
+</html>

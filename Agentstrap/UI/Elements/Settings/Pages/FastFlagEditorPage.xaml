@@ -29,14 +29,14 @@
 
         <Border Grid.Row="1"
                 Style="{StaticResource AgPanel}"
-                BorderBrush="{DynamicResource AgWarning}"
+                BorderBrush="{DynamicResource SystemFillColorCautionBrush}"
                 BorderThickness="1"
                 Margin="0,0,0,14">
             <StackPanel>
                 <TextBlock Text="{x:Static resources:Strings.Menu_FastFlagEditor_AllowlistInformation}"
                            FontSize="12.5"
                            FontWeight="SemiBold"
-                           Foreground="{DynamicResource AgWarning}" />
+                           Foreground="{DynamicResource SystemFillColorCautionBrush}" />
                 <controls:MarkdownTextBlock Style="{StaticResource AgDescription}"
                                              Margin="0,6,0,0"
                                              MarkdownText="{Binding Source={x:Static resources:Strings.Menu_FastFlagEditor_AllowlistInformation}, Converter={StaticResource StringFormatConverter}, ConverterParameter='https://devforum.roblox.com/t/allowlist-for-local-client-configuration-via-fast-flags/3966569'}" />

@@ -11,8 +11,8 @@
     <UseWPF>true</UseWPF>
     <UseWindowsForms>True</UseWindowsForms>
     <ApplicationIcon>Agentstrap.ico</ApplicationIcon>
-    <Version>2.11.4</Version>
-    <FileVersion>2.11.4</FileVersion>
+    <Version>1.0.0</Version>
+    <FileVersion>1.0.0</FileVersion>
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <IncludeSourceRevisionInInformationalVersion>false</IncludeSourceRevisionInInformationalVersion>

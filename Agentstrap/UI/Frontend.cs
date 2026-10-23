@@ -24,7 +24,7 @@ namespace Agentstrap.UI
 
             string info = String.Format(
                 Strings.Dialog_PlayerError_FailedLaunch,
-                $"https://bloxstraplabs.com/wiki/help/roblox-crashes-or-does-not-launch/"
+                $"https://agentstrap-doc.pages.dev/help/roblox-crashes.html"
             );
 
             ShowMessageBox(info, MessageBoxImage.Error);

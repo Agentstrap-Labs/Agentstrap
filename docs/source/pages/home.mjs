@@ -1,0 +1,147 @@
+export default [
+  {
+    path: "index.html",
+    title: "Welcome to the Agentstrap docs",
+    lede: "Agentstrap is a third-party replacement for the standard Roblox bootstrapper. This is the complete guide to everything it does.",
+    body: `
+<div class="card-grid">
+  <a class="card" href="features/matchmaker.html">
+    <span class="card-tag">new</span>
+    <h3>Matchmaker</h3>
+    <p>Automatically join a place on launch, optionally preferring quieter servers so you never sit in a queue.</p>
+  </a>
+  <a class="card" href="features/command-center.html">
+    <span class="card-tag">new</span>
+    <h3>Command Center</h3>
+    <p>Launch, update and repair Roblox from one screen, with a live status card for every part of the install.</p>
+  </a>
+  <a class="card" href="features/server-connection-overlay.html">
+    <span class="card-tag">new</span>
+    <h3>Server connection overlay</h3>
+    <p>A toast on the Roblox window telling you which server you landed on and where its data centre is.</p>
+  </a>
+  <a class="card" href="features/diagnostics.html">
+    <span class="card-tag">new</span>
+    <h3>Diagnostics</h3>
+    <p>Eight health checks that find broken installs, bad permissions, conflicting mods and pending migrations.</p>
+  </a>
+  <a class="card" href="features/engine-settings.html">
+    <h3>Engine settings</h3>
+    <p>Tweak Roblox's Fast Flags: anti-aliasing, texture quality, one-click preset bundles and a flag validator.</p>
+  </a>
+  <a class="card" href="features/deployment-channels.html">
+    <span class="card-tag">new</span>
+    <h3>Deployment channels</h3>
+    <p>Pin Agentstrap to a specific Roblox release channel instead of always following production.</p>
+  </a>
+  <a class="card" href="features/modding.html">
+    <h3>Modding</h3>
+    <p>Swap cursors, sounds, fonts, the avatar background and the skybox. Changes survive Roblox updates.</p>
+  </a>
+  <a class="card" href="features/window-attributes.html">
+    <span class="card-tag">new</span>
+    <h3>Custom window attributes</h3>
+    <p>Force a fixed size, position and title on the Roblox window every single time it opens.</p>
+  </a>
+  <a class="card" href="features/game-history.html">
+    <h3>Game history</h3>
+    <p>Rejoin a server you just left, with a list of every game from the current session.</p>
+  </a>
+  <a class="card" href="features/discord-rich-presence.html">
+    <h3>Discord Rich Presence</h3>
+    <p>Show what you're playing on your Discord profile, and let friends join through it.</p>
+  </a>
+  <a class="card" href="features/updates.html">
+    <span class="card-tag">new</span>
+    <h3>Updates</h3>
+    <p>Check Agentstrap, your installed mods and pending config migrations independently.</p>
+  </a>
+  <a class="card" href="features/nexus.html">
+    <span class="card-tag">new</span>
+    <h3>NEXUS mode</h3>
+    <p>An opt-in experimental feature channel, for people who want to see changes before everyone else.</p>
+  </a>
+</div>
+
+<h2>What is Agentstrap?</h2>
+
+<p>Agentstrap is a third-party replacement for the standard Roblox bootstrapper. It runs the game through its own
+launcher, which means it can add features Roblox does not offer &mdash; a matchmaker, an in-game server overlay, mod
+support, a diagnostics suite &mdash; while staying completely separate from the game client itself.</p>
+
+<p>Agentstrap is a fork of <a href="https://github.com/bloxstraplabs/bloxstrap" target="_blank" rel="noopener">Bloxstrap</a>.
+Everything Bloxstrap does, Agentstrap does, plus a substantial set of new features that you can read about in the
+<a href="features/index.html">Features</a> section.</p>
+
+<div class="callout note">
+  <strong>Agentstrap is not a cheat tool.</strong>
+  It does not patch the Roblox client to gain an unfair advantage, and it does not interact with the client the way
+  exploits do. It changes <em>how Roblox is launched</em> and <em>what is copied into the install folder</em>.
+  See <a href="info/bans.html">Agentstrap and bans</a> for the details.
+</div>
+
+<h2>Requirements</h2>
+
+<div class="kv">
+  <div><dt>Operating system</dt><dd>Windows 10 or newer (64-bit)</dd></div>
+  <div><dt>Runtime</dt><dd>Bundled &mdash; the published build is self-contained, so no separate .NET install is needed</dd></div>
+  <div><dt>Privileges</dt><dd>Administrator access is requested when Roblox has to be installed or updated</dd></div>
+  <div><dt>Internet</dt><dd>Required to download Roblox, check for updates and look up server locations</dd></div>
+</div>
+
+<h2>Getting started</h2>
+
+<ol class="steps">
+  <li>
+    <strong>Download and run Agentstrap.</strong> The first launch opens the installer, which places Agentstrap in
+    <code>%LOCALAPPDATA%\\Agentstrap</code> by default &mdash; you can pick a different folder &mdash; and registers
+    the <code>roblox://</code> protocol handler.
+  </li>
+  <li>
+    <strong>Open the Command Center.</strong> Agentstrap's default settings page has one-click buttons for launching
+    Roblox and Roblox Studio, a live status panel and shortcuts to the other tools.
+  </li>
+  <li>
+    <strong>Turn on what you want.</strong> Most features are off by default. The
+    <a href="features/activity-tracking.html">Integrations</a> page is the master switch for anything that watches
+    what you're playing.
+  </li>
+  <li>
+    <strong>Press Save.</strong> Changes on every settings page are held until you press <strong>Save</strong> in the
+    bottom-right of the settings window. The snackbar confirms it, and reminds you that changes apply on the next
+    Roblox launch.
+  </li>
+</ol>
+
+<div class="callout tip">
+  <strong>Nothing is applied until you save.</strong>
+  Every page writes into an in-memory copy of your configuration. If you close the settings window without saving, the
+  changes are discarded &mdash; you'll be prompted first.
+</div>
+
+<h2>How these docs are organised</h2>
+
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Section</th><th>What you'll find there</th></tr></thead>
+  <tbody>
+    <tr><td><a href="features/index.html">Features</a></td><td>One page per capability, with the exact setting names, defaults and caveats.</td></tr>
+    <tr><td><a href="info/index.html">Info</a></td><td>Background reading: privacy, bans, translations, and where your data lives.</td></tr>
+    <tr><td><a href="help/index.html">Help</a></td><td>Step-by-step fixes for the problems people actually hit.</td></tr>
+    <tr><td><a href="developers/index.html">Developers</a></td><td>Who maintains Agentstrap, where the source lives, and how to report a bug.</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2>Getting help</h2>
+
+<p>If something here doesn't answer your question, the fastest route is
+<a href="help/index.html">the help section</a> &mdash; it covers the failures people report most often. For anything
+else, open an issue on the
+<a href="https://github.com/agentxco2-dev/Agentstrap/issues" target="_blank" rel="noopener">issue tracker</a>.</p>
+
+<p>When you report a problem, running <strong>Diagnostics</strong> and attaching the report makes it far easier to
+help you. See <a href="features/diagnostics.html">Diagnostics</a> for how to copy it.</p>
+`,
+  },
+];

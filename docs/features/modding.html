@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Modding &middot; Agentstrap Docs</title>
+<meta name="description" content="Customise Roblox's own assets &mdash; cursors, sounds, fonts, the avatar background and the skybox.">
+<meta property="og:title" content="Modding &middot; Agentstrap Docs">
+<meta property="og:description" content="Customise Roblox's own assets &mdash; cursors, sounds, fonts, the avatar background and the skybox.">
+<meta property="og:type" content="article">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="icon" href="../assets/Agentstrap.ico" type="image/x-icon">
+</head>
+<body data-page="features/modding.html" data-base="../">
+<header class="topbar">
+  <button class="icon-btn menu-btn" id="menu-btn" aria-label="Toggle navigation">&#9776;</button>
+  <a class="brand" href="../index.html">
+    <span class="brand-mark"><img src="../assets/Agentstrap.ico" alt="" width="26" height="26"></span>
+    Agentstrap <small>Docs</small>
+  </a>
+  <span class="topbar-spacer"></span>
+  <div class="search-wrap">
+    <input id="search" type="search" placeholder="Search docs&hellip;" autocomplete="off" aria-label="Search documentation">
+    <div id="search-results"></div>
+  </div>
+  <button class="icon-btn" id="theme-btn" title="Toggle theme" aria-label="Toggle theme">&#9680;</button>
+</header>
+
+<div class="shell">
+  <aside class="sidebar" id="sidebar"></aside>
+  <main class="content">
+    <h1>Modding</h1>
+    <p class="page-lede">Customise Roblox's own assets &mdash; cursors, sounds, fonts, the avatar background and the skybox.</p>
+
+<p>Roblox stores some of its assets locally, and Agentstrap can replace them. Because the replacements live outside
+the Roblox install, they survive every Roblox update.</p>
+
+<div class="callout note">
+  <strong>Where it lives.</strong>
+  Settings &rarr; <strong>Mods</strong>.
+</div>
+
+<h2 id="how-modding-works">How modding works</h2>
+
+<p>Your <strong>Modifications</strong> folder is an overlay on top of the Roblox client folder. Every time Roblox
+launches, the contents of Modifications are copied into the client install, replacing files with the same path.</p>
+
+<pre><code>Agentstrap\
+  Modifications\
+    content\
+      sounds\
+        ouch.ogg        &lt;-- your version
+  Versions\&lt;version-guid&gt;\
+    content\
+      sounds\
+        ouch.ogg        &lt;-- Roblox's original, kept intact</code></pre>
+
+<div class="callout tip">
+  <strong>Use the Mods folder button.</strong>
+  The Mods page has an <strong>Open mods folder</strong> shortcut that takes you straight to the right place, so you
+  don't have to hunt for it.
+</div>
+
+<h2 id="presets">Presets</h2>
+
+<p>These are the ready-made modifications Agentstrap provides.</p>
+
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Preset</th><th>What it changes</th></tr></thead>
+  <tbody>
+    <tr>
+      <td><strong>Mouse cursor</strong></td>
+      <td>
+        The in-game cursor. You can pick between the <em>Default</em> cursor and the ones from Roblox's
+        <em>2013</em> and <em>2006</em> eras.
+      </td>
+    </tr>
+    <tr>
+      <td><strong>Old character sounds</strong></td>
+      <td>Restores the older walking, jumping and getting-up sounds.</td>
+    </tr>
+    <tr>
+      <td><strong>Old avatar editor background</strong></td>
+      <td>Restores the original mobile avatar editor background image.</td>
+    </tr>
+    <tr>
+      <td><strong>Emoji font</strong></td>
+      <td>
+        Replaces the in-game emoji font. Options are <em>Default</em>, <em>Catmoji</em>, <em>Windows 11</em>,
+        <em>Windows 10</em> and <em>Windows 8</em>. The fonts are downloaded from GitHub the first time you pick one,
+        so this option needs an internet connection. Pick <em>Default</em> to remove the replacement entirely.
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="callout note">
+  <strong>Presets apply on the next launch.</strong>
+  Changing one queues the change; it's copied into the Roblox install the next time Roblox starts.
+</div>
+
+<h2 id="custom-font">Custom font</h2>
+
+<p>You can replace the game's own font with any font file on your machine. Use <strong>Choose</strong> to pick a
+<code>.ttf</code> file, and <strong>Remove</strong> to go back to the default. The file is copied to
+<code>Modifications\content\fonts\CustomFont.ttf</code>.</p>
+
+<h2 id="game-skybox">Game skybox</h2>
+
+<p>The skybox is the panorama you see in games that use one. Agentstrap can replace it with an image of your
+choosing.</p>
+
+<ul>
+  <li>Pick a <code>.png</code>, <code>.jpg</code>, <code>.bmp</code>, <code>.gif</code> or <code>.tiff</code>.</li>
+  <li>The image is squared up and written into the Roblox install on the next launch.</li>
+  <li>The Mods page shows a live preview of the current skybox, and lets you remove it again.</li>
+</ul>
+
+<p>Agentstrap converts a single image into the six faces Roblox expects
+(<code>sky512_up</code>, <code>sky512_down</code>, and the four sides).</p>
+
+<div class="callout tip">
+  <strong>Use a square image.</strong>
+  A square source gives the best result, since it's projected across a panorama.
+</div>
+
+<h2 id="making-your-own-mods">Making your own mods</h2>
+
+<p>Anything not covered by a preset can be done by hand. Drop the file into the Modifications folder at the same
+relative path Roblox uses.</p>
+
+<div class="table-wrap">
+<table>
+  <thead><tr><th>What</th><th>Path inside Modifications</th></tr></thead>
+  <tbody>
+    <tr><td>Mouse cursors</td><td><code>content\textures\KeyboardMouse\Cursors\</code></td></tr>
+    <tr><td>Character sounds</td><td><code>content\sounds\</code></td></tr>
+    <tr><td>Fonts</td><td><code>content\fonts\</code></td></tr>
+    <tr><td>Emoji font</td><td><code>content\fonts\TwemojiMozilla.ttf</code></td></tr>
+    <tr><td>Avatar editor background</td><td><code>ExtraContent\places\Mobile.rbxl</code></td></tr>
+    <tr><td>Surface textures</td><td><code>PlatformContent\pc\textures\</code></td></tr>
+    <tr><td>Skybox</td><td><code>PlatformContent\pc\textures\sky\</code></td></tr>
+    <tr><td>Fast Flags</td><td><code>ClientSettings\ClientAppSettings.json</code></td></tr>
+  </tbody>
+</table>
+</div>
+
+<div class="callout warning">
+  <strong>You can't replace individual icons.</strong>
+  Roblox stores them in sprite sheets whose layout changes frequently, so replacing one reliably isn't practical.
+</div>
+
+<h2 id="distributing-a-mod">Distributing a mod</h2>
+
+<p>Zip up the contents of the Modifications folder, keeping the folder structure intact, so the files sit at the
+root of the archive. A user then extracts it straight into their own Modifications folder.</p>
+
+<div class="callout note">
+  <strong>Mods are purely cosmetic and local.</strong>
+  They never touch the game server, and nobody else can see them.
+</div>
+
+    <nav class="page-nav" id="page-nav"></nav>
+    <p class="meta">Agentstrap 1.0.0 &middot; These docs describe Agentstrap 1.0.0. Features marked
+    <span class="badge new">new</span> are not present in upstream Bloxstrap.</p>
+  </main>
+</div>
+
+<script src="../assets/site.js"></script>
+</body>
+</html>

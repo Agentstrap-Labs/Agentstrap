@@ -1,6 +1,7 @@
 ﻿using Agentstrap.AppData;
 using Agentstrap.Integrations;
 using Agentstrap.Models;
+using Agentstrap.UI.Elements.Overlay;
 
 namespace Agentstrap
 {
@@ -15,6 +16,8 @@ namespace Agentstrap
         public readonly ActivityWatcher? ActivityWatcher;
 
         public readonly DiscordRichPresence? RichPresence;
+
+        private readonly ServerConnectionNotifier? _serverConnectionNotifier;
 
         public Watcher()
         {
@@ -68,6 +71,9 @@ namespace Agentstrap
                     RichPresence = new(ActivityWatcher);
             }
 
+            if (ActivityWatcher is not null && App.Settings.Prop.ShowServerConnectionOverlay)
+                _serverConnectionNotifier = new(ActivityWatcher, _watcherData.ProcessId);
+
             bool showNotifyIcon = ActivityWatcher is not null
                 || _watcherData.AutoclosePids?.Any() == true
                 || App.LaunchSettings.TestModeFlag.Active;
@@ -113,6 +119,9 @@ namespace Agentstrap
 
             ActivityWatcher?.Start();
 
+            if (App.Settings.Prop.CustomWindowAttributesEnabled)
+                _ = ApplyWindowAttributesAsync(_watcherData.ProcessId);
+
             while (Utilities.GetProcessesSafe().Any(x => x.Id == _watcherData.ProcessId))
                 await Task.Delay(1000);
 
@@ -132,8 +141,79 @@ namespace Agentstrap
 
             _notifyIcon?.Dispose();
             RichPresence?.Dispose();
+            _serverConnectionNotifier?.Dispose();
 
             GC.SuppressFinalize(this);
+        }
+
+        /// <summary>
+        /// Waits for the Roblox player window to appear, then applies any custom
+        /// size, position and title the user configured.
+        /// </summary>
+        private static async Task ApplyWindowAttributesAsync(int processId)
+        {
+            const string LOG_IDENT = "Watcher::ApplyWindowAttributes";
+
+            try
+            {
+                var settings = App.Settings.Prop;
+
+                Process? process = null;
+                IntPtr windowHandle = IntPtr.Zero;
+                DateTime deadline = DateTime.UtcNow.AddSeconds(60);
+
+                while (DateTime.UtcNow < deadline)
+                {
+                    try
+                    {
+                        process ??= Process.GetProcessById(processId);
+                    }
+                    catch (ArgumentException)
+                    {
+                        App.Logger.WriteLine(LOG_IDENT, "Roblox process exited before its window appeared");
+                        return;
+                    }
+
+                    process.Refresh();
+                    windowHandle = process.MainWindowHandle;
+
+                    if (windowHandle != IntPtr.Zero)
+                        break;
+
+                    await Task.Delay(500);
+                }
+
+                if (windowHandle == IntPtr.Zero || process is null)
+                {
+                    App.Logger.WriteLine(LOG_IDENT, "Could not find the Roblox window in time");
+                    return;
+                }
+
+                // give Roblox a moment to finish creating and sizing its window
+                await Task.Delay(1500);
+
+                process.Refresh();
+
+                if (process.MainWindowHandle != IntPtr.Zero)
+                    windowHandle = process.MainWindowHandle;
+
+                bool applied = WindowAttributes.Apply(
+                    windowHandle,
+                    settings.WindowWidth,
+                    settings.WindowHeight,
+                    settings.WindowPositionX,
+                    settings.WindowPositionY,
+                    settings.WindowTitle
+                );
+
+                App.Logger.WriteLine(LOG_IDENT, applied
+                    ? "Applied custom window attributes"
+                    : "No custom window attributes were set");
+            }
+            catch (Exception ex)
+            {
+                App.Logger.WriteException(LOG_IDENT, ex);
+            }
         }
     }
 }

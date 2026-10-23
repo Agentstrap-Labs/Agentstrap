@@ -99,51 +99,86 @@ namespace Agentstrap.Models.Entities
 
         public async Task<string?> QueryServerLocation()
         {
-            const string LOG_IDENT = "ActivityData::QueryServerLocation";
-
             if (!MachineAddressValid)
                 throw new InvalidOperationException($"Machine address is invalid ({MachineAddress})");
 
-            await serverQuerySemaphore.WaitAsync();
+            IPInfoResponse? ipInfo = await QueryIpInfo();
 
-            if (GlobalCache.ServerLocation.TryGetValue(MachineAddress, out string? location))
-            {
-                serverQuerySemaphore.Release();
-                return location;
-            }
+            if (ipInfo is null)
+                return null;
+
+            if (ipInfo.City == ipInfo.Region)
+                return $"{ipInfo.Region}, {ipInfo.Country}";
+            else
+                return $"{ipInfo.City}, {ipInfo.Region}, {ipInfo.Country}";
+        }
+
+        /// <summary>
+        /// Returns the server location in "City, State" form, or null if it cannot be
+        /// determined reliably enough (e.g. the lookup failed, or no distinct city was reported).
+        /// </summary>
+        public async Task<string?> QueryServerCityState()
+        {
+            IPInfoResponse? ipInfo = await QueryIpInfo();
+
+            if (ipInfo is null)
+                return null;
+
+            if (string.IsNullOrEmpty(ipInfo.City) || string.IsNullOrEmpty(ipInfo.Region))
+                return null;
+
+            // ipinfo.io reports the region name as the city when it has nothing more precise
+            // to offer - without a distinct city, we can't honestly claim a city and state
+            if (ipInfo.City == ipInfo.Region)
+                return null;
+
+            return $"{ipInfo.City}, {ipInfo.Region}";
+        }
+
+        /// <summary>
+        /// Fetches (or returns the already cached) ipinfo.io record for the server address.
+        /// Returns null if the address isn't publicly queryable or the lookup failed; failed
+        /// lookups are cached too, so we don't keep requerying for servers we can't locate.
+        /// </summary>
+        private async Task<IPInfoResponse?> QueryIpInfo()
+        {
+            const string LOG_IDENT = "ActivityData::QueryIpInfo";
+
+            if (!MachineAddressValid)
+                return null;
+
+            await serverQuerySemaphore.WaitAsync();
 
             try
             {
-                var ipInfo = await Http.GetJson<IPInfoResponse>($"https://ipinfo.io/{MachineAddress}/json");
+                if (GlobalCache.ServerIpInfo.TryGetValue(MachineAddress, out IPInfoResponse? cachedIpInfo))
+                    return cachedIpInfo;
 
-                if (string.IsNullOrEmpty(ipInfo.City))
-                    throw new InvalidHTTPResponseException("Reported city was blank");
+                IPInfoResponse? ipInfo = null;
 
-                if (ipInfo.City == ipInfo.Region)
-                    location = $"{ipInfo.Region}, {ipInfo.Country}";
-                else
-                    location = $"{ipInfo.City}, {ipInfo.Region}, {ipInfo.Country}";
+                try
+                {
+                    var response = await Http.GetJson<IPInfoResponse>($"https://ipinfo.io/{MachineAddress}/json");
 
-                GlobalCache.ServerLocation[MachineAddress] = location;
-                serverQuerySemaphore.Release();
+                    if (string.IsNullOrEmpty(response.City))
+                        throw new InvalidHTTPResponseException("Reported city was blank");
+
+                    ipInfo = response;
+                }
+                catch (Exception ex)
+                {
+                    App.Logger.WriteLine(LOG_IDENT, $"Failed to get server location for {MachineAddress}");
+                    App.Logger.WriteException(LOG_IDENT, ex);
+                }
+
+                GlobalCache.ServerIpInfo[MachineAddress] = ipInfo;
+
+                return ipInfo;
             }
-            catch (Exception ex)
+            finally
             {
-                App.Logger.WriteLine(LOG_IDENT, $"Failed to get server location for {MachineAddress}");
-                App.Logger.WriteException(LOG_IDENT, ex);
-
-                GlobalCache.ServerLocation[MachineAddress] = location;
                 serverQuerySemaphore.Release();
-
-                /*Frontend.ShowConnectivityDialog(
-                    string.Format(Strings.Dialog_Connectivity_UnableToConnect, "ipinfo.io"),
-                    Strings.ActivityWatcher_LocationQueryFailed,
-                    MessageBoxImage.Warning,
-                    ex
-                );*/
             }
-
-            return location;
         }
 
         public override string ToString() => $"{PlaceId}/{JobId}";

@@ -58,12 +58,14 @@
                     <ui:NavigationItem Content="{x:Static resources:Strings.Menu_Behaviour_Title}" PageType="{x:Type pages:BehaviourPage}" Icon="PlaySettings20" Tag="bootstrapper" />
                     <ui:NavigationItem Content="{x:Static resources:Strings.Menu_Mods_Title}" PageType="{x:Type pages:ModsPage}" Icon="WrenchScrewdriver20" Tag="mods" />
                     <ui:NavigationItem Content="{x:Static resources:Strings.Menu_FastFlags_Title}" PageType="{x:Type pages:FastFlagsPage}" Icon="Flag24" Tag="fastflags" />
+                    <ui:NavigationItem Content="Quality of Life" PageType="{x:Type pages:QoLPage}" Icon="Wrench24" Tag="qol" />
                     <ui:NavigationItem Content="{x:Static resources:Strings.Menu_Appearance_Title}" PageType="{x:Type pages:AppearancePage}" Icon="PaintBrush24" Tag="appearance" />
                     <ui:NavigationItem Content="{x:Static resources:Strings.Common_Shortcuts}" PageType="{x:Type pages:ShortcutsPage}" Icon="Apps28" Tag="shortcuts" />
                     <ui:NavigationItem Content="Updates" PageType="{x:Type pages:UpdatePage}" Icon="ArrowSync24" Tag="updates" />
                     <ui:NavigationItem Content="Diagnostics" PageType="{x:Type pages:DiagnosticsPage}" Icon="Pulse24" Tag="diagnostics" />
                     <ui:NavigationItem Content="Deployment" PageType="{x:Type pages:DeploymentPage}" Icon="Rocket24" Tag="deployment" />
                     <ui:NavigationItem Content="Advanced" PageType="{x:Type pages:AdvancedPage}" Icon="WrenchScrewdriver24" Tag="advanced" />
+                    <ui:NavigationItem Content="Install" PageType="{x:Type pages:InstallPage}" Icon="CloudArrowDown24" Tag="install" />
 
                     <ui:NavigationItem Content="{x:Static resources:Strings.Menu_FastFlagEditor_Title}" PageType="{x:Type pages:FastFlagEditorPage}" Tag="fastflageditor" Visibility="Collapsed" />
                 </ui:NavigationFluent.Items>

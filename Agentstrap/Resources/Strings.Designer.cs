@@ -3190,6 +3190,51 @@ namespace Agentstrap.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to How long the server connection notification stays visible, in seconds..
+        /// </summary>
+        public static string Menu_Integrations_ServerConnectionOverlayDuration_Description {
+            get {
+                return ResourceManager.GetString("Menu.Integrations.ServerConnectionOverlayDuration.Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Notification duration.
+        /// </summary>
+        public static string Menu_Integrations_ServerConnectionOverlayDuration_Title {
+            get {
+                return ResourceManager.GetString("Menu.Integrations.ServerConnectionOverlayDuration.Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to When you connect to a server, a notification will appear at the top of the Roblox window showing the server location and experience name. The server&apos;s IP address is looked up via [ipinfo.io]({0})..
+        /// </summary>
+        public static string Menu_Integrations_ServerConnectionOverlay_Description {
+            get {
+                return ResourceManager.GetString("Menu.Integrations.ServerConnectionOverlay.Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Test notification.
+        /// </summary>
+        public static string Menu_Integrations_ServerConnectionOverlay_Test {
+            get {
+                return ResourceManager.GetString("Menu.Integrations.ServerConnectionOverlay.Test", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show server connection notifications.
+        /// </summary>
+        public static string Menu_Integrations_ServerConnectionOverlay_Title {
+            get {
+                return ResourceManager.GetString("Menu.Integrations.ServerConnectionOverlay.Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Shows the Roblox account you&apos;re playing with on your Discord profile..
         /// </summary>
         public static string Menu_Integrations_ShowAccountOnProfile_Description {
@@ -3559,6 +3604,15 @@ namespace Agentstrap.Resources {
         public static string Paths_Icons {
             get {
                 return ResourceManager.GetString("Paths.Icons", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unknown location.
+        /// </summary>
+        public static string ServerConnectionOverlay_UnknownLocation {
+            get {
+                return ResourceManager.GetString("ServerConnectionOverlay.UnknownLocation", resourceCulture);
             }
         }
         

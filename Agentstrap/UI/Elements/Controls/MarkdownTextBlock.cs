@@ -41,6 +41,9 @@ namespace Agentstrap.UI.Elements.Controls
             }
             else if (inline is EmphasisInline emphasisInline)
             {
+                if (emphasisInline.FirstChild is null)
+                    return null;
+
                 switch (emphasisInline.DelimiterChar)
                 {
                     case '*':
@@ -111,7 +114,10 @@ namespace Agentstrap.UI.Elements.Controls
 
             markdownTextBlock.Inlines.Clear();
 
-            var lastBlock = document.Last();
+            var lastBlock = document.LastOrDefault();
+
+            if (lastBlock is null)
+                return;
 
             // matt was evidently very tired on the night he was first writing this
             // https://github.com/bloxstraplabs/bloxstrap/blob/289b9dec77cf35b2cc6504019bc9c7701626be1f/Agentstrap/UI/Elements/Controls/MarkdownTextBlock.cs#L111

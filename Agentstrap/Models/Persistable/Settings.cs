@@ -39,10 +39,20 @@ namespace Agentstrap.Models.Persistable
         public bool HideRPCButtons { get; set; } = true;
         public bool ShowAccountOnRichPresence { get; set; } = false;
         public bool ShowServerDetails { get; set; } = false;
+        public bool ShowServerConnectionOverlay { get; set; } = true;
+        public int ServerConnectionOverlayDuration { get; set; } = 5;
         public ObservableCollection<CustomIntegration> CustomIntegrations { get; set; } = new();
 
         // mod preset configuration
         public bool UseDisableAppPatch { get; set; } = false;
+
+        // quality of life configuration
+        public bool CustomWindowAttributesEnabled { get; set; } = false;
+        public int? WindowWidth { get; set; } = null;
+        public int? WindowHeight { get; set; } = null;
+        public int? WindowPositionX { get; set; } = null;
+        public int? WindowPositionY { get; set; } = null;
+        public string WindowTitle { get; set; } = "";
 
         // NEXUS configuration
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]

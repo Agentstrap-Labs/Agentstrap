@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Discord Rich Presence &middot; Agentstrap Docs</title>
+<meta name="description" content="Show the game you're playing on your Discord profile, and let friends join it from there.">
+<meta property="og:title" content="Discord Rich Presence &middot; Agentstrap Docs">
+<meta property="og:description" content="Show the game you're playing on your Discord profile, and let friends join it from there.">
+<meta property="og:type" content="article">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="icon" href="../assets/Agentstrap.ico" type="image/x-icon">
+</head>
+<body data-page="features/discord-rich-presence.html" data-base="../">
+<header class="topbar">
+  <button class="icon-btn menu-btn" id="menu-btn" aria-label="Toggle navigation">&#9776;</button>
+  <a class="brand" href="../index.html">
+    <span class="brand-mark"><img src="../assets/Agentstrap.ico" alt="" width="26" height="26"></span>
+    Agentstrap <small>Docs</small>
+  </a>
+  <span class="topbar-spacer"></span>
+  <div class="search-wrap">
+    <input id="search" type="search" placeholder="Search docs&hellip;" autocomplete="off" aria-label="Search documentation">
+    <div id="search-results"></div>
+  </div>
+  <button class="icon-btn" id="theme-btn" title="Toggle theme" aria-label="Toggle theme">&#9680;</button>
+</header>
+
+<div class="shell">
+  <aside class="sidebar" id="sidebar"></aside>
+  <main class="content">
+    <h1>Discord Rich Presence</h1>
+    <p class="page-lede">Show the game you're playing on your Discord profile, and let friends join it from there.</p>
+
+<p>Agentstrap publishes your current Roblox game to Discord, so anyone looking at your profile can see what you're
+playing and jump into it.</p>
+
+<div class="callout note">
+  <strong>Where it lives.</strong>
+  Settings &rarr; <strong>Integrations</strong> &rarr; <strong>Discord Rich Presence</strong>.
+</div>
+
+<h2 id="requirements">Requirements</h2>
+
+<ul>
+  <li>Activity tracking must be enabled. See <a href="activity-tracking.html">Activity tracking</a>.</li>
+  <li>The Discord desktop app must be installed and running. The mobile app doesn't work.</li>
+</ul>
+
+<h2 id="options">Options</h2>
+
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Option</th><th>Default</th><th>What it does</th></tr></thead>
+  <tbody>
+    <tr>
+      <td><strong>Show game activity</strong></td>
+      <td><span class="badge on">On</span></td>
+      <td>Publishes the Roblox game you're playing to your Discord profile. Turning this off also turns off the two
+          options below.</td>
+    </tr>
+    <tr>
+      <td><strong>Allow activity joining</strong></td>
+      <td><span class="badge on">On</span></td>
+      <td>Shows the join buttons on your Discord profile so friends can enter the game you're in.</td>
+    </tr>
+    <tr>
+      <td><strong>Show Roblox account</strong></td>
+      <td><span class="badge off">Off</span></td>
+      <td>
+        Also shows which Roblox account you're playing with, along with its avatar. This fetches your Roblox user ID
+        and profile picture from Roblox's public API.
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<h2 id="extra-details-on-your-profile">Extra details on your profile</h2>
+
+<p>Depending on what you're playing, your Discord presence can show more than just the game name:</p>
+
+<ul>
+  <li>The number of players currently in the server.</li>
+  <li>The server's location, when server location querying is enabled.</li>
+  <li>Join buttons, when activity joining is on.</li>
+</ul>
+
+<p>The "Copy invite deeplink" item in the Agentstrap tray menu gives you a link to the server you're in, but only
+while you're in a <strong>public</strong> server.</p>
+
+<h2 id="if-it-isn-t-working">If it isn't working</h2>
+
+<p>See <a href="../help/discord-rich-presence-not-working.html">Discord Rich Presence not working</a> for a
+step-by-step fix.</p>
+
+    <nav class="page-nav" id="page-nav"></nav>
+    <p class="meta">Agentstrap 1.0.0 &middot; These docs describe Agentstrap 1.0.0. Features marked
+    <span class="badge new">new</span> are not present in upstream Bloxstrap.</p>
+  </main>
+</div>
+
+<script src="../assets/site.js"></script>
+</body>
+</html>

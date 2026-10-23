@@ -1,0 +1,53 @@
+<Window x:Class="Agentstrap.UI.Elements.Overlay.ServerConnectionOverlay"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="AgentstrapServerConnectionOverlay"
+        AllowsTransparency="True"
+        Background="Transparent"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        ShowInTaskbar="False"
+        ShowActivated="False"
+        Topmost="False"
+        SizeToContent="WidthAndHeight"
+        WindowStartupLocation="Manual"
+        UseLayoutRounding="True"
+        Left="-10000"
+        Top="-10000">
+    <!--
+        A small, click-through toast that is positioned over the top center of the Roblox
+        client window from code-behind. It is always dark and subtly translucent,
+        regardless of the application theme, so it stays legible over any experience.
+    -->
+    <Border x:Name="NotificationBorder"
+            Margin="12"
+            Padding="14,10"
+            VerticalAlignment="Center"
+            Background="#E61A1A1E"
+            BorderBrush="#2EFFFFFF"
+            BorderThickness="1"
+            CornerRadius="10">
+        <Border.Effect>
+            <DropShadowEffect Color="#000000" BlurRadius="16" ShadowDepth="2" Direction="270" Opacity="0.45" />
+        </Border.Effect>
+        <Border.RenderTransform>
+            <TranslateTransform x:Name="BorderTranslate" Y="-8" />
+        </Border.RenderTransform>
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+            <Image Source="pack://application:,,,/Agentstrap.ico"
+                   Width="16"
+                   Height="16"
+                   Margin="0,0,8,0"
+                   VerticalAlignment="Center"
+                   RenderOptions.BitmapScalingMode="HighQuality" />
+            <TextBlock x:Name="NotificationText"
+                       MaxWidth="460"
+                       VerticalAlignment="Center"
+                       FontSize="14"
+                       FontWeight="SemiBold"
+                       Foreground="#FFFFFFFF"
+                       TextWrapping="Wrap"
+                       Text="" />
+        </StackPanel>
+    </Border>
+</Window>

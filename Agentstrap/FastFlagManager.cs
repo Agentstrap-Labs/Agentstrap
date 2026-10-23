@@ -43,6 +43,64 @@ namespace Agentstrap
             { TextureQuality.Level3, "3" },
         };
 
+        /// <summary>
+        /// Curated bundles of the preset flags above. Applying one sets (or, for
+        /// null values, clears) every flag it owns so the rendering presets can be
+        /// configured in one click.
+        /// </summary>
+        public static IReadOnlyList<FastFlagPreset> Presets { get; } = new List<FastFlagPreset>
+        {
+            new()
+            {
+                Name = "Default",
+                Description = "Clears the rendering preset flags and returns them to Roblox's own defaults.",
+                Flags = new Dictionary<string, string?>
+                {
+                    { "FFlagHandleAltEnterFullscreenManually", null },
+                    { "DFFlagDisableDPIScale", null },
+                    { "FIntDebugForceMSAASamples", null },
+                    { "DFFlagTextureQualityOverrideEnabled", null },
+                    { "DFIntTextureQualityOverride", null },
+                }
+            },
+            new()
+            {
+                Name = "Performance",
+                Description = "Favours frame rate: disables display scaling, forces 1x MSAA and the lowest texture quality.",
+                Flags = new Dictionary<string, string?>
+                {
+                    { "DFFlagDisableDPIScale", "True" },
+                    { "FIntDebugForceMSAASamples", "1" },
+                    { "DFFlagTextureQualityOverrideEnabled", "True" },
+                    { "DFIntTextureQualityOverride", "0" },
+                }
+            },
+            new()
+            {
+                Name = "Balanced",
+                Description = "A middle ground: 2x MSAA and one step below the highest texture quality.",
+                Flags = new Dictionary<string, string?>
+                {
+                    { "DFFlagDisableDPIScale", null },
+                    { "FIntDebugForceMSAASamples", "2" },
+                    { "DFFlagTextureQualityOverrideEnabled", "True" },
+                    { "DFIntTextureQualityOverride", "1" },
+                }
+            },
+            new()
+            {
+                Name = "Quality",
+                Description = "Favours visuals: 4x MSAA and the highest texture quality.",
+                Flags = new Dictionary<string, string?>
+                {
+                    { "DFFlagDisableDPIScale", null },
+                    { "FIntDebugForceMSAASamples", "4" },
+                    { "DFFlagTextureQualityOverrideEnabled", "True" },
+                    { "DFIntTextureQualityOverride", "3" },
+                }
+            }
+        };
+
         // all fflags are stored as strings
         // to delete a flag, set the value as null
         public void SetValue(string key, object? value)
@@ -125,6 +183,35 @@ namespace Agentstrap
             }
 
             return mapping.First().Key;
+        }
+
+        /// <summary>
+        /// Applies every flag in a preset bundle.
+        /// </summary>
+        public void ApplyPreset(FastFlagPreset preset)
+        {
+            foreach (var pair in preset.Flags)
+                SetValue(pair.Key, pair.Value);
+        }
+
+        /// <summary>
+        /// Checks every current flag and returns the ones that do not match
+        /// Roblox's expected name/value formats.
+        /// </summary>
+        public IReadOnlyList<FastFlagValidationEntry> Validate()
+        {
+            var invalid = new List<FastFlagValidationEntry>();
+
+            foreach (var pair in Prop)
+            {
+                string value = pair.Value?.ToString() ?? "";
+                var error = FastFlagValidator.Validate(pair.Key, value);
+
+                if (error != FastFlagValidationError.None)
+                    invalid.Add(new FastFlagValidationEntry(pair.Key, value, error));
+            }
+
+            return invalid;
         }
 
         public override void Save()

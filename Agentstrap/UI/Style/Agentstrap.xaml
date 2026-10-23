@@ -61,6 +61,22 @@
         <Setter Property="BorderBrush" Value="{DynamicResource ControlStrokeColorDefaultBrush}" />
     </Style>
 
+    <!--  A plain container for a block of content. Unlike AgCard this carries no
+          border of its own, so callers can give it their own stroke (for
+          example the caution panel on the Fast Flag editor page).  -->
+    <Style x:Key="AgPanel" TargetType="{x:Type Border}">
+        <Setter Property="Background" Value="{DynamicResource ControlFillColorDefaultBrush}" />
+        <Setter Property="CornerRadius" Value="4" />
+        <Setter Property="Padding" Value="14,12" />
+    </Style>
+
+    <!--  Body copy for markdown blocks inside a panel.  -->
+    <Style x:Key="AgDescription" TargetType="{x:Type TextBlock}">
+        <Setter Property="FontSize" Value="12.5" />
+        <Setter Property="TextWrapping" Value="Wrap" />
+        <Setter Property="Foreground" Value="{DynamicResource TextFillColorSecondaryBrush}" />
+    </Style>
+
     <Style x:Key="AgCardLabel" TargetType="{x:Type TextBlock}">
         <Setter Property="FontSize" Value="11" />
         <Setter Property="Foreground" Value="{DynamicResource TextFillColorSecondaryBrush}" />
@@ -83,7 +99,12 @@
 
     <!--  =====  Controls  =====  -->
 
-    <Style TargetType="{x:Type ui:Button}">
+    <!--  Buttons mirror Bloxstrap, which ships WPF UI's stock Fluent button: 4dp
+          rounded corners (ControlCornerRadius) with the subtle translucent hover and
+          pressed fills. BasedOn is required: without it this implicit style shadows
+          WPF UI's Fluent button style, and buttons fall back to the classic WPF
+          template (square corners, light-blue hover).  -->
+    <Style TargetType="{x:Type ui:Button}" BasedOn="{StaticResource DefaultUiButtonStyle}">
         <Setter Property="Appearance" Value="Secondary" />
         <Setter Property="Background" Value="{DynamicResource ControlFillColorDefaultBrush}" />
         <Setter Property="Foreground" Value="{DynamicResource TextFillColorPrimaryBrush}" />
@@ -92,6 +113,28 @@
         <Setter Property="HorizontalContentAlignment" Value="Center" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
         <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="Border.CornerRadius" Value="{DynamicResource ControlCornerRadius}" />
+        <Style.Triggers>
+            <!--  Icon-only buttons (no text) are circular, with the glyph centred.  -->
+            <Trigger Property="Content" Value="{x:Null}">
+                <Setter Property="Border.CornerRadius" Value="999" />
+                <Setter Property="Padding" Value="0" />
+                <Setter Property="MinWidth" Value="36" />
+                <Setter Property="MinHeight" Value="36" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <!--  Plain WPF buttons (dialogs, message boxes) inherit WPF UI's Fluent style too,
+          so the whole app shares Bloxstrap's rounded buttons - icon-only ones included.  -->
+    <Style TargetType="{x:Type Button}" BasedOn="{StaticResource DefaultButtonStyle}">
+        <Setter Property="Cursor" Value="Hand" />
+        <Style.Triggers>
+            <Trigger Property="Content" Value="{x:Null}">
+                <Setter Property="Border.CornerRadius" Value="999" />
+                <Setter Property="Padding" Value="0" />
+            </Trigger>
+        </Style.Triggers>
     </Style>
 
     <Style x:Key="AgActionButton" TargetType="{x:Type ui:Button}" BasedOn="{StaticResource {x:Type ui:Button}}">
@@ -100,7 +143,7 @@
         <Setter Property="FontSize" Value="14" />
     </Style>
 
-    <Style x:Key="AgSubtleButton" TargetType="{x:Type ui:Button}" BasedOn="{StaticResource AgActionButton}">
+    <Style x:Key="AgButtonSubtle" TargetType="{x:Type ui:Button}" BasedOn="{StaticResource AgActionButton}">
         <Setter Property="Appearance" Value="Secondary" />
     </Style>
 

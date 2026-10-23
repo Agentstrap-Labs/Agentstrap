@@ -21,7 +21,7 @@ namespace Agentstrap
         public const string ProjectOwner = "Agentstrap";
         public const string ProjectRepository = "agentxco2-dev/Agentstrap";
         public const string ProjectDownloadLink = "https://github.com/agentxco2-dev/Agentstrap/releases/latest";
-        public const string ProjectHelpLink = "https://bloxstraplabs.com/wiki/help/";
+        public const string ProjectHelpLink = "https://agentstrap-doc.pages.dev/help/";
         public const string ProjectSupportLink = "https://github.com/agentxco2-dev/Agentstrap/issues/new";
 
         // Keep this disabled until a verified Agentstrap release feed is available.

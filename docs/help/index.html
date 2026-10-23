@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Help &middot; Agentstrap Docs</title>
+<meta name="description" content="Step-by-step fixes for the problems people actually hit.">
+<meta property="og:title" content="Help &middot; Agentstrap Docs">
+<meta property="og:description" content="Step-by-step fixes for the problems people actually hit.">
+<meta property="og:type" content="article">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="icon" href="../assets/Agentstrap.ico" type="image/x-icon">
+</head>
+<body data-page="help/index.html" data-base="../">
+<header class="topbar">
+  <button class="icon-btn menu-btn" id="menu-btn" aria-label="Toggle navigation">&#9776;</button>
+  <a class="brand" href="../index.html">
+    <span class="brand-mark"><img src="../assets/Agentstrap.ico" alt="" width="26" height="26"></span>
+    Agentstrap <small>Docs</small>
+  </a>
+  <span class="topbar-spacer"></span>
+  <div class="search-wrap">
+    <input id="search" type="search" placeholder="Search docs&hellip;" autocomplete="off" aria-label="Search documentation">
+    <div id="search-results"></div>
+  </div>
+  <button class="icon-btn" id="theme-btn" title="Toggle theme" aria-label="Toggle theme">&#9680;</button>
+</header>
+
+<div class="shell">
+  <aside class="sidebar" id="sidebar"></aside>
+  <main class="content">
+    <h1>Help</h1>
+    <p class="page-lede">Step-by-step fixes for the problems people actually hit.</p>
+
+<p>Most problems with Agentstrap come down to one of a handful of causes. Start here and work down the list.</p>
+
+<div class="card-grid">
+  <a class="card" href="troubleshooting.html">
+    <span class="card-tag">help</span>
+    <h3 id="agentstrap-isn-t-working">Agentstrap isn't working</h3>
+    <p>Nothing happens, or launches fail. The most common causes, in order.</p>
+  </a>
+  <a class="card" href="roblox-crashes.html">
+    <span class="card-tag">help</span>
+    <h3 id="roblox-crashes-or-won-t-launch">Roblox crashes or won't launch</h3>
+    <p>The client starts and immediately closes, or never opens at all.</p>
+  </a>
+  <a class="card" href="repairing-roblox-install.html">
+    <span class="card-tag">help</span>
+    <h3 id="repairing-a-broken-roblox-install">Repairing a broken Roblox install</h3>
+    <p>Force a clean reinstall of the Roblox client through Agentstrap.</p>
+  </a>
+  <a class="card" href="server-location-unavailable.html">
+    <span class="card-tag">help</span>
+    <h3 id="server-location-unavailable">Server location unavailable</h3>
+    <p>Why the location lookup fails, and what you can do about it.</p>
+  </a>
+  <a class="card" href="discord-rich-presence-not-working.html">
+    <span class="card-tag">help</span>
+    <h3 id="discord-rich-presence-not-working">Discord Rich Presence not working</h3>
+    <p>Your game isn't showing up on your Discord profile.</p>
+  </a>
+  <a class="card" href="change-install-location.html">
+    <span class="card-tag">help</span>
+    <h3 id="change-the-install-location">Change the install location</h3>
+    <p>Move Agentstrap to a different drive or folder.</p>
+  </a>
+  <a class="card" href="uninstalling.html">
+    <span class="card-tag">help</span>
+    <h3 id="uninstalling-agentstrap">Uninstalling Agentstrap</h3>
+    <p>Remove it cleanly, including the parts outside the install folder.</p>
+  </a>
+</div>
+
+<h2 id="the-fastest-first-step">The fastest first step</h2>
+
+<div class="callout tip">
+  <strong>Run diagnostics.</strong>
+  Settings &rarr; <strong>Diagnostics</strong> &rarr; <strong>Run diagnostics</strong>. It checks eight things at once and
+  tells you which one is wrong. Press <strong>Copy report</strong> and paste it into a bug report if you need help.
+</div>
+
+<h2 id="before-you-file-a-bug">Before you file a bug</h2>
+
+<ol class="steps">
+  <li>Run <a href="../features/diagnostics.html">Diagnostics</a> and copy the report.</li>
+  <li>Open the log folder from the same page and attach the most recent log file.</li>
+  <li>Check the <a href="../features/updates.html">Updates</a> page for pending configuration migrations and apply them.</li>
+  <li>Confirm you're on the latest release &mdash; the <strong>Releases</strong> button opens the download page.</li>
+</ol>
+
+<div class="callout note">
+  <strong>Logs contain server addresses.</strong>
+  Agentstrap's logs record every HTTP request, including the ipinfo.io URLs with the game server's IP address in them.
+  Read a log before you attach it to a public issue.
+</div>
+
+    <nav class="page-nav" id="page-nav"></nav>
+    <p class="meta">Agentstrap 1.0.0 &middot; These docs describe Agentstrap 1.0.0. Features marked
+    <span class="badge new">new</span> are not present in upstream Bloxstrap.</p>
+  </main>
+</div>
+
+<script src="../assets/site.js"></script>
+</body>
+</html>

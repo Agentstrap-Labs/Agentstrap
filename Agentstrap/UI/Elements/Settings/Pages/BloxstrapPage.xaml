@@ -25,7 +25,7 @@
         </controls:OptionControl>
 
         <controls:OptionControl Header="{x:Static resources:Strings.Menu_Bloxstrap_Analytics_Title}"
-                                Description="{Binding Source={x:Static resources:Strings.Menu_Bloxstrap_Analytics_Description}, Converter={StaticResource StringFormatConverter}, ConverterParameter='https://bloxstraplabs.com/wiki/info/privacy-policy/'}">
+                                Description="{Binding Source={x:Static resources:Strings.Menu_Bloxstrap_Analytics_Description}, Converter={StaticResource StringFormatConverter}, ConverterParameter='https://agentstrap-doc.pages.dev/info/privacy-policy.html'}">
             <ui:ToggleSwitch IsChecked="{Binding AnalyticsEnabled, Mode=TwoWay}" />
         </controls:OptionControl>
 
@@ -34,7 +34,6 @@
                                 Header="Web environment"
                                 Description="Site to use for metrics">
             <ComboBox Width="200"
-                      Style="{StaticResource AgComboBox}"
                       ItemsSource="{Binding WebEnvironments, Mode=OneWay}"
                       SelectedValue="{Binding WebEnvironment, Mode=TwoWay}" />
         </controls:OptionControl>

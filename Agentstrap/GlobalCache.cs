@@ -1,8 +1,13 @@
-﻿namespace Agentstrap
+﻿using Agentstrap.Models.APIs;
+
+namespace Agentstrap
 {
     public static class GlobalCache
     {
-        public static readonly Dictionary<string, string?> ServerLocation = new();
+        /// <summary>
+        /// Cached ipinfo.io records for queried Roblox server addresses.
+        /// A null value means the address was already queried but no data could be retrieved.
+        /// </summary>
+        public static readonly Dictionary<string, IPInfoResponse?> ServerIpInfo = new();
     }
 }
-

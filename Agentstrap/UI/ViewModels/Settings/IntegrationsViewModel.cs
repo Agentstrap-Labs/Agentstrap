@@ -72,11 +72,13 @@ namespace Agentstrap.UI.ViewModels.Settings
                 if (!value)
                 {
                     ShowServerDetailsEnabled = value;
+                    ServerConnectionOverlayEnabled = value;
                     DisableAppPatchEnabled = value;
                     DiscordActivityEnabled = value;
                     DiscordActivityJoinEnabled = value;
 
                     OnPropertyChanged(nameof(ShowServerDetailsEnabled));
+                    OnPropertyChanged(nameof(ServerConnectionOverlayEnabled));
                     OnPropertyChanged(nameof(DisableAppPatchEnabled));
                     OnPropertyChanged(nameof(DiscordActivityEnabled));
                     OnPropertyChanged(nameof(DiscordActivityJoinEnabled));
@@ -88,6 +90,28 @@ namespace Agentstrap.UI.ViewModels.Settings
         {
             get => App.Settings.Prop.ShowServerDetails;
             set => App.Settings.Prop.ShowServerDetails = value;
+        }
+
+        public bool ServerConnectionOverlayEnabled
+        {
+            get => App.Settings.Prop.ShowServerConnectionOverlay;
+            set
+            {
+                App.Settings.Prop.ShowServerConnectionOverlay = value;
+
+                OnPropertyChanged(nameof(ServerConnectionOverlayEnabled));
+            }
+        }
+
+        public double ServerConnectionOverlayDuration
+        {
+            get => App.Settings.Prop.ServerConnectionOverlayDuration;
+            set
+            {
+                App.Settings.Prop.ServerConnectionOverlayDuration = (int)Math.Clamp(value, 1, 30);
+
+                OnPropertyChanged(nameof(ServerConnectionOverlayDuration));
+            }
         }
 
         public bool DiscordActivityEnabled

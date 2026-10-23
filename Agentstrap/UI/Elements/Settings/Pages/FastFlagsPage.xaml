@@ -1,4 +1,4 @@
-<ui:UiPage x:Class="Agentstrap.UI.Elements.Settings.Pages.FastFlagsPage"
+﻿<ui:UiPage x:Class="Agentstrap.UI.Elements.Settings.Pages.FastFlagsPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -25,7 +25,7 @@
         <TextBlock Style="{StaticResource AgSectionHeader}" Text="{x:Static resources:Strings.Common_Presets}" />
 
         <TextBlock Margin="0,18,0,0" Text="{x:Static resources:Strings.Menu_FastFlags_Presets_Categories_Rendering}" FontSize="15" FontWeight="SemiBold" />
-        <controls:MarkdownTextBlock Style="{StaticResource AgBody}" MarkdownText="{Binding Source={x:Static resources:Strings.Menu_FastFlags_Presets_D3DExclusiveFullscreenInfo}, Converter={StaticResource StringFormatConverter}, ConverterParameter='https://bloxstraplabs.com/wiki/features/engine-settings/#exclusive-fullscreen'}"  Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
+        <controls:MarkdownTextBlock Style="{StaticResource AgBody}" MarkdownText="{Binding Source={x:Static resources:Strings.Menu_FastFlags_Presets_D3DExclusiveFullscreenInfo}, Converter={StaticResource StringFormatConverter}, ConverterParameter='https://agentstrap-doc.pages.dev/features/engine-settings.html#exclusive-fullscreen'}"  Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
 
         <controls:OptionControl 
             Header="{x:Static resources:Strings.Menu_FastFlags_Presets_MSAA_Title}">
@@ -41,7 +41,7 @@
         <controls:OptionControl 
             Header="{x:Static resources:Strings.Menu_FastFlags_Presets_FixDisplayScaling_Title}" 
             Description="{x:Static resources:Strings.Menu_FastFlags_Presets_FixDisplayScaling_Description}" 
-            HelpLink="https://bloxstraplabs.com/wiki/features/engine-settings/#preserving-rendering-quality">
+            HelpLink="https://agentstrap-doc.pages.dev/features/engine-settings.html#preserving-rendering-quality">
             <ui:ToggleSwitch IsChecked="{Binding FixDisplayScaling, Mode=TwoWay}" />
         </controls:OptionControl>
 
@@ -55,6 +55,33 @@
                 </ComboBox.ItemTemplate>
             </ComboBox>
         </controls:OptionControl>
+
+        <TextBlock Style="{StaticResource AgSectionHeader}" Text="Preset bundles" />
+
+        <controls:OptionControl
+            Header="Preset bundle"
+            Description="{Binding SelectedPresetDescription, Mode=OneWay}">
+            <StackPanel Orientation="Horizontal">
+                <ComboBox Width="180" Padding="10,5,10,5" DisplayMemberPath="Name"
+                          ItemsSource="{Binding FastFlagPresets, Mode=OneTime}"
+                          SelectedItem="{Binding SelectedPreset, Mode=TwoWay}" />
+                <ui:Button Margin="8,0,0,0" Appearance="Secondary" Icon="Checkmark24"
+                           Content="Apply preset" Command="{Binding ApplyPresetCommand, Mode=OneTime}" />
+            </StackPanel>
+        </controls:OptionControl>
+
+        <TextBlock Style="{StaticResource AgSectionHeader}" Text="Validator" />
+
+        <controls:OptionControl
+            Header="Validate fast flags"
+            Description="Checks every flag name and value against the format Roblox expects before you launch.">
+            <ui:Button Appearance="Secondary" Icon="Checkmark24" Content="Validate"
+                       Command="{Binding ValidateFlagsCommand, Mode=OneTime}" />
+        </controls:OptionControl>
+
+        <Border Style="{StaticResource AgCardMuted}" Margin="0,8,0,0" Visibility="{Binding ValidationVisibility, Mode=OneWay}">
+            <TextBlock Style="{StaticResource AgMono}" Text="{Binding ValidationSummary, Mode=OneWay}" />
+        </Border>
 
         <controls:OptionControl 
             Margin="0,24,0,0"

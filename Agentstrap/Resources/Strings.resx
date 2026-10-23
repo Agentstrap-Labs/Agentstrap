@@ -671,6 +671,24 @@ Selecting 'No' will ignore this warning and continue installation.</value>
   <data name="Menu.Integrations.QueryServerLocation.Title" xml:space="preserve">
     <value>Query server location</value>
   </data>
+  <data name="Menu.Integrations.ServerConnectionOverlay.Title" xml:space="preserve">
+    <value>Show server connection notifications</value>
+  </data>
+  <data name="Menu.Integrations.ServerConnectionOverlay.Description" xml:space="preserve">
+    <value>When you connect to a server, a notification will appear at the top of the Roblox window showing the server location and experience name. The server's IP address is looked up via [ipinfo.io]({0}).</value>
+  </data>
+  <data name="Menu.Integrations.ServerConnectionOverlayDuration.Title" xml:space="preserve">
+    <value>Notification duration</value>
+  </data>
+  <data name="Menu.Integrations.ServerConnectionOverlayDuration.Description" xml:space="preserve">
+    <value>How long the server connection notification stays visible, in seconds.</value>
+  </data>
+  <data name="Menu.Integrations.ServerConnectionOverlay.Test" xml:space="preserve">
+    <value>Test notification</value>
+  </data>
+  <data name="ServerConnectionOverlay.UnknownLocation" xml:space="preserve">
+    <value>Unknown location</value>
+  </data>
   <data name="Menu.Integrations.Title" xml:space="preserve">
     <value>Integrations</value>
   </data>

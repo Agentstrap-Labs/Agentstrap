@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Command Center &middot; Agentstrap Docs</title>
+<meta name="description" content="The default settings page: launch Roblox, see what's going on, and jump to the tool you need.">
+<meta property="og:title" content="Command Center &middot; Agentstrap Docs">
+<meta property="og:description" content="The default settings page: launch Roblox, see what's going on, and jump to the tool you need.">
+<meta property="og:type" content="article">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="icon" href="../assets/Agentstrap.ico" type="image/x-icon">
+</head>
+<body data-page="features/command-center.html" data-base="../">
+<header class="topbar">
+  <button class="icon-btn menu-btn" id="menu-btn" aria-label="Toggle navigation">&#9776;</button>
+  <a class="brand" href="../index.html">
+    <span class="brand-mark"><img src="../assets/Agentstrap.ico" alt="" width="26" height="26"></span>
+    Agentstrap <small>Docs</small>
+  </a>
+  <span class="topbar-spacer"></span>
+  <div class="search-wrap">
+    <input id="search" type="search" placeholder="Search docs&hellip;" autocomplete="off" aria-label="Search documentation">
+    <div id="search-results"></div>
+  </div>
+  <button class="icon-btn" id="theme-btn" title="Toggle theme" aria-label="Toggle theme">&#9680;</button>
+</header>
+
+<div class="shell">
+  <aside class="sidebar" id="sidebar"></aside>
+  <main class="content">
+    <h1>Command Center</h1>
+    <p class="page-lede">The default settings page: launch Roblox, see what's going on, and jump to the tool you need.</p>
+
+<p>The Command Center is the first item in the settings sidebar and the page Agentstrap opens on. It exists to answer
+three questions quickly: <em>can I launch right now?</em>, <em>is everything healthy?</em> and <em>where do I go
+next?</em></p>
+
+<div class="callout note">
+  <strong>Where it lives.</strong>
+  Settings &rarr; <strong>Command Center</strong>. It is the default landing page.
+</div>
+
+<h2 id="launch">Launch</h2>
+
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Button</th><th>What it does</th></tr></thead>
+  <tbody>
+    <tr>
+      <td><strong>Launch Roblox</strong></td>
+      <td>
+        Starts the Roblox Player through Agentstrap, showing the normal bootstrapper progress window. It
+        re-registers the <code>roblox://</code> and <code>roblox-player://</code> protocol handlers, records the
+        launch status, and may prompt for administrator rights.
+      </td>
+    </tr>
+    <tr>
+      <td><strong>Launch Roblox Studio</strong></td>
+      <td>
+        The same, for Roblox Studio. Studio launches skip the "confirm launches" prompt.
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="callout warning">
+  <strong>Media Feature Pack.</strong>
+  Launching Roblox needs the Windows Media Feature Pack. If <code>mfplat.dll</code> is missing, the launch fails
+  with <em>"Launch failed &mdash; Windows Media Feature Pack (mfplat.dll) is missing."</em> Install
+  <em>Media Feature Pack for Windows</em> from Windows Optional Features and try again.
+</div>
+
+<h2 id="status">Status</h2>
+
+<p>Six read-only cards. They tell you the state of the install at a glance.</p>
+
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Card</th><th>Shows</th></tr></thead>
+  <tbody>
+    <tr>
+      <td><strong>Roblox Player</strong></td>
+      <td>
+        <em>Installed</em> or <em>Not detected</em>, based on whether the player executable exists inside the current
+        version folder. If it isn't installed yet, it gets installed the next time you launch.
+      </td>
+    </tr>
+    <tr>
+      <td><strong>Last launch</strong></td>
+      <td>
+        The outcome of the most recent launch &mdash; for example <em>Roblox process started</em>,
+        <em>Client startup detected</em>, <em>Launch cancelled</em>, <em>Launch failed</em> or
+        <em>Launch did not complete</em> &mdash; with the local time it happened. Defaults to
+        <em>No launch recorded</em>.
+      </td>
+    </tr>
+    <tr><td><strong>Agentstrap</strong></td><td>The running build version.</td></tr>
+    <tr>
+      <td><strong>NEXUS</strong></td>
+      <td><em>Off</em>, or <em>On (channel)</em> when the experimental feature channel is enabled. See
+          <a href="nexus.html">NEXUS mode</a>.</td>
+    </tr>
+    <tr>
+      <td><strong>Process priority</strong></td>
+      <td>The priority applied to the Roblox process &mdash; <em>Realtime</em>, <em>High</em>,
+          <em>Above normal</em>, <em>Normal</em> or <em>Below normal</em>. Defaults to <em>Normal</em>.</td>
+    </tr>
+    <tr>
+      <td><strong>Test mode</strong></td>
+      <td>
+        Whether test mode is on. Test mode is toggled from the status bar of the settings window, not from this page.
+        It makes Agentstrap relaunch Roblox after settings close, and reopen settings after Roblox closes, in a loop.
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<h2 id="tools">Tools</h2>
+
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Button</th><th>What it does</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Check for updates</strong></td><td>Jumps to the <a href="updates.html">Updates</a> page.</td></tr>
+    <tr><td><strong>Run diagnostics</strong></td><td>Jumps to the <a href="diagnostics.html">Diagnostics</a> page.</td></tr>
+    <tr><td><strong>Open logs</strong></td><td>Opens Agentstrap's log folder in Explorer.</td></tr>
+    <tr><td><strong>Advanced</strong></td><td>Jumps to the <a href="nexus.html">Advanced</a> page.</td></tr>
+    <tr>
+      <td><strong>Refresh status</strong></td>
+      <td>
+        Re-checks whether the Roblox Player is installed. It deliberately only refreshes that one card &mdash; the
+        launch, version, NEXUS, priority and test mode cards don't change.
+      </td>
+    </tr>
+    <tr>
+      <td><strong>Repair Roblox links</strong></td>
+      <td>
+        Re-registers the <code>roblox://</code> and <code>roblox-player://</code> protocol handlers in
+        <code>HKCU\Software\Classes</code> so they point at Agentstrap with <code>-player "%1"</code>. Useful if
+        clicking a Roblox link opens the wrong thing. No administrator rights needed.
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="callout note">
+  <strong>Some of these are shortcuts, not actions.</strong>
+  <em>Check for updates</em>, <em>Run diagnostics</em> and <em>Advanced</em> only navigate to another page &mdash; they
+  don't start a check. Use <strong>Refresh status</strong> if you want the install card re-evaluated without
+  leaving the page.
+</div>
+
+    <nav class="page-nav" id="page-nav"></nav>
+    <p class="meta">Agentstrap 1.0.0 &middot; These docs describe Agentstrap 1.0.0. Features marked
+    <span class="badge new">new</span> are not present in upstream Bloxstrap.</p>
+  </main>
+</div>
+
+<script src="../assets/site.js"></script>
+</body>
+</html>

@@ -1,87 +1,147 @@
 > [!CAUTION]
-> The only official places to download Bloxstrap are this GitHub repository and [bloxstraplabs.com](https://bloxstraplabs.com). Any other websites offering downloads or claiming to be us are not owned by us.
-
-> [!IMPORTANT]
-> Bloxstrap is not under active development anymore. Any issues or pull requests opened may take a while to get a response.
-
-<p align="center">
-    <img src="https://github.com/bloxstraplabs/bloxstrap/raw/main/Images/Bloxstrap-full-dark.png#gh-dark-mode-only" width="380">
-    <img src="https://github.com/bloxstraplabs/bloxstrap/raw/main/Images/Bloxstrap-full-light.png#gh-light-mode-only" width="380">
-</p>
+> The only official place to download Agentstrap is this GitHub repository and the
+> [Agentstrap documentation site](https://agentstrap-doc.pages.dev). Any other website offering downloads or
+> claiming to be us is not owned by us.
 
 <div align="center">
 
+![Agentstrap](Agentstrap/Agentstrap.ico)
+
+# Agentstrap
+
+**A third-party replacement for the standard Roblox bootstrapper, with a lot more going on.**
+
 [![License][shield-repo-license]][repo-license]
-[![GitHub Workflow Status][shield-repo-workflow]][repo-actions]
-[![Crowdin][shield-crowdin-status]][crowdin-project]
 [![Downloads][shield-repo-releases]][repo-releases]
 [![Version][shield-repo-latest]][repo-latest]
-[![Discord][shield-discord-server]][discord-invite]
-[![lol][shield-tenor-meme]][tenor-gif]
 
 </div>
 
-----
+---
 
-Bloxstrap is a third-party replacement for the standard Roblox bootstrapper, providing additional useful features and improvements.
+Agentstrap takes over the job Roblox's own launcher does, and uses that position to add things Roblox doesn't
+offer: a matchmaker, an in-game server overlay, a diagnostics suite, deployment channel pinning, modding that
+survives updates, and more.
 
-Running into a problem or need help with something? [Check out the Wiki](https://bloxstraplabs.com/wiki). If you can't find anything, or would like to suggest something, please [submit an issue](https://github.com/bloxstraplabs/bloxstrap/issues).
+It is a fork of [Bloxstrap](https://github.com/bloxstraplabs/bloxstrap), and everything Bloxstrap does,
+Agentstrap does.
 
-Bloxstrap is only supported for PCs running Windows.
+Running into a problem or need help with something? The documentation is in [`Docs Site/`](Docs%20Site) in this
+repository, and online at the [docs site](https://agentstrap-doc.pages.dev). If you can't find
+anything, or would like to suggest something, please
+[submit an issue](https://github.com/agentxco2-dev/Agentstrap/issues).
+
+Agentstrap is only supported for PCs running Windows.
+
+## Features
+
+### New in Agentstrap
+
+- **Matchmaker** — join a place automatically on launch, optionally preferring servers that aren't already full
+- **Command Center** — launch, update and repair Roblox from a single screen, with live status for every part
+  of the install
+- **Server connection overlay** — a toast on the game window telling you which server you landed on and where
+  its data centre is
+- **Diagnostics** — eight health checks that find broken installs, bad permissions, conflicting mods and
+  pending configuration migrations
+- **Deployment channels** — pin Agentstrap to a specific Roblox release channel instead of following
+  production
+- **Custom window attributes** — force a fixed size, position and title on the Roblox window every time
+- **Updates page** — check Agentstrap, your installed mods and your configuration independently
+- **NEXUS mode** — an opt-in experimental feature channel
+
+### From Bloxstrap
+
+- Hassle-free Discord Rich Presence, so your friends know what you're playing at a glance
+- Modding of content files — cursor, sounds, emoji font, custom font, skybox — that survives Roblox updates
+- Server location hints, courtesy of [ipinfo.io](https://ipinfo.io)
+- Fast Flag management, with rendering presets, preset bundles and a flag validator
+- Custom themes, custom shortcuts, and a configurable bootstrapper
+
+Full documentation for every one of these lives in [`Docs Site/`](Docs%20Site).
+
+## Installing
+
+Download the [latest release of Agentstrap](https://github.com/agentxco2-dev/Agentstrap/releases/latest) and run
+it. The installer asks where you want the app to live, and whether you want desktop and Start Menu shortcuts.
+That's about it!
+
+Agentstrap targets **.NET 10** and the published builds are self-contained, so you don't need to install a
+separate runtime.
+
+It's not unlikely that Windows SmartScreen will show a popup when you run Agentstrap for the first time. This
+happens because it's an unknown program, not because it's actually detected as being malicious. To dismiss it,
+click **More info** and then **Run anyway**.
+
+Once installed, Agentstrap is added to your Start Menu, where you can access the menu and reconfigure your
+preferences.
 
 ## Frequently Asked Questions
 
 **Q: Is this malware?**
 
-**A:** No. The source code here is viewable to all, and it'd be impossible for us to slip anything malicious into the downloads without anyone noticing. Just be sure you're downloading it from an official source. The only two official sources are this GitHub repository and [bloxstraplabs.com](https://bloxstraplabs.com).
+**A:** No. The source code here is viewable to all, and it'd be impossible to slip anything malicious into the
+downloads without anyone noticing. Just be sure you're downloading it from an official source — this GitHub
+repository is the only one.
 
 **Q: Can using this get me banned?**
 
-**A:** No, it shouldn't. Bloxstrap doesn't interact with the Roblox client in the same way that exploits do. [Read more about that here.](https://bloxstraplabs.com/wiki/info/bloxstrap-and-bans)
-## Features
+**A:** No, it shouldn't. Agentstrap doesn't interact with the Roblox client in the same way that exploits do. It
+changes *how* Roblox is launched and *what* gets copied into the install folder, not the client itself. See
+[Agentstrap and bans](Docs%20Site/info/bans.html) for the details.
 
-- Hassle-free Discord Rich Presence to let your friends know what you're playing at a glance
-- Simple support for modding of content files for customizability (death sound, mouse cursor, etc)
-- See where your server is geographically located (courtesy of [ipinfo.io](https://ipinfo.io))
-- Ability to configure graphics fidelity and UI experience
+**Q: Does Agentstrap send my data anywhere?**
 
-## Installing
-Download the [latest release of Bloxstrap](https://github.com/bloxstraplabs/bloxstrap/releases/latest), and run it. Configure your preferences if needed, and install. That's about it!
+**A:** There's no analytics backend and no account system. The only outbound requests are Roblox downloads, the
+GitHub release check, and — if you turn them on — ipinfo.io server location lookups and per-mod update checks.
+See the [privacy policy](Docs%20Site/info/privacy-policy.html).
 
-Alternatively, you can install Bloxstrap via [Winget](https://winstall.app/apps/pizzaboxer.Bloxstrap) by running this in a Command Prompt window:
+## Documentation
+
+The documentation site is in [`Docs Site/`](Docs%20Site). It's plain static HTML with no build step — open
+`Docs Site/index.html` in a browser, or deploy the folder to any static host.
+
+To rebuild it after editing the content:
+
+```powershell
+node Docs Site/source/build.mjs
 ```
-> winget install bloxstrap
-```
-
-You will also need the [.NET 6 Desktop Runtime](https://aka.ms/dotnet-core-applaunch?missing_runtime=true&arch=x64&rid=win11-x64&apphost_version=6.0.36&gui=true). If you don't already have it installed, you'll be prompted to install it anyway. Be sure to install Bloxstrap after you've installed this.
-
-It's not unlikely that Windows Smartscreen will show a popup when you run Bloxstrap for the first time. This happens because it's an unknown program, not because it's actually detected as being malicious. To dismiss it, just click on "More info" and then "Run anyway".
-
-Once installed, Bloxstrap is added to your Start Menu, where you can access the menu and reconfigure your preferences if needed.
 
 ## Code
 
-Bloxstrap uses the [WPF UI](https://github.com/lepoco/wpfui) library for the user interface design. We currently use and maintain our own fork of WPF UI at [bloxstraplabs/wpfui](https://github.com/bloxstraplabs/wpfui).
+Agentstrap uses the [WPF UI](https://github.com/lepoco/wpfui) library for the user interface design, vendored as
+a submodule in `wpfui/`.
 
+```powershell
+git clone --recurse-submodules https://github.com/agentxco2-dev/Agentstrap
+dotnet build Agentstrap/Agentstrap.csproj -c Release
+```
 
-[shield-repo-license]:  https://img.shields.io/github/license/bloxstraplabs/bloxstrap
-[shield-repo-workflow]: https://img.shields.io/github/actions/workflow/status/bloxstraplabs/bloxstrap/ci-release.yml?branch=main&label=builds
-[shield-repo-releases]: https://img.shields.io/github/downloads/bloxstraplabs/bloxstrap/latest/total?color=981bfe
-[shield-repo-latest]:   https://img.shields.io/github/v/release/bloxstraplabs/bloxstrap?color=7a39fb
+If you cloned without `--recurse-submodules`, run `git submodule update --init` first — the build fails without
+it.
 
-[shield-crowdin-status]: https://badges.crowdin.net/bloxstrap/localized.svg
-[shield-discord-server]: https://img.shields.io/discord/1099468797410283540?logo=discord&logoColor=white&label=discord&color=4d3dff
-[shield-tenor-meme]:     https://img.shields.io/badge/mom_made-pizza_rolls-orange
+To publish a self-contained x64 build:
 
-[repo-license]:  https://github.com/bloxstraplabs/bloxstrap/blob/main/LICENSE
-[repo-actions]:  https://github.com/bloxstraplabs/bloxstrap/actions
-[repo-releases]: https://github.com/bloxstraplabs/bloxstrap/releases
-[repo-latest]:   https://github.com/bloxstraplabs/bloxstrap/releases/latest
+```powershell
+dotnet publish Agentstrap/Agentstrap.csproj -p:PublishProfile=Publish-x64 -c Release
+```
 
-[crowdin-project]: https://crowdin.com/project/bloxstrap
-[discord-invite]:  https://discord.gg/nKjV3mGq6R
-[tenor-gif]:       https://media.tenor.com/FIkSGbGycmAAAAAd/manly-roblox.gif
+There's a test project alongside the app:
 
-## Code signing policy
+```powershell
+dotnet test Agentstrap.Tests/Agentstrap.Tests.csproj
+```
 
-Thanks to [SignPath.io](https://signpath.io/) for providing a free code signing service, and the [SignPath Foundation](https://signpath.org/) for providing the free code signing certificate.
+## Credits
+
+Agentstrap is a fork of [Bloxstrap](https://github.com/bloxstraplabs/bloxstrap) by
+[pizzaboxer](https://github.com/pizzaboxer), and would not exist without it. Roblox and Roblox Studio are
+trademarks of Roblox Corporation.
+
+[shield-repo-license]:  https://img.shields.io/github/license/agentxco2-dev/Agentstrap
+[shield-repo-releases]: https://img.shields.io/github/downloads/agentxco2-dev/Agentstrap/latest/total?color=981bfe
+[shield-repo-latest]:   https://img.shields.io/github/v/release/agentxco2-dev/Agentstrap?color=7a39fb
+
+[repo-license]:  https://github.com/agentxco2-dev/Agentstrap/blob/main/LICENSE
+[repo-releases]: https://github.com/agentxco2-dev/Agentstrap/releases
+[repo-latest]:   https://github.com/agentxco2-dev/Agentstrap/releases/latest
