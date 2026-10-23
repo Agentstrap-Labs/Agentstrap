@@ -27,9 +27,9 @@ offer: a matchmaker, an in-game server overlay, a diagnostics suite, deployment 
 survives updates, and more.
 
 It is a fork of [Bloxstrap](https://github.com/bloxstraplabs/bloxstrap), and everything Bloxstrap does,
-Agentstrap does.
+Agentstrap does. (Bloxstrap support/development has ended. It is a full ROBLOX bootstrapper though)
 
-Running into a problem or need help with something? The documentation is in [`Docs Site/`](Docs%20Site) in this
+Running into a problem or need help with something? The documentation is in [`docs/`](docs) in this
 repository, and online at the [docs site](https://agentstrap-doc.pages.dev). If you can't find
 anything, or would like to suggest something, please
 [submit an issue](https://github.com/agentxco2-dev/Agentstrap/issues).
@@ -91,17 +91,17 @@ repository is the only one.
 
 **A:** No, it shouldn't. Agentstrap doesn't interact with the Roblox client in the same way that exploits do. It
 changes *how* Roblox is launched and *what* gets copied into the install folder, not the client itself. See
-[Agentstrap and bans](Docs%20Site/info/bans.html) for the details.
+[Agentstrap and bans](docs/info/bans.html) for the details.
 
 **Q: Does Agentstrap send my data anywhere?**
 
 **A:** There's no analytics backend and no account system. The only outbound requests are Roblox downloads, the
 GitHub release check, and — if you turn them on — ipinfo.io server location lookups and per-mod update checks.
-See the [privacy policy](Docs%20Site/info/privacy-policy.html).
+See the [privacy policy](docs/info/privacy-policy.html).
 
 ## Documentation
 
-The documentation site is in [`Docs Site/`](Docs%20Site). It's plain static HTML with no build step — open
+The documentation site is in [`docs`](docs). It's plain static HTML with no build step — open
 `Docs Site/index.html` in a browser, or deploy the folder to any static host.
 
 To rebuild it after editing the content:
