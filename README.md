@@ -16,9 +16,9 @@
 [![Version][shield-repo-latest]][repo-latest]
 
 </div>
----
 
-![Image](https://github.com/agentxco2-dev/Agentstrap/blob/main/assets/Agentstrap.png)
+![Image](assets/AgentstrapUI.png)
+
 
 ---
 
