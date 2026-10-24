@@ -52,7 +52,7 @@ Agentstrap is only supported for PCs running Windows.
 - **Custom window attributes** — force a fixed size, position and title on the Roblox window every time
 - **Updates page** — check Agentstrap, your installed mods and your configuration independently
 - **NEXUS mode** - an opt-in experimental feature channel
-- **Roblox Apple Emoji Mode** - safely attempts Apple iPhone emoji styling in supported Roblox text elements via the Modifications overlay
+- **Global Settings** - Roblox settings to save in Agentstrap that go to Roblox :)
 
 ### From Bloxstrap
 
