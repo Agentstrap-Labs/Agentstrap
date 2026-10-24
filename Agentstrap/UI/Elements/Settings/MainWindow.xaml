@@ -82,7 +82,7 @@
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
-                <ui:Breadcrumb Grid.Row="0" Margin="0,0,0,8" Navigation="{Binding ElementName=RootNavigation}" />
+                <!-- Breadcrumb removed to avoid duplicate titles -->
                 <Frame x:Name="RootFrame" Grid.Row="1" />
             </Grid>
         </Grid>
