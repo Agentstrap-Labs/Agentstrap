@@ -172,6 +172,19 @@
         <Setter Property="BorderBrush" Value="{DynamicResource SystemFillColorCautionBrush}" />
     </Style>
 
+    <Style x:Key="AgDisclosure" TargetType="{x:Type ui:CardExpander}" BasedOn="{StaticResource NoUserExpansionCardExpanderStyle}" />
+
+    <Style x:Key="AgCaption" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource AgBody}" />
+    <Style x:Key="AgCardTitle" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource AgCardLabel}" />
+    <Style x:Key="AgTextBox" TargetType="{x:Type TextBox}" />
+
+    <SolidColorBrush x:Key="AgAccent" Color="{DynamicResource SystemAccentColorPrimary}" />
+    <SolidColorBrush x:Key="AgAccentSoft" Color="{DynamicResource SystemAccentColorSecondary}" />
+    <SolidColorBrush x:Key="AgStroke" Color="{DynamicResource ControlStrokeColorDefault}" />
+    <SolidColorBrush x:Key="AgSurfaceSunken" Color="{DynamicResource ControlFillColorSecondary}" />
+    <SolidColorBrush x:Key="AgTextPrimary" Color="{DynamicResource TextFillColorPrimary}" />
+    <SolidColorBrush x:Key="AgTextSecondary" Color="{DynamicResource TextFillColorSecondary}" />
+
     <Style x:Key="AgSeveritySuccess" TargetType="{x:Type Border}">
         <Setter Property="Background" Value="{DynamicResource SystemFillColorSuccessBackgroundBrush}" />
         <Setter Property="BorderBrush" Value="{DynamicResource SystemFillColorSuccessBrush}" />

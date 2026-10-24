@@ -23,6 +23,10 @@ new capabilities on top. Pages marked <span class="badge new">new</span> describ
   <a class="card" href="updates.html"><span class="card-tag">new</span><h3>Updates</h3><p>Agentstrap, mods and config migrations.</p></a>
   <a class="card" href="modding.html"><h3>Modding</h3><p>Customise assets without losing them on update.</p></a>
   <a class="card" href="nexus.html"><span class="card-tag">new</span><h3>NEXUS mode</h3><p>Opt in to experimental behaviour.</p></a>
+  <a class="card" href="profiles.html"><span class="card-tag">new</span><h3>Profiles</h3><p>Save, switch, compare and restore configurations.</p></a>
+  <a class="card" href="backups.html"><span class="card-tag">new</span><h3>Automatic backups</h3><p>Integrity-checked configuration snapshots.</p></a>
+  <a class="card" href="extensions.html"><span class="card-tag">new</span><h3>Extensions</h3><p>Optional add-ons with validated manifests.</p></a>
+  <a class="card" href="macos-support.html"><span class="card-tag">new</span><h3>macOS support</h3><p>Platform-aware capabilities and honest reporting.</p></a>
   <a class="card" href="dont-exit-to-desktop-app.html"><h3>Don't exit to desktop app</h3><p>Make the game fully close instead of returning to the app.</p></a>
 </div>
 

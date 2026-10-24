@@ -8,7 +8,6 @@
       xmlns:models="clr-namespace:Agentstrap.UI.ViewModels"
       mc:Ignorable="d"
       d:DesignHeight="720" d:DesignWidth="900"
-      Title="Command Center"
       Scrollable="True">
 
     <StackPanel Margin="0,0,14,14">

@@ -30,3 +30,8 @@ global using Agentstrap.Models.SettingTasks.Base;
 global using Agentstrap.Resources;
 global using Agentstrap.UI;
 global using Agentstrap.Utility;
+global using Agentstrap.Platform;
+global using Agentstrap.Profiles;
+global using Agentstrap.Backups;
+global using Agentstrap.Diagnostics;
+global using Agentstrap.Accounts;

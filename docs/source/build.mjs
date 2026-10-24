@@ -13,7 +13,7 @@ const HERE = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(HERE, "..");
 
 const SITE = "Agentstrap Docs";
-const VERSION = "1.1.0";
+const VERSION = "1.2.2";
 
 /**
  * Gives every h2/h3 a stable id derived from its text, so sections can be
@@ -97,6 +97,7 @@ async function collect() {
     "./pages/home.mjs",
     "./pages/features-a.mjs",
     "./pages/features-b.mjs",
+    "./pages/features-c.mjs",
     "./pages/info.mjs",
     "./pages/help.mjs",
     "./pages/developers.mjs",

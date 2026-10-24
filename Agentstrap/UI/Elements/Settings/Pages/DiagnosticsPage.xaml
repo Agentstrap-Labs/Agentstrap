@@ -9,7 +9,6 @@
       xmlns:models="clr-namespace:Agentstrap.UI.ViewModels.Settings"
       mc:Ignorable="d"
       d:DesignHeight="1080" d:DesignWidth="800"
-      Title="Diagnostics"
       Scrollable="True">
 
     <ui:UiPage.Resources>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Extensions &middot; Agentstrap Docs</title>
+<meta name="description" content="Optional Agentstrap extensions with a versioned manifest and least-privilege permissions.">
+<meta property="og:title" content="Extensions &middot; Agentstrap Docs">
+<meta property="og:description" content="Optional Agentstrap extensions with a versioned manifest and least-privilege permissions.">
+<meta property="og:type" content="article">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="icon" href="../assets/Agentstrap.ico" type="image/x-icon">
+</head>
+<body data-page="features/extensions.html" data-base="../">
+<header class="topbar">
+  <button class="icon-btn menu-btn" id="menu-btn" aria-label="Toggle navigation">&#9776;</button>
+  <a class="brand" href="../index.html">
+    <span class="brand-mark"><img src="../assets/Agentstrap.ico" alt="" width="26" height="26"></span>
+    Agentstrap <small>Docs</small>
+  </a>
+  <span class="topbar-spacer"></span>
+  <div class="search-wrap">
+    <input id="search" type="search" placeholder="Search docs&hellip;" autocomplete="off" aria-label="Search documentation">
+    <div id="search-results"></div>
+  </div>
+  <button class="icon-btn" id="theme-btn" title="Toggle theme" aria-label="Toggle theme">&#9680;</button>
+</header>
+
+<div class="shell">
+  <aside class="sidebar" id="sidebar"></aside>
+  <main class="content">
+    <h1>Extensions</h1>
+    <p class="page-lede">Optional Agentstrap extensions with a versioned manifest and least-privilege permissions.</p>
+
+<p>Extensions are optional add-ons. They are validated before installation and never run with administrator
+privileges by default.</p>
+
+<h2 id="manifest">Manifest</h2>
+<p>Every extension ships a <code>manifest.json</code> with a unique id, display name, version, author, minimum
+compatible Agentstrap version, supported operating systems, declared permissions, entry type and optional
+dependencies. Malformed manifests are rejected.</p>
+
+<h2 id="security">Security</h2>
+<ul>
+  <li>Path traversal in archive entries is blocked.</li>
+  <li>Package integrity is verified where possible.</li>
+  <li>Sensitive permissions require explicit consent.</li>
+  <li>Authentication tokens and private configuration are not exposed.</li>
+</ul>
+
+    <nav class="page-nav" id="page-nav"></nav>
+    <p class="meta">Agentstrap 1.2.2 &middot; These docs describe Agentstrap 1.2.2. Features marked
+    <span class="badge new">new</span> are not present in upstream Bloxstrap.</p>
+  </main>
+</div>
+
+<script src="../assets/site.js"></script>
+</body>
+</html>

@@ -9,7 +9,6 @@
       xmlns:resources="clr-namespace:Agentstrap.Resources"
       mc:Ignorable="d"
       d:DesignHeight="900" d:DesignWidth="800"
-      Title="AppearancePage"
       Scrollable="True">
     <StackPanel Margin="0,0,14,14">
         <TextBlock Style="{StaticResource AgPageTitle}" Text="{x:Static resources:Strings.Menu_Appearance_Title}" />

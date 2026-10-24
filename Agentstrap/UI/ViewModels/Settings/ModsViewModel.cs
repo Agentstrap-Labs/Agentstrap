@@ -130,8 +130,6 @@ namespace Agentstrap.UI.ViewModels.Settings
 
         public EmojiModPresetTask EmojiFontTask { get; } = new();
 
-        public AppleEmojiViewModel AppleEmojiMode { get; } = new();
-
         public EnumModPresetTask<Enums.CursorType> CursorTypeTask { get; } =
             new(
                 "CursorType",
