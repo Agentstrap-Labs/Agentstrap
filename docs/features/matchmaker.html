@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Matchmaker &middot; Agentstrap Docs</title>
+<meta name="description" content="Join a place automatically the moment Roblox starts, optionally picking a server that isn't already full.">
+<meta property="og:title" content="Matchmaker &middot; Agentstrap Docs">
+<meta property="og:description" content="Join a place automatically the moment Roblox starts, optionally picking a server that isn't already full.">
+<meta property="og:type" content="article">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="icon" href="../assets/Agentstrap.ico" type="image/x-icon">
+</head>
+<body data-page="features/matchmaker.html" data-base="../">
+<header class="topbar">
+  <button class="icon-btn menu-btn" id="menu-btn" aria-label="Toggle navigation">&#9776;</button>
+  <a class="brand" href="../index.html">
+    <span class="brand-mark"><img src="../assets/Agentstrap.ico" alt="" width="26" height="26"></span>
+    Agentstrap <small>Docs</small>
+  </a>
+  <span class="topbar-spacer"></span>
+  <div class="search-wrap">
+    <input id="search" type="search" placeholder="Search docs&hellip;" autocomplete="off" aria-label="Search documentation">
+    <div id="search-results"></div>
+  </div>
+  <button class="icon-btn" id="theme-btn" title="Toggle theme" aria-label="Toggle theme">&#9680;</button>
+</header>
+
+<div class="shell">
+  <aside class="sidebar" id="sidebar"></aside>
+  <main class="content">
+    <h1>Matchmaker</h1>
+    <p class="page-lede">Join a place automatically the moment Roblox starts, optionally picking a server that isn't already full.</p>
+
+<p>The matchmaker is Agentstrap's most automation-heavy feature. Once it's enabled and you give it a place, every
+time Roblox launches it immediately joins that place &mdash; and if you'd rather not land in a packed server, it can
+look for one with room first.</p>
+
+<div class="callout tip">
+  <strong>Where it lives.</strong>
+  Settings &rarr; <strong>Deployment</strong> &rarr; <strong>Matchmaker</strong>. It is off by default.
+</div>
+
+<h2 id="options">Options</h2>
+
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Option</th><th>Default</th><th>What it does</th></tr></thead>
+  <tbody>
+    <tr>
+      <td><strong>Enable matchmaker</strong></td>
+      <td><span class="badge off">Off</span></td>
+      <td>Join the place below as soon as Roblox starts. Leaving this off means the place ID is ignored.</td>
+    </tr>
+    <tr>
+      <td><strong>Place ID</strong></td>
+      <td>Empty</td>
+      <td>
+        The experience to join. Accepts a raw numeric place ID, or a full link such as
+        <code>https://www.roblox.com/games/123456789/Whatever</code> &mdash; the ID is pulled out of the link for you.
+        Leave it empty to pick a place at launch time instead.
+      </td>
+    </tr>
+    <tr>
+      <td><strong>Prefer low population servers</strong></td>
+      <td><span class="badge on">On</span></td>
+      <td>
+        Skip full servers even when the list still has slots. This avoids long queue times on popular games.
+        When it's on, Agentstrap picks the server with the fewest players; when it's off, it picks the busiest one
+        that still satisfies your minimum.
+      </td>
+    </tr>
+    <tr>
+      <td><strong>Minimum free slots</strong></td>
+      <td>1</td>
+      <td>
+        How many free slots a server needs before the matchmaker will join it. Offered values are
+        <code>1</code>, <code>2</code>, <code>3</code>, <code>5</code> and <code>10</code>. Values outside
+        <code>1&ndash;50</code> are clamped.
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<h2 id="finding-a-server-right-now">Finding a server right now</h2>
+
+<p>The <strong>Find a server now</strong> button does the whole thing immediately, without waiting for the next
+launch. It:</p>
+
+<ol>
+  <li>Saves your settings first, so the search uses exactly what you see on screen.</li>
+  <li>Queries Roblox's public server list for the place, following at most three pages of results. The search is
+      deliberately bounded so a single request can never churn through the entire server list.</li>
+  <li>Keeps only servers where <code>MaxPlayers - Playing &gt;= Minimum free slots</code>.</li>
+  <li>Sorts by your preference: fewest players first when <strong>Prefer low population servers</strong> is on
+      (ties broken by the larger server), most players first when it's off (ties broken by the most free slots).</li>
+  <li>Launches Roblox with a deep link that joins that exact server.</li>
+</ol>
+
+<div class="callout note">
+  <strong>Roblox doesn't report back.</strong>
+  After the matchmaker asks Roblox to join a server, Roblox doesn't tell Agentstrap whether the join actually
+  worked. The status line tells you what was requested, not what happened.
+</div>
+
+<h2 id="status-messages">Status messages</h2>
+
+<p>The card under the matchmaker options tells you what the last action did:</p>
+
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Message</th><th>Meaning</th></tr></thead>
+  <tbody>
+    <tr><td><em>Enter an experience ID or link, then find a public server.</em></td><td>Nothing has been attempted yet.</td></tr>
+    <tr><td><em>Enable Agentstrap Matchmaker before searching for servers.</em></td><td>You pressed search with the feature off.</td></tr>
+    <tr><td><em>Enter a valid Roblox place ID or a roblox.com/games/{id} link.</em></td><td>The place field couldn't be parsed.</td></tr>
+    <tr><td><em>No public server found with at least {n} open slot(s). Try a lower minimum or search again later.</em></td><td>The search ran but nothing qualified.</td></tr>
+    <tr><td><em>Launch requested for a server with {playing}/{max} players.</em></td><td>Roblox was asked to join a specific server.</td></tr>
+    <tr><td><em>Server search failed: {message}</em></td><td>Roblox's API returned an error or was unreachable.</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2 id="configuration-migration">Configuration migration</h2>
+
+<p>If you enabled the matchmaker in an older build but never set a place ID, Agentstrap's
+<a href="updates.html">configuration migration</a> turns the matchmaker off for you rather than leaving it in a state
+where every launch does nothing. The <strong>Updates</strong> page will show this as a pending migration you can
+apply.</p>
+
+<div class="callout warning">
+  <strong>Old key names.</strong>
+  The matchmaker settings are stored in <code>Settings.json</code> under the keys
+  <code>VoidstrapMatchmakerEnabled</code>, <code>VoidstrapMatchmakerPlaceId</code>,
+  <code>VoidstrapMatchmakerPreferLowPopulation</code> and <code>VoidstrapMatchmakerMinimumFreeSlots</code>.
+  The names are legacy but are kept for compatibility with existing installations.
+</div>
+
+    <nav class="page-nav" id="page-nav"></nav>
+    <p class="meta">Agentstrap 1.2.2 &middot; These docs describe Agentstrap 1.2.2. Features marked
+    <span class="badge new">new</span> are not present in upstream Bloxstrap.</p>
+  </main>
+</div>
+
+<script src="../assets/site.js"></script>
+</body>
+</html>

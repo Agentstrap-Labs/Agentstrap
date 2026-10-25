@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Server location unavailable &middot; Agentstrap Docs</title>
+<meta name="description" content="Why the location lookup fails, and what you can do about it.">
+<meta property="og:title" content="Server location unavailable &middot; Agentstrap Docs">
+<meta property="og:description" content="Why the location lookup fails, and what you can do about it.">
+<meta property="og:type" content="article">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="icon" href="../assets/Agentstrap.ico" type="image/x-icon">
+</head>
+<body data-page="help/server-location-unavailable.html" data-base="../">
+<header class="topbar">
+  <button class="icon-btn menu-btn" id="menu-btn" aria-label="Toggle navigation">&#9776;</button>
+  <a class="brand" href="../index.html">
+    <span class="brand-mark"><img src="../assets/Agentstrap.ico" alt="" width="26" height="26"></span>
+    Agentstrap <small>Docs</small>
+  </a>
+  <span class="topbar-spacer"></span>
+  <div class="search-wrap">
+    <input id="search" type="search" placeholder="Search docs&hellip;" autocomplete="off" aria-label="Search documentation">
+    <div id="search-results"></div>
+  </div>
+  <button class="icon-btn" id="theme-btn" title="Toggle theme" aria-label="Toggle theme">&#9680;</button>
+</header>
+
+<div class="shell">
+  <aside class="sidebar" id="sidebar"></aside>
+  <main class="content">
+    <h1>Server location unavailable</h1>
+    <p class="page-lede">Why the location lookup fails, and what you can do about it.</p>
+
+<p>When the server location shows <em>"Not available"</em>, one of three things is true.</p>
+
+<h2 id="1-the-server-s-address-can-t-be-looked-up">1. The server's address can't be looked up</h2>
+
+<p>Not every Roblox server has a publicly resolvable address. Private servers in particular are never queried at all,
+because the addresses aren't publicly routable. There's nothing to fix &mdash; the location simply isn't knowable.</p>
+
+<p>The same applies to any address in a private range. Agentstrap skips the request entirely rather than sending
+something pointless.</p>
+
+<h2 id="2-ipinfo-io-was-rate-limited">2. ipinfo.io was rate-limited</h2>
+
+<p>This is the most common cause. ipinfo.io's free tier limits how many lookups you can do per month, and joining
+games quickly burns through it.</p>
+
+<p>The error Agentstrap shows says it directly: <em>"The server location could not be queried. You may be joining games
+too quickly."</em></p>
+
+<p>Things that help:</p>
+
+<ul>
+  <li>Turn off <em>Show server connection notifications</em> on the Integrations page. The overlay does its own lookup
+      for every server you join, and it's the biggest source of requests.</li>
+  <li>Wait. The limit resets over time.</li>
+  <li>Don't join games as fast as you can.</li>
+</ul>
+
+<div class="callout note">
+  <strong>Failed lookups are cached.</strong>
+  Once an address fails to resolve, Agentstrap remembers that and doesn't keep retrying it. So a server that failed
+  won't suddenly start working later in the session.
+</div>
+
+<h2 id="3-ipinfo-io-only-knew-the-region">3. ipinfo.io only knew the region</h2>
+
+<p>ipinfo.io sometimes doesn't have a city for an address &mdash; only a country or region. Agentstrap would rather show
+nothing than claim <em>"Illinois, Illinois"</em>, so it shows <em>"Not available"</em> instead.</p>
+
+<p>This one is outside your control.</p>
+
+<h2 id="nothing-is-wrong">Nothing is wrong</h2>
+
+<p>It's worth checking that the lookup is actually enabled. Settings &rarr; <strong>Integrations</strong> &rarr;
+<em>Query server location</em>. It also requires
+<a href="../features/activity-tracking.html">activity tracking</a> to be on.</p>
+
+<div class="callout warning">
+  <strong>The overlay has its own lookup.</strong>
+  If the tray notification says "Not available" but the overlay shows a city, that's expected &mdash; the overlay
+  resolves locations independently.
+</div>
+
+<h2 id="where-to-look-next">Where to look next</h2>
+
+<p>Agentstrap's log records the exact request and the response it got back, including the error message from
+ipinfo.io. Open the log folder from the Command Center or the Advanced page and look for the <code>ipinfo</code>
+entries around the time you joined the server.</p>
+
+    <nav class="page-nav" id="page-nav"></nav>
+    <p class="meta">Agentstrap 1.2.2 &middot; These docs describe Agentstrap 1.2.2. Features marked
+    <span class="badge new">new</span> are not present in upstream Bloxstrap.</p>
+  </main>
+</div>
+
+<script src="../assets/site.js"></script>
+</body>
+</html>

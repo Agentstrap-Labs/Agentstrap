@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Translations &middot; Agentstrap Docs</title>
+<meta name="description" content="Agentstrap's interface is available in dozens of languages, and you can help translate it.">
+<meta property="og:title" content="Translations &middot; Agentstrap Docs">
+<meta property="og:description" content="Agentstrap's interface is available in dozens of languages, and you can help translate it.">
+<meta property="og:type" content="article">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="icon" href="../assets/Agentstrap.ico" type="image/x-icon">
+</head>
+<body data-page="info/translations.html" data-base="../">
+<header class="topbar">
+  <button class="icon-btn menu-btn" id="menu-btn" aria-label="Toggle navigation">&#9776;</button>
+  <a class="brand" href="../index.html">
+    <span class="brand-mark"><img src="../assets/Agentstrap.ico" alt="" width="26" height="26"></span>
+    Agentstrap <small>Docs</small>
+  </a>
+  <span class="topbar-spacer"></span>
+  <div class="search-wrap">
+    <input id="search" type="search" placeholder="Search docs&hellip;" autocomplete="off" aria-label="Search documentation">
+    <div id="search-results"></div>
+  </div>
+  <button class="icon-btn" id="theme-btn" title="Toggle theme" aria-label="Toggle theme">&#9680;</button>
+</header>
+
+<div class="shell">
+  <aside class="sidebar" id="sidebar"></aside>
+  <main class="content">
+    <h1>Translations</h1>
+    <p class="page-lede">Agentstrap's interface is available in dozens of languages, and you can help translate it.</p>
+
+<h2 id="supported-languages">Supported languages</h2>
+
+<p>The interface is translated into more than thirty languages, including:</p>
+
+<p>Arabic, Basque, Bulgarian, Catalan, Chinese (Simplified and Traditional), Croatian, Czech, Danish, Dutch,
+English, Estonian, Filipino, Finnish, French, German, Greek, Hebrew, Hindi, Hungarian, Indonesian, Italian,
+Japanese, Korean, Latvian, Lithuanian, Norwegian, Persian, Polish, Portuguese (Brazil), Romanian, Russian, Serbian,
+Slovak, Spanish, Swedish, Thai, Turkish, Ukrainian, Vietnamese.</p>
+
+<p>You can change the language from the <strong>Appearance</strong> settings page, or from the language selector in
+the launch menu.</p>
+
+<h2 id="how-it-works">How it works</h2>
+
+<p>Translations live in resource files (<code>Strings.resx</code> and one per language), and the locale is applied
+when the interface loads. The region format is also switched to match, so dates and numbers appear the way your
+language expects.</p>
+
+<div class="callout note">
+  <strong>Fallback behaviour.</strong>
+  If a string is missing in your language, Agentstrap falls back to English for that string rather than showing
+  nothing.
+</div>
+
+<h2 id="translating">Translating</h2>
+
+<p>Translation files are plain XML, so any text editor works. The workflow is:</p>
+
+<ol>
+  <li>Find the language you want to contribute to in the <code>Resources</code> folder.</li>
+  <li>Duplicate a <code>Strings.resx</code> file as <code>Strings.&lt;code&gt;.resx</code> if it doesn't exist yet.</li>
+  <li>Translate the values. Leave the resource <em>names</em> alone &mdash; they're the keys the code looks up.</li>
+  <li>Save and rebuild.</li>
+</ol>
+
+<p>Two things to be careful about:</p>
+
+<ul>
+  <li><strong>Don't rename or remove keys.</strong> A missing key falls back to English, but a renamed one is a
+      silent break.</li>
+  <li><strong>Watch the formatting placeholders.</strong> Strings like <code>{0}</code> and <code>{1}</code> are
+      substituted at runtime. They must survive translation, in the same order.</li>
+</ul>
+
+<div class="callout tip">
+  <strong>There's a script for finding unused strings.</strong>
+  <code>Scripts\Translations\find-unused.py</code> reports resource keys that nothing in the code references any
+  more, which is a good first thing to clean up when starting a new language.
+</div>
+
+    <nav class="page-nav" id="page-nav"></nav>
+    <p class="meta">Agentstrap 1.2.2 &middot; These docs describe Agentstrap 1.2.2. Features marked
+    <span class="badge new">new</span> are not present in upstream Bloxstrap.</p>
+  </main>
+</div>
+
+<script src="../assets/site.js"></script>
+</body>
+</html>

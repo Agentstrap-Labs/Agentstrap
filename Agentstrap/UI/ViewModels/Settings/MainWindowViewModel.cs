@@ -21,6 +21,15 @@ namespace Agentstrap.UI.ViewModels.Settings
         public ICommand LaunchRobloxCommand =>
             new RelayCommand(LaunchRoblox);
 
+        public ICommand SaveAndLaunchCommand =>
+            new RelayCommand(SaveAndLaunch);
+
+        public ICommand SaveAndLaunchSettingsCommand =>
+            new RelayCommand(SaveAndLaunch);
+
+        public ICommand SaveAndLaunchRobloxCommand =>
+            new RelayCommand(SaveAndLaunch);
+
         public EventHandler? RequestSaveNoticeEvent;
 
         public EventHandler? RequestCloseWindowEvent;
@@ -71,6 +80,19 @@ namespace Agentstrap.UI.ViewModels.Settings
                 EventArgs.Empty
             );
 
+        public void SaveAndLaunch() =>
+            SaveAndLaunchSettings();
+
+        private void SaveAndLaunchSettings()
+        {
+            SaveSettings();
+
+            RequestLaunchRobloxEvent?.Invoke(
+                this,
+                EventArgs.Empty
+            );
+        }
+
         private void SaveSettings()
         {
             const string LOG_IDENT =
@@ -79,6 +101,7 @@ namespace Agentstrap.UI.ViewModels.Settings
             App.Settings.Save();
             App.State.Save();
             App.FastFlags.Save();
+            App.GlobalSettings.Save();
 
             foreach (var pair in App.PendingSettingTasks)
             {
@@ -98,6 +121,7 @@ namespace Agentstrap.UI.ViewModels.Settings
             App.Settings.Save();
             App.State.Save();
             App.FastFlags.Save();
+            App.GlobalSettings.Save();
 
             App.PendingSettingTasks.Clear();
 

@@ -1,4 +1,4 @@
-﻿using System.Collections.ObjectModel;
+using System.Collections.ObjectModel;
 
 namespace Agentstrap.Models.Persistable
 {
@@ -41,6 +41,12 @@ namespace Agentstrap.Models.Persistable
         public bool ShowServerDetails { get; set; } = false;
         public bool ShowServerConnectionOverlay { get; set; } = true;
         public int ServerConnectionOverlayDuration { get; set; } = 5;
+
+        // server connection push notifications (Bark)
+        public bool ServerConnectionNotificationsEnabled { get; set; } = false;
+        public bool ServerConnectionNotificationIncludeIpAddress { get; set; } = false;
+        public bool ServerConnectionNotificationDiagnostics { get; set; } = false;
+        public int ServerConnectionNotificationSuppressionMinutes { get; set; } = 30;
         public ObservableCollection<CustomIntegration> CustomIntegrations { get; set; } = new();
 
         // mod preset configuration

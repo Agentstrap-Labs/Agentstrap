@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Input;
 using Agentstrap.AppData;
+using Agentstrap.Integrations;
 using Agentstrap.Models.APIs;
 using CommunityToolkit.Mvvm.Input;
 
@@ -142,8 +143,6 @@ namespace Agentstrap.Models.Entities
         /// </summary>
         private async Task<IPInfoResponse?> QueryIpInfo()
         {
-            const string LOG_IDENT = "ActivityData::QueryIpInfo";
-
             if (!MachineAddressValid)
                 return null;
 
@@ -154,22 +153,11 @@ namespace Agentstrap.Models.Entities
                 if (GlobalCache.ServerIpInfo.TryGetValue(MachineAddress, out IPInfoResponse? cachedIpInfo))
                     return cachedIpInfo;
 
-                IPInfoResponse? ipInfo = null;
+                // the shared token (if one is configured) raises the API quota that the
+                // lookup runs at; without one the documented endpoint still answers
+                string? token = ServerConnectionNotificationCredentialStore.Default.IpInfoToken;
 
-                try
-                {
-                    var response = await Http.GetJson<IPInfoResponse>($"https://ipinfo.io/{MachineAddress}/json");
-
-                    if (string.IsNullOrEmpty(response.City))
-                        throw new InvalidHTTPResponseException("Reported city was blank");
-
-                    ipInfo = response;
-                }
-                catch (Exception ex)
-                {
-                    App.Logger.WriteLine(LOG_IDENT, $"Failed to get server location for {MachineAddress}");
-                    App.Logger.WriteException(LOG_IDENT, ex);
-                }
+                IPInfoResponse? ipInfo = await IpInfoClient.Shared.LookupResponseAsync(MachineAddress, token);
 
                 GlobalCache.ServerIpInfo[MachineAddress] = ipInfo;
 

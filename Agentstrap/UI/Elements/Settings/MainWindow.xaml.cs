@@ -22,6 +22,7 @@ namespace Agentstrap.UI.Elements.Settings
 
             viewModel.RequestSaveNoticeEvent += (_, _) => SettingsSavedSnackbar.Show();
             viewModel.RequestCloseWindowEvent += (_, _) => Close();
+            viewModel.RequestLaunchRobloxEvent += (_, _) => LaunchHandler.LaunchRoblox(LaunchMode.Player);
 
             DataContext = viewModel;
             

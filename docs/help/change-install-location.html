@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Change the install location &middot; Agentstrap Docs</title>
+<meta name="description" content="Move Agentstrap to a different drive or folder.">
+<meta property="og:title" content="Change the install location &middot; Agentstrap Docs">
+<meta property="og:description" content="Move Agentstrap to a different drive or folder.">
+<meta property="og:type" content="article">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="icon" href="../assets/Agentstrap.ico" type="image/x-icon">
+</head>
+<body data-page="help/change-install-location.html" data-base="../">
+<header class="topbar">
+  <button class="icon-btn menu-btn" id="menu-btn" aria-label="Toggle navigation">&#9776;</button>
+  <a class="brand" href="../index.html">
+    <span class="brand-mark"><img src="../assets/Agentstrap.ico" alt="" width="26" height="26"></span>
+    Agentstrap <small>Docs</small>
+  </a>
+  <span class="topbar-spacer"></span>
+  <div class="search-wrap">
+    <input id="search" type="search" placeholder="Search docs&hellip;" autocomplete="off" aria-label="Search documentation">
+    <div id="search-results"></div>
+  </div>
+  <button class="icon-btn" id="theme-btn" title="Toggle theme" aria-label="Toggle theme">&#9680;</button>
+</header>
+
+<div class="shell">
+  <aside class="sidebar" id="sidebar"></aside>
+  <main class="content">
+    <h1>Change the install location</h1>
+    <p class="page-lede">Move Agentstrap to a different drive or folder.</p>
+
+<h2 id="moving-the-install">Moving the install</h2>
+
+<p>Agentstrap's install location is set when you first run the installer, and it can be changed afterwards.</p>
+
+<ol class="steps">
+  <li>
+    <strong>Close Agentstrap completely.</strong>
+    Check the system tray &mdash; right-click the Agentstrap icon and choose <em>Exit</em>. If a Roblox process is
+    running, close it too.
+  </li>
+  <li>
+    <strong>Move the folder.</strong>
+    Cut <code>%LOCALAPPDATA%\Agentstrap</code> and paste it to its new home, for example
+    <code>D:\Apps\Agentstrap</code>.
+  </li>
+  <li>
+    <strong>Run Agentstrap from the new location.</strong>
+    The first launch from the new path updates the shortcuts, the registry entries and the file paths Agentstrap
+    stores.
+  </li>
+</ol>
+
+<div class="callout warning">
+  <strong>Copy, don't move, the first time.</strong>
+  Run Agentstrap from the new location and confirm everything works before you delete the old folder. If something's
+  broken, you still have a working install.
+</div>
+
+<h2 id="what-has-to-be-updated">What has to be updated</h2>
+
+<p>Moving the folder breaks a few absolute paths. Agentstrap repairs most of them on first launch, but these need
+checking:</p>
+
+<div class="table-wrap">
+<table>
+  <thead><tr><th>What</th><th>How to fix it</th></tr></thead>
+  <tbody>
+    <tr>
+      <td>Start Menu and desktop shortcuts</td>
+      <td>Settings &rarr; <strong>Shortcuts</strong>. Toggle each one off and on again to rewrite them.</td>
+    </tr>
+    <tr>
+      <td>The <code>roblox://</code> protocol handler</td>
+      <td>Command Center &rarr; <strong>Repair Roblox links</strong>.</td>
+    </tr>
+    <tr>
+      <td>The uninstall entry in Windows</td>
+      <td>Re-run the installer from the new location, or remove the old entry from <em>Settings &rarr; Apps</em>.</td>
+    </tr>
+    <tr>
+      <td>Custom mods and Fast Flags</td>
+      <td>They live in <code>Modifications</code> inside the folder, so they move with it.</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<h2 id="a-cleaner-option">A cleaner option</h2>
+
+<p>If you'd rather start fresh than move files around, delete <code>%LOCALAPPDATA%\Agentstrap</code> entirely and
+run the installer again. The installer asks where you want it to go. You lose your settings and mods, but everything
+ends up consistent.</p>
+
+<p>See <a href="uninstalling.html">Uninstalling Agentstrap</a> for the full removal procedure.</p>
+
+    <nav class="page-nav" id="page-nav"></nav>
+    <p class="meta">Agentstrap 1.2.2 &middot; These docs describe Agentstrap 1.2.2. Features marked
+    <span class="badge new">new</span> are not present in upstream Bloxstrap.</p>
+  </main>
+</div>
+
+<script src="../assets/site.js"></script>
+</body>
+</html>

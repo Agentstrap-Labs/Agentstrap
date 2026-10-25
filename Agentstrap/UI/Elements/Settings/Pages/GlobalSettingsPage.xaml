@@ -1,0 +1,93 @@
+<ui:UiPage x:Class="Agentstrap.UI.Elements.Settings.Pages.GlobalSettingsPage"
+      x:Name="GlobalSettingsPageView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+      xmlns:controls="clr-namespace:Agentstrap.UI.Elements.Controls"
+      xmlns:models="clr-namespace:Agentstrap.UI.ViewModels.Settings"
+      d:DataContext="{d:DesignInstance Type=models:GlobalSettingsViewModel}"
+      mc:Ignorable="d"
+      d:DesignHeight="1080" d:DesignWidth="800"
+      Scrollable="True">
+
+    <StackPanel Margin="0,0,14,14">
+        <TextBlock Style="{StaticResource AgPageTitle}" Text="Global Settings" />
+        <TextBlock Style="{StaticResource AgPageSubtitle}"
+                   Text="Roblox's own global user settings. Changes are written to Roblox's GlobalBasicSettings file when you click Save." />
+
+        <!-- Graphics. -->
+        <TextBlock Style="{StaticResource AgSectionHeader}" Text="Graphics" />
+
+        <controls:OptionControl Header="Graphics quality level"
+                                Description="0 lets Roblox choose automatically; higher values force a specific quality level.">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                <Slider Width="200" Minimum="0" Maximum="10" TickFrequency="1" IsSnapToTickEnabled="True"
+                        Value="{Binding GraphicsQualityLevel, Mode=TwoWay}" />
+                <TextBlock Margin="12,0,0,0" VerticalAlignment="Center" Text="{Binding GraphicsQualityLevel}" />
+            </StackPanel>
+        </controls:OptionControl>
+
+        <controls:OptionControl Header="Saved quality level"
+                                Description="The quality level Roblox remembers for this account.">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                <Slider Width="200" Minimum="1" Maximum="10" TickFrequency="1" IsSnapToTickEnabled="True"
+                        Value="{Binding SavedQualityLevel, Mode=TwoWay}" />
+                <TextBlock Margin="12,0,0,0" VerticalAlignment="Center" Text="{Binding SavedQualityLevel}" />
+            </StackPanel>
+        </controls:OptionControl>
+
+        <controls:OptionControl Header="Automatically adjust quality"
+                                Description="Lets Roblox raise or lower quality to maintain performance.">
+            <ui:ToggleSwitch IsChecked="{Binding MaxQualityEnabled, Mode=TwoWay}" />
+        </controls:OptionControl>
+
+        <controls:OptionControl Header="Fullscreen"
+                                Description="Starts Roblox in fullscreen mode.">
+            <ui:ToggleSwitch IsChecked="{Binding Fullscreen, Mode=TwoWay}" />
+        </controls:OptionControl>
+
+        <controls:OptionControl Header="Frame rate cap"
+                                Description="Maximum frames per second. Use a very high value for uncapped.">
+            <TextBox Width="120" Padding="8,5" Text="{Binding FramerateCap, Mode=TwoWay}" />
+        </controls:OptionControl>
+
+        <!-- Audio. -->
+        <TextBlock Style="{StaticResource AgSectionHeader}" Text="Audio" />
+
+        <controls:OptionControl Header="Master volume"
+                                Description="Overall Roblox volume.">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                <Slider Width="200" Minimum="0" Maximum="1" TickFrequency="0.05" IsSnapToTickEnabled="True"
+                        Value="{Binding MasterVolume, Mode=TwoWay}" />
+                <TextBlock Margin="12,0,0,0" VerticalAlignment="Center" Text="{Binding MasterVolume, StringFormat={}{0:P0}}" />
+            </StackPanel>
+        </controls:OptionControl>
+
+        <controls:OptionControl Header="Studio volume"
+                                Description="Volume used inside Roblox Studio.">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                <Slider Width="200" Minimum="0" Maximum="1" TickFrequency="0.05" IsSnapToTickEnabled="True"
+                        Value="{Binding MasterVolumeStudio, Mode=TwoWay}" />
+                <TextBlock Margin="12,0,0,0" VerticalAlignment="Center" Text="{Binding MasterVolumeStudio, StringFormat={}{0:P0}}" />
+            </StackPanel>
+        </controls:OptionControl>
+
+        <!-- Input. -->
+        <TextBlock Style="{StaticResource AgSectionHeader}" Text="Input" />
+
+        <controls:OptionControl Header="Mouse sensitivity"
+                                Description="Camera mouse sensitivity multiplier.">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                <Slider Width="200" Minimum="0.1" Maximum="4" TickFrequency="0.1" IsSnapToTickEnabled="True"
+                        Value="{Binding MouseSensitivity, Mode=TwoWay}" />
+                <TextBlock Margin="12,0,0,0" VerticalAlignment="Center" Text="{Binding MouseSensitivity, StringFormat={}{0:0.00}}" />
+            </StackPanel>
+        </controls:OptionControl>
+
+        <ui:Button Margin="0,12,0,0" Appearance="Secondary" Style="{StaticResource AgActionButton}"
+                   Icon="ArrowCounterclockwise24" Content="Reset to defaults"
+                   Command="{Binding ResetGlobalSettingsCommand, Mode=OneTime}" />
+    </StackPanel>
+</ui:UiPage>

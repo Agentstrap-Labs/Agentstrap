@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Updates &middot; Agentstrap Docs</title>
+<meta name="description" content="Check Agentstrap, your installed mods, and your configuration independently.">
+<meta property="og:title" content="Updates &middot; Agentstrap Docs">
+<meta property="og:description" content="Check Agentstrap, your installed mods, and your configuration independently.">
+<meta property="og:type" content="article">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="icon" href="../assets/Agentstrap.ico" type="image/x-icon">
+</head>
+<body data-page="features/updates.html" data-base="../">
+<header class="topbar">
+  <button class="icon-btn menu-btn" id="menu-btn" aria-label="Toggle navigation">&#9776;</button>
+  <a class="brand" href="../index.html">
+    <span class="brand-mark"><img src="../assets/Agentstrap.ico" alt="" width="26" height="26"></span>
+    Agentstrap <small>Docs</small>
+  </a>
+  <span class="topbar-spacer"></span>
+  <div class="search-wrap">
+    <input id="search" type="search" placeholder="Search docs&hellip;" autocomplete="off" aria-label="Search documentation">
+    <div id="search-results"></div>
+  </div>
+  <button class="icon-btn" id="theme-btn" title="Toggle theme" aria-label="Toggle theme">&#9680;</button>
+</header>
+
+<div class="shell">
+  <aside class="sidebar" id="sidebar"></aside>
+  <main class="content">
+    <h1>Updates</h1>
+    <p class="page-lede">Check Agentstrap, your installed mods, and your configuration independently.</p>
+
+<p>The Updates page has four separate sections. Each one is checked on its own, so you can check just the thing you
+care about instead of waiting for everything.</p>
+
+<div class="callout note">
+  <strong>Where it lives.</strong>
+  Settings &rarr; <strong>Updates</strong>. <strong>Check everything</strong> runs all four sections at once, and
+  opening the page runs it automatically.
+</div>
+
+<h2 id="agentstrap">Agentstrap</h2>
+
+<p>Shows your installed version next to the latest published version, and a status line.</p>
+
+<ul>
+  <li><strong>Check</strong> queries the GitHub releases API for the newest published release.</li>
+  <li><strong>Releases</strong> opens the releases page in your browser.</li>
+</ul>
+
+<div class="callout warning">
+  <strong>Agentstrap doesn't update itself.</strong>
+  There's no download-and-install button. The Releases link opens GitHub in your browser and you take it from there.
+  The "Check for updates" setting controls whether Agentstrap queries GitHub at all.
+</div>
+
+<h2 id="mods">Mods</h2>
+
+<p>Agentstrap can check whether your installed mods are out of date, using the manifest in
+<code>%LOCALAPPDATA%\Agentstrap\Modifications\Mods\manifest.json</code>.</p>
+
+<ul>
+  <li><strong>Check</strong> scans the manifest and reports anything outdated.</li>
+  <li><strong>Mods folder</strong> opens the Modifications folder.</li>
+</ul>
+
+<p>Each mod entry can carry a <code>releaseApiUrl</code>. Agentstrap fetches that URL and looks for
+<code>tag_name</code>, <code>version</code> or <code>latest_version</code> in the response, then compares it with
+the version recorded on disk. Mods without a <code>releaseApiUrl</code> are skipped, so the check never reports a
+false positive.</p>
+
+<div class="callout note">
+  <strong>It reports, it doesn't install.</strong>
+  The Mods section tells you which mods are outdated. It never downloads or applies an update for you.
+</div>
+
+<h2 id="configuration">Configuration</h2>
+
+<p>Agentstrap keeps a schema revision for your configuration. When a future version changes the shape of
+<code>Settings.json</code>, a migration cleans up the old data.</p>
+
+<ul>
+  <li><strong>Check</strong> validates the stored configuration against the current schema revision and reports
+      what's pending. It never writes anything.</li>
+  <li><strong>Apply</strong> runs the pending migrations and saves your settings, state and Fast Flags.</li>
+</ul>
+
+<p>There are two migrations defined so far:</p>
+
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Migration</th><th>When it applies</th><th>What it does</th></tr></thead>
+  <tbody>
+    <tr>
+      <td><strong>Drop matchmaker place ID</strong></td>
+      <td>The matchmaker is enabled but no place ID is set.</td>
+      <td>Turns the matchmaker off, rather than leaving it enabled with nothing to join.</td>
+    </tr>
+    <tr>
+      <td><strong>Normalise process priority</strong></td>
+      <td>The stored process priority isn't a value Windows accepts.</td>
+      <td>Resets it to <em>Normal</em>.</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="callout tip">
+  <strong>Check before you apply.</strong>
+  Because Check is read-only, you can see exactly what a migration would do before you commit to it.
+</div>
+
+<h2 id="nexus">NEXUS</h2>
+
+<p>Reports the local state of the experimental feature channel &mdash; whether it's on and which channel it's tracking.
+It's a local check with no network traffic. See <a href="nexus.html">NEXUS mode</a>.</p>
+
+<h2 id="update-checking">Update checking</h2>
+
+<p>Whether Agentstrap queries GitHub at all is controlled by <strong>Check for updates</strong> on the
+<a href="index.html">Quality of Life</a> page, and it's on by default. When it's off, the Agentstrap section reports
+<em>"Update checking is disabled"</em> instead of querying.</p>
+
+    <nav class="page-nav" id="page-nav"></nav>
+    <p class="meta">Agentstrap 1.2.2 &middot; These docs describe Agentstrap 1.2.2. Features marked
+    <span class="badge new">new</span> are not present in upstream Bloxstrap.</p>
+  </main>
+</div>
+
+<script src="../assets/site.js"></script>
+</body>
+</html>

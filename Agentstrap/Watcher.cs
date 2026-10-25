@@ -19,6 +19,8 @@ namespace Agentstrap
 
         private readonly ServerConnectionNotifier? _serverConnectionNotifier;
 
+        private readonly ServerConnectionNotificationWatcher? _serverConnectionNotificationWatcher;
+
         public Watcher()
         {
             const string LOG_IDENT = "Watcher";
@@ -73,6 +75,9 @@ namespace Agentstrap
 
             if (ActivityWatcher is not null && App.Settings.Prop.ShowServerConnectionOverlay)
                 _serverConnectionNotifier = new(ActivityWatcher, _watcherData.ProcessId);
+
+            if (ActivityWatcher is not null && App.Settings.Prop.ServerConnectionNotificationsEnabled)
+                _serverConnectionNotificationWatcher = new(ActivityWatcher);
 
             bool showNotifyIcon = ActivityWatcher is not null
                 || _watcherData.AutoclosePids?.Any() == true
@@ -142,6 +147,7 @@ namespace Agentstrap
             _notifyIcon?.Dispose();
             RichPresence?.Dispose();
             _serverConnectionNotifier?.Dispose();
+            _serverConnectionNotificationWatcher?.Dispose();
 
             GC.SuppressFinalize(this);
         }

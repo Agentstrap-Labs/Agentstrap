@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Discord Rich Presence not working &middot; Agentstrap Docs</title>
+<meta name="description" content="Your game isn't showing up on your Discord profile.">
+<meta property="og:title" content="Discord Rich Presence not working &middot; Agentstrap Docs">
+<meta property="og:description" content="Your game isn't showing up on your Discord profile.">
+<meta property="og:type" content="article">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="icon" href="../assets/Agentstrap.ico" type="image/x-icon">
+</head>
+<body data-page="help/discord-rich-presence-not-working.html" data-base="../">
+<header class="topbar">
+  <button class="icon-btn menu-btn" id="menu-btn" aria-label="Toggle navigation">&#9776;</button>
+  <a class="brand" href="../index.html">
+    <span class="brand-mark"><img src="../assets/Agentstrap.ico" alt="" width="26" height="26"></span>
+    Agentstrap <small>Docs</small>
+  </a>
+  <span class="topbar-spacer"></span>
+  <div class="search-wrap">
+    <input id="search" type="search" placeholder="Search docs&hellip;" autocomplete="off" aria-label="Search documentation">
+    <div id="search-results"></div>
+  </div>
+  <button class="icon-btn" id="theme-btn" title="Toggle theme" aria-label="Toggle theme">&#9680;</button>
+</header>
+
+<div class="shell">
+  <aside class="sidebar" id="sidebar"></aside>
+  <main class="content">
+    <h1>Discord Rich Presence not working</h1>
+    <p class="page-lede">Your game isn't showing up on your Discord profile.</p>
+
+<p>Work through these in order &mdash; the first two cause most of the failures.</p>
+
+<h2 id="1-is-the-discord-desktop-app-running">1. Is the Discord desktop app running?</h2>
+
+<p>Rich Presence needs the Discord <strong>desktop app</strong>, not the mobile app, not the browser version, and not
+the game console. If Discord isn't running when you launch Roblox, nothing appears.</p>
+
+<p>If Discord is running but was started <em>after</em> Roblox, it usually still works &mdash; but restarting Discord
+is a quick thing to try.</p>
+
+<h2 id="2-is-activity-tracking-enabled">2. Is activity tracking enabled?</h2>
+
+<p>Discord Rich Presence is built on top of
+<a href="../features/activity-tracking.html">activity tracking</a>. If that's off, the presence never updates.</p>
+
+<p>Settings &rarr; <strong>Integrations</strong> &rarr; <em>Enable activity tracking</em>.</p>
+
+<div class="callout danger">
+  <strong>Watch out for this one.</strong>
+  Turning activity tracking off also switches off Discord Rich Presence. Turning it back on does <strong>not</strong>
+  switch Rich Presence back on &mdash; you have to re-enable <em>Show game activity</em> by hand.
+</div>
+
+<h2 id="3-is-show-game-activity-on">3. Is "Show game activity" on?</h2>
+
+<p>It's a separate switch, on by default, but it gets turned off along with everything else when activity tracking is
+disabled.</p>
+
+<h2 id="4-check-discord-s-own-settings">4. Check Discord's own settings</h2>
+
+<ul>
+  <li>Open Discord &rarr; <strong>User Settings</strong> &rarr; <strong>Activities</strong> &rarr; <strong>Roblox</strong>.
+      Make sure the toggle is on and the visibility isn't set to <em>Nobody</em>.</li>
+  <li>Some Discord privacy settings block Rich Presence entirely. Try setting your status to <em>Online</em> rather
+      than <em>Invisible</em>.</li>
+  <li>Try running Discord as administrator. On some systems, a non-elevated Discord can't see an elevated
+      Roblox process.</li>
+</ul>
+
+<h2 id="5-is-the-presence-stale">5. Is the presence stale?</h2>
+
+<p>Roblox's own Rich Presence integration can conflict with Agentstrap's. If you have Roblox's built-in Discord
+connection enabled in Roblox's settings, turn it off &mdash; otherwise both try to publish the same presence and
+Discord picks one arbitrarily.</p>
+
+<h2 id="6-the-join-button-is-missing">6. The join button is missing</h2>
+
+<p>Join buttons come from <em>Allow activity joining</em> on the Integrations page, and they're only offered for
+<strong>public</strong> servers. Private and reserved servers can't be joined through a deeplink, so the button is
+hidden.</p>
+
+<h2 id="nothing-worked">Nothing worked</h2>
+
+<p>Discord's own logs are in <code>%APPDATA%\discord\logs</code>. They say whether a connection was attempted and
+what Discord thought of it. Agentstrap's own log says whether it tried to publish at all &mdash; if there's no
+corresponding entry, the problem is upstream in activity tracking.</p>
+
+    <nav class="page-nav" id="page-nav"></nav>
+    <p class="meta">Agentstrap 1.2.2 &middot; These docs describe Agentstrap 1.2.2. Features marked
+    <span class="badge new">new</span> are not present in upstream Bloxstrap.</p>
+  </main>
+</div>
+
+<script src="../assets/site.js"></script>
+</body>
+</html>

@@ -66,6 +66,10 @@ namespace Agentstrap
 
         public static readonly FastFlagManager FastFlags = new();
 
+        public static readonly RobloxGlobalSettingsManager GlobalSettings = new();
+
+        public static RobloxGlobalSettingsManager RobloxGlobalSettings => GlobalSettings;
+
         public static readonly HttpClient HttpClient = new(
             new HttpClientLoggingHandler(
                 new HttpClientHandler { AutomaticDecompression = DecompressionMethods.All }
@@ -395,6 +399,7 @@ namespace Agentstrap
                 Settings.Load();
                 State.Load();
                 FastFlags.Load();
+                GlobalSettings.Load();
 
                 if (!Locale.SupportedLocales.ContainsKey(Settings.Prop.Locale))
                 {

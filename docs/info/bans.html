@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Agentstrap and bans &middot; Agentstrap Docs</title>
+<meta name="description" content="Why using a third-party bootstrapper doesn't put your Roblox account at risk.">
+<meta property="og:title" content="Agentstrap and bans &middot; Agentstrap Docs">
+<meta property="og:description" content="Why using a third-party bootstrapper doesn't put your Roblox account at risk.">
+<meta property="og:type" content="article">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="icon" href="../assets/Agentstrap.ico" type="image/x-icon">
+</head>
+<body data-page="info/bans.html" data-base="../">
+<header class="topbar">
+  <button class="icon-btn menu-btn" id="menu-btn" aria-label="Toggle navigation">&#9776;</button>
+  <a class="brand" href="../index.html">
+    <span class="brand-mark"><img src="../assets/Agentstrap.ico" alt="" width="26" height="26"></span>
+    Agentstrap <small>Docs</small>
+  </a>
+  <span class="topbar-spacer"></span>
+  <div class="search-wrap">
+    <input id="search" type="search" placeholder="Search docs&hellip;" autocomplete="off" aria-label="Search documentation">
+    <div id="search-results"></div>
+  </div>
+  <button class="icon-btn" id="theme-btn" title="Toggle theme" aria-label="Toggle theme">&#9680;</button>
+</header>
+
+<div class="shell">
+  <aside class="sidebar" id="sidebar"></aside>
+  <main class="content">
+    <h1>Agentstrap and bans</h1>
+    <p class="page-lede">Why using a third-party bootstrapper doesn't put your Roblox account at risk.</p>
+
+<h2 id="the-short-answer">The short answer</h2>
+
+<p>Using Agentstrap should not get you banned. It doesn't interact with the Roblox client in the way that exploits
+do, and it doesn't send anything to Roblox about what you're doing.</p>
+
+<h2 id="why">Why</h2>
+
+<p>An exploit works by hooking into the client, injecting code, or sending packets that a normal client never would.
+Roblox can detect that, and it does.</p>
+
+<p>Agentstrap works at a completely different layer. It:</p>
+
+<ul>
+  <li>Downloads the Roblox client from Roblox's own servers, and verifies the package against the manifest Roblox
+      provides.</li>
+  <li>Copies a folder of asset replacements into the install directory &mdash; fonts, sounds, cursors, a skybox.
+      These are local files that the game reads at startup.</li>
+  <li>Launches the resulting executable exactly as Roblox's own launcher would.</li>
+</ul>
+
+<p>From Roblox's point of view, you're running the same client binary, talking to the same servers, sending the same
+traffic. The only differences are local files on your disk and the fact that a different program pressed the
+button.</p>
+
+<h2 id="what-agentstrap-does-modify">What Agentstrap does modify</h2>
+
+<p>Two things, both of which are local configuration:</p>
+
+<ul>
+  <li><strong>Fast Flags</strong> &mdash; written into <code>ClientAppSettings.json</code> in the client folder. These
+      are Roblox's own supported local configuration mechanism, read by the client at startup.</li>
+  <li><strong>Modifications</strong> &mdash; cosmetic asset files.</li>
+</ul>
+
+<p>There's also an optional patch related to the desktop app, used by the "don't exit to desktop app" option and by
+Discord Rich Presence. It's a local client patch, applied to your own install, and it doesn't change the protocol the
+game speaks.</p>
+
+<h2 id="things-that-can-get-you-banned">Things that <em>can</em> get you banned</h2>
+
+<p>None of these are Agentstrap features, but they're worth being clear about:</p>
+
+<ul>
+  <li>Third-party executors, script injectors and exploits.</li>
+  <li>Macro and automation tools that imitate player behaviour.</li>
+  <li>Macro and automation tools that imitate player behaviour.</li>
+  <li>Buying or using leaked, stolen or shared game assets.</li>
+  <li>Using modified client files to gain an advantage over other players.</li>
+</ul>
+
+<div class="callout note">
+  <strong>One important caveat.</strong>
+  The Fast Flag allowlist Roblox introduced in September 2025 is a sign that Roblox is actively restricting which
+  local configuration it honours. Using Fast Flags is a supported mechanism, but a flag that manipulates gameplay
+  could still be a problem. Stick to graphics and quality-of-life flags.
+</div>
+
+<h2 id="mods">Mods</h2>
+
+<p>Modding with Agentstrap is purely cosmetic. Replacing a cursor, a sound or a skybox changes nothing about the
+game's logic, and nothing about what your account is doing in any server. Other players cannot see it, and servers
+cannot detect it.</p>
+
+    <nav class="page-nav" id="page-nav"></nav>
+    <p class="meta">Agentstrap 1.2.2 &middot; These docs describe Agentstrap 1.2.2. Features marked
+    <span class="badge new">new</span> are not present in upstream Bloxstrap.</p>
+  </main>
+</div>
+
+<script src="../assets/site.js"></script>
+</body>
+</html>

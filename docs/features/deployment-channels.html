@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Deployment channels &middot; Agentstrap Docs</title>
+<meta name="description" content="Pin Agentstrap to a specific Roblox release channel instead of always following production.">
+<meta property="og:title" content="Deployment channels &middot; Agentstrap Docs">
+<meta property="og:description" content="Pin Agentstrap to a specific Roblox release channel instead of always following production.">
+<meta property="og:type" content="article">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="icon" href="../assets/Agentstrap.ico" type="image/x-icon">
+</head>
+<body data-page="features/deployment-channels.html" data-base="../">
+<header class="topbar">
+  <button class="icon-btn menu-btn" id="menu-btn" aria-label="Toggle navigation">&#9776;</button>
+  <a class="brand" href="../index.html">
+    <span class="brand-mark"><img src="../assets/Agentstrap.ico" alt="" width="26" height="26"></span>
+    Agentstrap <small>Docs</small>
+  </a>
+  <span class="topbar-spacer"></span>
+  <div class="search-wrap">
+    <input id="search" type="search" placeholder="Search docs&hellip;" autocomplete="off" aria-label="Search documentation">
+    <div id="search-results"></div>
+  </div>
+  <button class="icon-btn" id="theme-btn" title="Toggle theme" aria-label="Toggle theme">&#9680;</button>
+</header>
+
+<div class="shell">
+  <aside class="sidebar" id="sidebar"></aside>
+  <main class="content">
+    <h1>Deployment channels</h1>
+    <p class="page-lede">Pin Agentstrap to a specific Roblox release channel instead of always following production.</p>
+
+<p>Roblox ships several release channels. By default Agentstrap follows whatever channel Roblox itself would use.
+Setting a deployment channel pins Agentstrap to one specific channel, which is how you test against a pre-release
+build or deliberately stay on an older one.</p>
+
+<div class="callout note">
+  <strong>Where it lives.</strong>
+  Settings &rarr; <strong>Deployment</strong> &rarr; <strong>Roblox channel</strong>.
+</div>
+
+<h2 id="options">Options</h2>
+
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Option</th><th>Default</th><th>Detail</th></tr></thead>
+  <tbody>
+    <tr>
+      <td><strong>Deployment channel</strong></td>
+      <td>Empty</td>
+      <td>
+        The channel name to pin to. Leave it empty to follow Roblox's own channel selection. Channel names may contain
+        letters, digits, hyphens and underscores, up to 64 characters.
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p>There's no fixed list of channels in the interface &mdash; you type the name you want. The only channel Agentstrap
+knows about by name is <code>production</code>, which is what it falls back to when the field is empty.</p>
+
+<h2 id="buttons">Buttons</h2>
+
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Button</th><th>What it does</th></tr></thead>
+  <tbody>
+    <tr>
+      <td><strong>Check</strong></td>
+      <td>
+        Resolves the channel against Roblox's client settings service and tells you the build it points at. With an
+        empty field it checks <code>production</code>. A successful check reports the Roblox build version and GUID.
+      </td>
+    </tr>
+    <tr>
+      <td><strong>Apply channel</strong></td>
+      <td>Validates the name and saves it. This one saves immediately &mdash; you don't need to press Save afterwards.</td>
+    </tr>
+    <tr>
+      <td><strong>Clear</strong></td>
+      <td>Empties the field and applies the empty value, so Agentstrap goes back to following Roblox's own selection.</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p>An invalid channel name shows
+<em>"Channel names can contain only letters, digits, hyphens, and underscores (up to 64 characters)."</em> A channel
+that Roblox doesn't recognise reports <em>"Could not resolve channel '{channel}'"</em>.</p>
+
+<h2 id="which-channel-wins">Which channel wins</h2>
+
+<p>Several things can request a channel. This is the order they take effect:</p>
+
+<ol>
+  <li>The <code>--channel</code> command line argument.</li>
+  <li>A <code>channel:</code> parameter inside a launch URI.</li>
+  <li><strong>Your saved deployment channel setting.</strong></li>
+  <li>The registry value
+      <code>HKCU\SOFTWARE\ROBLOX Corporation\Environments\RobloxPlayer\Channel\www.roblox.com</code>.</li>
+  <li><code>production</code>.</li>
+</ol>
+
+<div class="callout tip">
+  <strong>Explicit launch links still take precedence.</strong>
+  If you launch with a <code>roblox://</code> link that names a channel, that wins over your saved preference. That's
+  deliberate &mdash; a link should do what it says.
+</div>
+
+<p>Agentstrap writes the resolved channel back to the registry value so that Roblox's own tooling agrees with
+it.</p>
+
+<h2 id="what-actually-changes-on-disk">What actually changes on disk</h2>
+
+<p>Applying a channel only writes one key to <code>Settings.json</code>. The Roblox package itself is then downloaded
+from that channel's setup mirror and extracted into the usual version folder, exactly as a normal update would.</p>
+
+<div class="callout note">
+  <strong>Stick to channels you know exist.</strong>
+  Pre-release channels can contain builds that are unstable or mid-development. If a channel starts misbehaving,
+  clear the setting and follow production again.
+</div>
+
+    <nav class="page-nav" id="page-nav"></nav>
+    <p class="meta">Agentstrap 1.2.2 &middot; These docs describe Agentstrap 1.2.2. Features marked
+    <span class="badge new">new</span> are not present in upstream Bloxstrap.</p>
+  </main>
+</div>
+
+<script src="../assets/site.js"></script>
+</body>
+</html>
