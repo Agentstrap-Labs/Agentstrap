@@ -24,8 +24,7 @@ namespace Agentstrap
         public const string ProjectHelpLink = "https://agentstrap-doc.pages.dev/help/";
         public const string ProjectSupportLink = "https://github.com/agentxco2-dev/Agentstrap/issues/new";
 
-        // Keep this disabled until a verified Agentstrap release feed is available.
-        public static bool ProjectAutoUpdateEnabled => false;
+        public static bool ProjectAutoUpdateEnabled => true;
 
         public const string RobloxPlayerAppName = "RobloxPlayerBeta";
         public const string RobloxStudioAppName = "RobloxStudioBeta";

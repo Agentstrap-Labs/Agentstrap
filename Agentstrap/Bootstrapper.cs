@@ -892,7 +892,8 @@ namespace Agentstrap
 
                 File.Copy(Paths.Process, downloadLocation, true);
 #else
-                var asset = releaseInfo.Assets![0];
+                var asset = releaseInfo.Assets!.FirstOrDefault(a => a.Name.EndsWith(".exe", StringComparison.OrdinalIgnoreCase))
+                    ?? releaseInfo.Assets![0];
 
                 string downloadLocation = Path.Combine(Paths.TempUpdates, asset.Name);
 
