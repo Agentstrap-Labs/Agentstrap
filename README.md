@@ -96,7 +96,7 @@ changes *how* Roblox is launched and *what* gets copied into the install folder,
 
 **Q: Does Agentstrap send my data anywhere?**
 
-**A:** There's no analytics backend and no account system. The only outbound requests are Roblox downloads, the
+**A:** There's no analytics backend. The only outbound requests are Roblox downloads, the
 GitHub release check, and — if you turn them on — ipinfo.io server location lookups and per-mod update checks.
 See the [privacy policy](docs/info/privacy-policy.html).
 
