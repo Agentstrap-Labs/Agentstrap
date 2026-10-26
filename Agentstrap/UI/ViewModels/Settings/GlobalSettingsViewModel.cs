@@ -1,6 +1,7 @@
 using System.Windows.Input;
 
 using CommunityToolkit.Mvvm.Input;
+using Agentstrap.Utility;
 
 namespace Agentstrap.UI.ViewModels.Settings
 {
@@ -11,6 +12,64 @@ namespace Agentstrap.UI.ViewModels.Settings
     /// </summary>
     public class GlobalSettingsViewModel : NotifyPropertyChangedViewModel
     {
+        public bool BorderlessWindowEnabled
+        {
+            get => App.Settings.Prop.RobloxBorderlessWindowEnabled;
+            set
+            {
+                App.Settings.Prop.RobloxBorderlessWindowEnabled = value;
+                App.Settings.Save();
+                RobloxBorderlessWindowService.Refresh();
+                OnPropertyChanged(nameof(BorderlessWindowEnabled));
+                OnPropertyChanged(nameof(BorderlessStatus));
+            }
+        }
+
+        public bool AutomaticBorderlessModeEnabled
+        {
+            get => App.Settings.Prop.RobloxAutomaticBorderlessModeEnabled;
+            set
+            {
+                App.Settings.Prop.RobloxAutomaticBorderlessModeEnabled = value;
+                App.Settings.Save();
+                RobloxBorderlessWindowService.Refresh();
+                OnPropertyChanged(nameof(AutomaticBorderlessModeEnabled));
+                OnPropertyChanged(nameof(BorderlessStatus));
+            }
+        }
+
+        public bool CenterBorderlessWindow
+        {
+            get => App.Settings.Prop.RobloxBorderlessCenterWindow;
+            set
+            {
+                App.Settings.Prop.RobloxBorderlessCenterWindow = value;
+                App.Settings.Save();
+                OnPropertyChanged(nameof(CenterBorderlessWindow));
+            }
+        }
+
+        public string BorderlessStatus => RobloxBorderlessWindowService.Status;
+
+        public ICommand RestoreNormalWindowCommand => new RelayCommand(() =>
+        {
+            RobloxBorderlessWindowService.RestoreAndDisable();
+            OnPropertyChanged(nameof(BorderlessWindowEnabled));
+            OnPropertyChanged(nameof(AutomaticBorderlessModeEnabled));
+            OnPropertyChanged(nameof(BorderlessStatus));
+        });
+
+        public void AttachBorderlessStatusListener()
+        {
+            RobloxBorderlessWindowService.StatusChanged += BorderlessWindowService_StatusChanged;
+            OnPropertyChanged(nameof(BorderlessStatus));
+        }
+
+        public void DetachBorderlessStatusListener() => RobloxBorderlessWindowService.StatusChanged -= BorderlessWindowService_StatusChanged;
+
+        private void BorderlessWindowService_StatusChanged(object? sender, EventArgs e) =>
+            System.Windows.Application.Current?.Dispatcher.BeginInvoke(() => OnPropertyChanged(nameof(BorderlessStatus)));
+
         public int GraphicsQualityLevel
         {
             get => App.GlobalSettings.Prop.SavedQualityLevel;

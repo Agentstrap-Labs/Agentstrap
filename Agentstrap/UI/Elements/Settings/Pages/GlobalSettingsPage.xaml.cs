@@ -12,6 +12,8 @@ namespace Agentstrap.UI.Elements.Settings.Pages
             DataContext = new GlobalSettingsViewModel();
 
             InitializeComponent();
+            Loaded += (_, _) => ((GlobalSettingsViewModel)DataContext).AttachBorderlessStatusListener();
+            Unloaded += (_, _) => ((GlobalSettingsViewModel)DataContext).DetachBorderlessStatusListener();
         }
     }
 }

@@ -60,6 +60,11 @@ namespace Agentstrap.Models.Persistable
         public int? WindowPositionY { get; set; } = null;
         public string WindowTitle { get; set; } = "";
 
+        // Roblox Player window presentation preferences.
+        public bool RobloxBorderlessWindowEnabled { get; set; } = false;
+        public bool RobloxAutomaticBorderlessModeEnabled { get; set; } = false;
+        public bool RobloxBorderlessCenterWindow { get; set; } = false;
+
         // Roblox Apple Emoji Mode configuration. This feature never replaces Windows
         // system fonts; it only records whether a user-supplied, compatible emoji
         // font should be applied to Roblox through the Modifications overlay.

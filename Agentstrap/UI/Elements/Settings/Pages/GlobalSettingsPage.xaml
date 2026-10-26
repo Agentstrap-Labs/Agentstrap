@@ -17,6 +17,31 @@
         <TextBlock Style="{StaticResource AgPageSubtitle}"
                    Text="Roblox's own global user settings. Changes are written to Roblox's GlobalBasicSettings file when you click Save." />
 
+        <TextBlock Style="{StaticResource AgSectionHeader}" Text="Roblox Window Settings" />
+
+        <controls:OptionControl Header="Borderless window"
+                                Description="Remove the Roblox title bar and window borders without switching to fullscreen. F11 is disabled while borderless mode is on.">
+            <ui:ToggleSwitch IsChecked="{Binding BorderlessWindowEnabled, Mode=TwoWay}" />
+        </controls:OptionControl>
+
+        <controls:OptionControl Header="Automatic borderless mode"
+                                Description="Apply borderless styling when Roblox Player starts or its game window appears.">
+            <ui:ToggleSwitch IsChecked="{Binding AutomaticBorderlessModeEnabled, Mode=TwoWay}" />
+        </controls:OptionControl>
+
+        <controls:OptionControl Header="Center window when applying borderless mode"
+                                Description="Optional. Centers the window on its current monitor while keeping its existing size. Its original placement is restored when possible.">
+            <ui:ToggleSwitch IsChecked="{Binding CenterBorderlessWindow, Mode=TwoWay}" />
+        </controls:OptionControl>
+
+        <controls:OptionControl Header="Status" Description="The current state of Roblox Player window styling.">
+            <TextBlock VerticalAlignment="Center" Text="{Binding BorderlessStatus}" />
+        </controls:OptionControl>
+
+        <ui:Button Margin="0,12,0,0" Appearance="Secondary" Style="{StaticResource AgActionButton}"
+                   Icon="ArrowUndo24" Content="Restore normal window"
+                   Command="{Binding RestoreNormalWindowCommand, Mode=OneTime}" />
+
         <!-- Graphics. -->
         <TextBlock Style="{StaticResource AgSectionHeader}" Text="Graphics" />
 

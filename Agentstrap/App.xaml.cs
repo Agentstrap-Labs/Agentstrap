@@ -400,6 +400,7 @@ namespace Agentstrap
                 State.Load();
                 FastFlags.Load();
                 GlobalSettings.Load();
+                Utility.RobloxBorderlessWindowService.Start();
 
                 if (!Locale.SupportedLocales.ContainsKey(Settings.Prop.Locale))
                 {
