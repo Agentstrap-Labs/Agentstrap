@@ -168,6 +168,23 @@ namespace Agentstrap.Integrations
             );
         }
 
+        /// <summary>
+        /// Verifies an IPWho API key (or a candidate one from the settings interface)
+        /// against a fixed, well known public address.
+        /// </summary>
+        public Task<IPInfoLookupResult> TestIpWhoAsync(string? apiKey = null, string? ipAddress = null, CancellationToken cancellationToken = default)
+        {
+            string address = String.IsNullOrWhiteSpace(ipAddress) ? TestLookupAddress : ipAddress!;
+
+            if (String.IsNullOrWhiteSpace(apiKey))
+            {
+                var credentials = _credentialStore.Load();
+                apiKey = credentials.IpWhoApiKey;
+            }
+
+            return _ipWhoClient.LookupAsync(address, apiKey, cancellationToken);
+        }
+
         private string DescribeAddress(string address)
         {
             // full addresses are only written to the log when diagnostics are

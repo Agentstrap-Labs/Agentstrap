@@ -183,6 +183,44 @@ namespace Agentstrap.UI.Elements.Settings.Pages
             }
         }
 
+        private async void TestIpWho_Click(object sender, RoutedEventArgs e)
+        {
+            const string LOG_IDENT = "IntegrationsPage::TestIpWho_Click";
+
+            var button = (System.Windows.Controls.Button)sender;
+
+            try
+            {
+                button.IsEnabled = false;
+                TestIpWhoStatus.Text = "Testing IPWho...";
+
+                string? apiKey = String.IsNullOrWhiteSpace(IpWhoApiKeyBox.Password)
+                    ? null
+                    : IpWhoApiKeyBox.Password.Trim();
+
+                var result = await _notificationService.TestIpWhoAsync(apiKey);
+
+                if (result.Success)
+                {
+                    string? location = ServerConnectionMessageBuilder.BuildLocationText(result.Response);
+                    TestIpWhoStatus.Text = $"IPWho is working. Test lookup: {location}.";
+                }
+                else
+                {
+                    TestIpWhoStatus.Text = $"IPWho test failed: {result.Error}";
+                }
+            }
+            catch (Exception ex)
+            {
+                App.Logger.WriteException(LOG_IDENT, ex);
+                TestIpWhoStatus.Text = "IPWho test failed unexpectedly.";
+            }
+            finally
+            {
+                button.IsEnabled = true;
+            }
+        }
+
         /// <summary>
         /// Shows the server connection notification over this window, so the overlay can
         /// be verified without having to join a game. This window is always used as the

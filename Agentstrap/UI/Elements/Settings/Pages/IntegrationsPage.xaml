@@ -200,6 +200,13 @@
                                 Description="Stored encrypted. Leave empty to keep the currently saved key." />
         <ui:PasswordBox x:Name="IpWhoApiKeyBox" Width="320" HorizontalAlignment="Left" MaxLength="128"
                         PlaceholderText="Paste your ipwho API key here" />
+
+        <controls:OptionControl Header="Test IPWho connection"
+                                Description="Verifies the key by looking up a fixed, well known public IP address (1.1.1.1).">
+            <ui:Button Appearance="Secondary" Style="{StaticResource AgActionButton}" Icon="Globe24" Content="Test IPWho connection"
+                       Click="TestIpWho_Click" />
+        </controls:OptionControl>
+        <TextBlock x:Name="TestIpWhoStatus" Margin="20,8,0,0" Opacity="0.85" TextWrapping="Wrap" />
         <TextBlock Margin="20,4,0,0" Opacity="0.7" TextWrapping="Wrap"
                    Text="{Binding ServerConnectionNotifications.PushKeySavedHint, Mode=OneWay}" />
 
