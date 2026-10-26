@@ -867,7 +867,15 @@ namespace Agentstrap
 
             var versionComparison = Utilities.CompareVersions(App.Version, releaseInfo.TagName);
 
-            if (App.IsProductionBuild && versionComparison == VersionComparison.Equal || versionComparison == VersionComparison.GreaterThan)
+            // Never downgrade: if the running version is already newer than the
+            // latest published release, keep the user on their current version.
+            if (versionComparison == VersionComparison.GreaterThan)
+            {
+                App.Logger.WriteLine(LOG_IDENT, "Current version is newer than the latest release; keeping current version");
+                return false;
+            }
+
+            if (App.IsProductionBuild && versionComparison == VersionComparison.Equal)
             {
                 App.Logger.WriteLine(LOG_IDENT, "No updates found");
                 return false;
