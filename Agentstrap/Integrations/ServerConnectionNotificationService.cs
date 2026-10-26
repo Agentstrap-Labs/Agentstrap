@@ -24,6 +24,7 @@ namespace Agentstrap.Integrations
 
         private readonly ServerConnectionNotificationCredentialStore _credentialStore;
         private readonly IpInfoClient _ipInfoClient;
+        private readonly IpWhoClient _ipWhoClient;
         private readonly BarkClient _barkClient;
         private readonly NotificationRateLimiter _rateLimiter;
 
@@ -31,12 +32,14 @@ namespace Agentstrap.Integrations
             ServerConnectionNotificationOptions? options = null,
             ServerConnectionNotificationCredentialStore? credentialStore = null,
             IpInfoClient? ipInfoClient = null,
+            IpWhoClient? ipWhoClient = null,
             BarkClient? barkClient = null,
             NotificationRateLimiter? rateLimiter = null)
         {
             Options = options ?? new ServerConnectionNotificationOptions();
             _credentialStore = credentialStore ?? ServerConnectionNotificationCredentialStore.Default;
             _ipInfoClient = ipInfoClient ?? IpInfoClient.Shared;
+            _ipWhoClient = ipWhoClient ?? new IpWhoClient();
             _barkClient = barkClient ?? BarkClient.Shared;
             _rateLimiter = rateLimiter ?? NotificationRateLimiter.FromMinutes(Options.SuppressionMinutes);
         }
@@ -77,6 +80,14 @@ namespace Agentstrap.Integrations
             }
 
             IPInfoLookupResult lookup = await _ipInfoClient.LookupAsync(canonical, credentials.IpInfoToken, cancellationToken);
+
+            // fall back to IPWho when the primary lookup fails and a key is configured
+            if (!lookup.Success && !String.IsNullOrWhiteSpace(credentials.IpWhoApiKey))
+            {
+                var backup = await _ipWhoClient.LookupAsync(canonical, credentials.IpWhoApiKey, cancellationToken);
+                if (backup.Success)
+                    lookup = backup;
+            }
 
             // a failed lookup never blocks the notification entirely and never pretends
             // that a location was found - the message simply degrades to what is known

@@ -191,6 +191,15 @@
                                 Description="Copy the device key from the Bark app and store it encrypted." />
         <ui:PasswordBox x:Name="BarkPushKeyBox" Width="320" HorizontalAlignment="Left" MaxLength="256"
                         PlaceholderText="Paste your Bark push key here" />
+
+        <TextBlock Style="{StaticResource AgSectionHeader}" Text="ipwho (backup)" />
+        <controls:MarkdownTextBlock Style="{StaticResource AgBody}" TextWrapping="Wrap"
+            Foreground="{DynamicResource TextFillColorSecondaryBrush}"
+            MarkdownText="ipwho.org is used as a backup when ipinfo.io fails. You need your own API key. Get one free at [ipwho.org/free-plan](https://www.ipwho.org/free-plan), then paste it below. Without a key, the backup is disabled." />
+        <controls:OptionControl Header="IPWho API key"
+                                Description="Stored encrypted. Leave empty to keep the currently saved key." />
+        <ui:PasswordBox x:Name="IpWhoApiKeyBox" Width="320" HorizontalAlignment="Left" MaxLength="128"
+                        PlaceholderText="Paste your ipwho API key here" />
         <TextBlock Margin="20,4,0,0" Opacity="0.7" TextWrapping="Wrap"
                    Text="{Binding ServerConnectionNotifications.PushKeySavedHint, Mode=OneWay}" />
 

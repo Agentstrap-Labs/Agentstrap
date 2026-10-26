@@ -26,6 +26,7 @@ namespace Agentstrap.UI.Elements.Settings.Pages
 
             IpInfoTokenBox.Password = String.Empty;
             BarkPushKeyBox.Password = String.Empty;
+            IpWhoApiKeyBox.Password = String.Empty;
 
             var viewModel = (IntegrationsViewModel)DataContext;
             viewModel.ServerConnectionNotifications.OnCredentialsChanged();
@@ -56,8 +57,12 @@ namespace Agentstrap.UI.Elements.Settings.Pages
                 if (!String.IsNullOrWhiteSpace(BarkPushKeyBox.Password))
                     _credentialStore.BarkPushKey = BarkPushKeyBox.Password.Trim();
 
+                if (!String.IsNullOrWhiteSpace(IpWhoApiKeyBox.Password))
+                    _credentialStore.IpWhoApiKey = IpWhoApiKeyBox.Password.Trim();
+
                 IpInfoTokenBox.Password = String.Empty;
                 BarkPushKeyBox.Password = String.Empty;
+                IpWhoApiKeyBox.Password = String.Empty;
 
                 NotificationViewModel.OnCredentialsChanged();
                 UpdateFieldStates();
@@ -80,6 +85,7 @@ namespace Agentstrap.UI.Elements.Settings.Pages
 
                 IpInfoTokenBox.Password = String.Empty;
                 BarkPushKeyBox.Password = String.Empty;
+                IpWhoApiKeyBox.Password = String.Empty;
 
                 TestIpInfoStatus.Text = String.Empty;
                 TestNotificationStatus.Text = String.Empty;

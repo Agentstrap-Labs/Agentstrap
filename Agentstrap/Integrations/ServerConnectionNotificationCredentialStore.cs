@@ -10,14 +10,19 @@ namespace Agentstrap.Integrations
 
         public string? BarkPushKey { get; set; }
 
+        public string? IpWhoApiKey { get; set; }
+
         public bool HasIpInfoToken => !String.IsNullOrWhiteSpace(IpInfoToken);
 
         public bool HasBarkCredentials => !String.IsNullOrWhiteSpace(BarkPushKey);
+
+        public bool HasIpWhoApiKey => !String.IsNullOrWhiteSpace(IpWhoApiKey);
 
         public void Clear()
         {
             IpInfoToken = null;
             BarkPushKey = null;
+            IpWhoApiKey = null;
         }
     }
 
@@ -31,6 +36,7 @@ namespace Agentstrap.Integrations
     {
         public const string IpInfoTokenKey = "ipinfo-token";
         public const string BarkPushKeyName = "bark-push-key";
+        public const string IpWhoApiKeyKey = "ipwho-key";
 
         private static readonly string DefaultDirectory = Path.Combine(
             Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
@@ -60,16 +66,24 @@ namespace Agentstrap.Integrations
             set => SetSecret(BarkPushKeyName, value);
         }
 
+        public string? IpWhoApiKey
+        {
+            get => Credentials.Load(IpWhoApiKeyKey);
+            set => SetSecret(IpWhoApiKeyKey, value);
+        }
+
         public ServerConnectionNotificationCredentials Load() => new()
         {
             IpInfoToken = IpInfoToken,
             BarkPushKey = this.BarkPushKey,
+            IpWhoApiKey = this.IpWhoApiKey,
         };
 
         public void Save(ServerConnectionNotificationCredentials credentials)
         {
             IpInfoToken = credentials?.IpInfoToken;
             BarkPushKey = credentials?.BarkPushKey;
+            IpWhoApiKey = credentials?.IpWhoApiKey;
         }
 
         /// <summary>

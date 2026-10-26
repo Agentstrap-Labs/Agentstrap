@@ -143,7 +143,7 @@ namespace Agentstrap.Tests
                 Diagnostics = diagnostics,
             };
 
-            return new ServerConnectionNotificationService(options, store ?? FreshStore(), ipInfoClient, barkClient, rateLimiter);
+            return new ServerConnectionNotificationService(options, store ?? FreshStore(), ipInfoClient, null, barkClient, rateLimiter);
         }
 
         private static IpInfoClient LookupReturning(string city = "Los Angeles", string region = "California", string country = "US") =>
