@@ -32,12 +32,29 @@ namespace Agentstrap
 
         public static Version GetVersionFromString(string version)
         {
-            if (version.StartsWith('v'))
+            if (String.IsNullOrWhiteSpace(version))
+                return new Version(0, 0, 0, 0);
+
+            version = version.Trim();
+
+            // accept either "v1.2.3" or "V1.2.3" (GitHub tags are often capitalised)
+            if (version.StartsWith('v') || version.StartsWith('V'))
                 version = version[1..];
 
             int idx = version.IndexOf('+'); // commit info
             if (idx != -1)
                 version = version[..idx];
+
+            // drop any pre-release suffix such as "-beta", "_rc" or "beta"
+            int end = 0;
+            while (end < version.Length && (Char.IsDigit(version[end]) || version[end] == '.'))
+                end++;
+
+            if (end > 0)
+                version = version[..end];
+
+            if (String.IsNullOrWhiteSpace(version))
+                version = "0.0.0.0";
 
             return new Version(version);
         }
