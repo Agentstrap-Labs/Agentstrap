@@ -60,6 +60,10 @@ namespace Agentstrap.Integrations
     {
         public bool Enabled { get; set; } = false;
 
+        public bool IpInfoEnabled { get; set; } = true;
+
+        public bool IpWhoEnabled { get; set; } = true;
+
         public bool IncludeIpAddress { get; set; } = false;
 
         /// <summary>

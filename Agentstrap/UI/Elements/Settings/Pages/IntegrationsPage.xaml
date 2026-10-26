@@ -187,6 +187,11 @@
         <ui:PasswordBox x:Name="IpInfoTokenBox" Width="320" HorizontalAlignment="Left" MaxLength="64"
                         PlaceholderText="Paste your IPinfo token here" />
 
+        <controls:OptionControl Header="Disable IPinfo"
+                                Description="Temporarily disables IPinfo so the backup provider is used for testing." />
+        <ui:Button x:Name="DisableIpInfoButton" Appearance="Secondary" Style="{StaticResource AgActionButton}"
+                   Content="Disable IPinfo" Click="DisableIpInfo_Click" Margin="0,0,0,12" />
+
         <controls:OptionControl Header="Bark push key"
                                 Description="Copy the device key from the Bark app and store it encrypted." />
         <ui:PasswordBox x:Name="BarkPushKeyBox" Width="320" HorizontalAlignment="Left" MaxLength="256"
@@ -200,6 +205,11 @@
                                 Description="Stored encrypted. Leave empty to keep the currently saved key." />
         <ui:PasswordBox x:Name="IpWhoApiKeyBox" Width="320" HorizontalAlignment="Left" MaxLength="128"
                         PlaceholderText="Paste your ipwho API key here" />
+
+        <controls:OptionControl Header="Disable IPWho"
+                                Description="Temporarily disables the IPWho backup provider." />
+        <ui:Button x:Name="DisableIpWhoButton" Appearance="Secondary" Style="{StaticResource AgActionButton}"
+                   Content="Disable IPWho" Click="DisableIpWho_Click" Margin="0,0,0,12" />
 
         <controls:OptionControl Header="Test IPWho connection"
                                 Description="Verifies the key by looking up a fixed, well known public IP address (1.1.1.1).">

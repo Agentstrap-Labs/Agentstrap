@@ -47,6 +47,10 @@ namespace Agentstrap.Models.Persistable
         public bool ServerConnectionNotificationIncludeIpAddress { get; set; } = false;
         public bool ServerConnectionNotificationDiagnostics { get; set; } = false;
         public int ServerConnectionNotificationSuppressionMinutes { get; set; } = 30;
+
+        public bool ServerConnectionNotificationDisableIpInfo { get; set; } = false;
+
+        public bool ServerConnectionNotificationDisableIpWho { get; set; } = false;
         public ObservableCollection<CustomIntegration> CustomIntegrations { get; set; } = new();
 
         // mod preset configuration

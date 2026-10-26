@@ -79,10 +79,19 @@ namespace Agentstrap.Integrations
                 return ServerConnectionNotificationResult.Skipped(ServerConnectionNotificationStatus.NotConfigured, canonical);
             }
 
-            IPInfoLookupResult lookup = await _ipInfoClient.LookupAsync(canonical, credentials.IpInfoToken, cancellationToken);
+            IPInfoLookupResult lookup;
 
-            // fall back to IPWho when the primary lookup fails and a key is configured
-            if (!lookup.Success && !String.IsNullOrWhiteSpace(credentials.IpWhoApiKey))
+            if (Options.IpInfoEnabled)
+            {
+                lookup = await _ipInfoClient.LookupAsync(canonical, credentials.IpInfoToken, cancellationToken);
+            }
+            else
+            {
+                lookup = IPInfoLookupResult.Failed(canonical, IPInfoLookupResult.ErrorCodes.HttpError, "IPinfo is disabled");
+            }
+
+            // fall back to IPWho when the primary lookup fails (or is disabled) and a key is configured
+            if (!lookup.Success && Options.IpWhoEnabled && !String.IsNullOrWhiteSpace(credentials.IpWhoApiKey))
             {
                 var backup = await _ipWhoClient.LookupAsync(canonical, credentials.IpWhoApiKey, cancellationToken);
                 if (backup.Success)

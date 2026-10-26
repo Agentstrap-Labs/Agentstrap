@@ -28,6 +28,12 @@ namespace Agentstrap.UI.Elements.Settings.Pages
             BarkPushKeyBox.Password = String.Empty;
             IpWhoApiKeyBox.Password = String.Empty;
 
+            _notificationService.Options.IpInfoEnabled = !App.Settings.Prop.ServerConnectionNotificationDisableIpInfo;
+            _notificationService.Options.IpWhoEnabled = !App.Settings.Prop.ServerConnectionNotificationDisableIpWho;
+
+            DisableIpInfoButton.Content = App.Settings.Prop.ServerConnectionNotificationDisableIpInfo ? "Enable IPinfo" : "Disable IPinfo";
+            DisableIpWhoButton.Content = App.Settings.Prop.ServerConnectionNotificationDisableIpWho ? "Enable IPWho" : "Disable IPWho";
+
             var viewModel = (IntegrationsViewModel)DataContext;
             viewModel.ServerConnectionNotifications.OnCredentialsChanged();
             UpdateFieldStates();
@@ -219,6 +225,26 @@ namespace Agentstrap.UI.Elements.Settings.Pages
             {
                 button.IsEnabled = true;
             }
+        }
+
+        private void DisableIpInfo_Click(object sender, RoutedEventArgs e)
+        {
+            bool disabled = !App.Settings.Prop.ServerConnectionNotificationDisableIpInfo;
+            App.Settings.Prop.ServerConnectionNotificationDisableIpInfo = disabled;
+            App.Settings.Save();
+
+            _notificationService.Options.IpInfoEnabled = !disabled;
+            DisableIpInfoButton.Content = disabled ? "Enable IPinfo" : "Disable IPinfo";
+        }
+
+        private void DisableIpWho_Click(object sender, RoutedEventArgs e)
+        {
+            bool disabled = !App.Settings.Prop.ServerConnectionNotificationDisableIpWho;
+            App.Settings.Prop.ServerConnectionNotificationDisableIpWho = disabled;
+            App.Settings.Save();
+
+            _notificationService.Options.IpWhoEnabled = !disabled;
+            DisableIpWhoButton.Content = disabled ? "Enable IPWho" : "Disable IPWho";
         }
 
         /// <summary>

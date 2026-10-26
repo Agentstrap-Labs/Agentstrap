@@ -29,6 +29,8 @@ namespace Agentstrap.Integrations
             {
                 Enabled = true,
                 IncludeIpAddress = App.Settings.Prop.ServerConnectionNotificationIncludeIpAddress,
+                IpInfoEnabled = !App.Settings.Prop.ServerConnectionNotificationDisableIpInfo,
+                IpWhoEnabled = !App.Settings.Prop.ServerConnectionNotificationDisableIpWho,
                 Diagnostics = App.Settings.Prop.ServerConnectionNotificationDiagnostics,
                 SuppressionMinutes = App.Settings.Prop.ServerConnectionNotificationSuppressionMinutes,
             };
