@@ -24,6 +24,8 @@ namespace Agentstrap
 
             { "Rendering.TextureQuality.OverrideEnabled", "DFFlagTextureQualityOverrideEnabled" },
             { "Rendering.TextureQuality.Level", "DFIntTextureQualityOverride" },
+
+            { "Rendering.Distance", "DFIntDebugFRMQualityLevelOverride" },
         };
 
         public static IReadOnlyDictionary<MSAAMode, string?> MSAAModes => new Dictionary<MSAAMode, string?>
@@ -41,6 +43,42 @@ namespace Agentstrap
             { TextureQuality.Level1, "1" },
             { TextureQuality.Level2, "2" },
             { TextureQuality.Level3, "3" },
+        };
+
+        public static IReadOnlyDictionary<RenderingDistance, string?> RenderingDistances => new Dictionary<RenderingDistance, string?>
+        {
+            { RenderingDistance.Default, null },
+            { RenderingDistance.Level0, "1" },
+            { RenderingDistance.Level1, "3" },
+            { RenderingDistance.Level2, "6" },
+            { RenderingDistance.Level3, "10" },
+        };
+
+        public static IReadOnlyDictionary<RenderDistance, string?> RenderDistances => new Dictionary<RenderDistance, string?>
+        {
+            { RenderDistance.Default, null },
+            { RenderDistance.Level0, "1" },
+            { RenderDistance.Level1, "3" },
+            { RenderDistance.Level2, "6" },
+            { RenderDistance.Level3, "10" },
+        };
+
+        public static IReadOnlyDictionary<RenderingDistanceLevel, string?> RenderingDistanceLevels => new Dictionary<RenderingDistanceLevel, string?>
+        {
+            { RenderingDistanceLevel.Default, null },
+            { RenderingDistanceLevel.Level0, "1" },
+            { RenderingDistanceLevel.Level1, "3" },
+            { RenderingDistanceLevel.Level2, "6" },
+            { RenderingDistanceLevel.Level3, "10" },
+        };
+
+        public static IReadOnlyDictionary<RenderDistanceLevel, string?> RenderDistanceLevels => new Dictionary<RenderDistanceLevel, string?>
+        {
+            { RenderDistanceLevel.Default, null },
+            { RenderDistanceLevel.Level0, "1" },
+            { RenderDistanceLevel.Level1, "3" },
+            { RenderDistanceLevel.Level2, "6" },
+            { RenderDistanceLevel.Level3, "10" },
         };
 
         /// <summary>

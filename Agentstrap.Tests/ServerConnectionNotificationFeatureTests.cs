@@ -4,7 +4,9 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Text;
+using System;
 using System.Threading.Tasks;
+using System.Text.Json;
 
 using Agentstrap.Integrations;
 using Agentstrap.Models.APIs;
@@ -278,7 +280,7 @@ namespace Agentstrap.Tests
         [Fact]
         public async Task RepeatConnectionsWithinTheWindowAreSuppressed()
         {
-            var pushHandler = HttpMockHandler.Json("""{ "status": 1 }""");
+            var pushHandler = HttpMockHandler.Json("""{ "code": 200, "message": "success" }""");
             var service = CreateService(
                 ipInfoClient: LookupReturning(),
                 barkClient: new BarkClient(ClientWith(pushHandler)),
@@ -287,7 +289,7 @@ namespace Agentstrap.Tests
             var first = await service.ProcessAddressAsync("1.2.3.4", "job-1");
             var second = await service.ProcessAddressAsync("1.2.3.4", "job-1");
 
-            Assert.True(first.Success);
+            Assert.True(first.Success, first.Error ?? first.Status.ToString());
             Assert.Equal(ServerConnectionNotificationStatus.Suppressed, second.Status);
             Assert.False(second.Success);
             Assert.Equal(1, pushHandler.Count);
@@ -296,7 +298,7 @@ namespace Agentstrap.Tests
         [Fact]
         public async Task SuppressionWindowOnlyExpiresAfterTheConfiguredInterval()
         {
-            var pushHandler = HttpMockHandler.Json("""{ "status": 1 }""");
+            var pushHandler = HttpMockHandler.Json("""{ "code": 200, "message": "success" }""");
             DateTimeOffset now = DateTimeOffset.UtcNow;
 
             var limiter = NotificationRateLimiter.FromMinutes(10, () => now);
@@ -304,7 +306,7 @@ namespace Agentstrap.Tests
             var service = CreateService(ipInfoClient: LookupReturning(), barkClient: new BarkClient(ClientWith(pushHandler)), rateLimiter: limiter);
 
             var first = await service.ProcessAddressAsync("1.2.3.4", "job-1");
-            Assert.True(first.Success);
+            Assert.True(first.Success, first.Error ?? first.Status.ToString());
 
             now += TimeSpan.FromMinutes(9);
             var third = await service.ProcessAddressAsync("1.2.3.4", "job-2");
@@ -372,8 +374,8 @@ namespace Agentstrap.Tests
             string logText = String.Join('\n', App.Logger.History.Skip(historyBefore));
 
             Assert.DoesNotContain(logToken, logText);
-            Assert.DoesNotContain(logAppToken, logText);
-            Assert.DoesNotContain(logUserKey, logText);
+            Assert.DoesNotContain(logToken, logText);
+            Assert.DoesNotContain(logPushKey, logText);
             Assert.DoesNotContain(fullIp, logText);
 
             // diagnostics explicitly enable full IP logging

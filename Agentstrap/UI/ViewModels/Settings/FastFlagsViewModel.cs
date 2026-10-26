@@ -117,6 +117,13 @@ namespace Agentstrap.UI.ViewModels.Settings
 
         public IReadOnlyDictionary<TextureQuality, string?> TextureQualities => FastFlagManager.TextureQualityLevels;
 
+        public IReadOnlyDictionary<RenderingDistance, string?> RenderingDistances => FastFlagManager.RenderingDistances;
+
+        // Compatibility aliases.
+        public IReadOnlyDictionary<RenderDistance, string?> RenderDistances => FastFlagManager.RenderDistances;
+        public IReadOnlyDictionary<RenderingDistanceLevel, string?> RenderingDistanceLevels => FastFlagManager.RenderingDistanceLevels;
+        public IReadOnlyDictionary<RenderDistanceLevel, string?> RenderDistanceLevels => FastFlagManager.RenderDistanceLevels;
+
         public TextureQuality SelectedTextureQuality
         {
             get => TextureQualities.Where(x => x.Value == App.FastFlags.GetPreset("Rendering.TextureQuality.Level")).FirstOrDefault().Key;
@@ -133,6 +140,31 @@ namespace Agentstrap.UI.ViewModels.Settings
                 }
             }
         }
+        public RenderingDistance SelectedRenderingDistance
+        {
+            get => RenderingDistances.FirstOrDefault(x => x.Value == App.FastFlags.GetPreset("Rendering.Distance")).Key;
+            set => App.FastFlags.SetPreset("Rendering.Distance", RenderingDistances[value]);
+        }
+
+        // Compatibility aliases.
+        public RenderDistance SelectedRenderDistance
+        {
+            get => (RenderDistance)(int)(RenderingDistances.FirstOrDefault(x => x.Value == App.FastFlags.GetPreset("Rendering.Distance")).Key);
+            set => App.FastFlags.SetPreset("Rendering.Distance", RenderDistances[(RenderDistance)(int)value]);
+        }
+
+        public RenderingDistanceLevel SelectedRenderingDistanceLevel
+        {
+            get => (RenderingDistanceLevel)(int)(RenderingDistances.FirstOrDefault(x => x.Value == App.FastFlags.GetPreset("Rendering.Distance")).Key);
+            set => App.FastFlags.SetPreset("Rendering.Distance", RenderingDistanceLevels[(RenderingDistanceLevel)(int)value]);
+        }
+
+        public RenderDistanceLevel SelectedRenderDistanceLevel
+        {
+            get => (RenderDistanceLevel)(int)(RenderingDistances.FirstOrDefault(x => x.Value == App.FastFlags.GetPreset("Rendering.Distance")).Key);
+            set => App.FastFlags.SetPreset("Rendering.Distance", RenderDistanceLevels[(RenderDistanceLevel)(int)value]);
+        }
+
         public bool ResetConfiguration
         {
             get => _preResetFlags is not null;

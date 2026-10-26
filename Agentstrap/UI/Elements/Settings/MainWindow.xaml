@@ -59,7 +59,6 @@
                     <ui:NavigationItem Content="{x:Static resources:Strings.Menu_Mods_Title}" PageType="{x:Type pages:ModsPage}" Icon="WrenchScrewdriver20" Tag="mods" />
                     <ui:NavigationItem Content="{x:Static resources:Strings.Menu_FastFlags_Title}" PageType="{x:Type pages:FastFlagsPage}" Icon="Flag24" Tag="fastflags" />
                     <ui:NavigationItem Content="Quality of Life" PageType="{x:Type pages:QoLPage}" Icon="Wrench24" Tag="qol" />
-                    <ui:NavigationItem Content="Server Connection Notifications" PageType="{x:Type pages:ServerConnectionNotificationsPage}" Icon="MegaphoneLoud24" Tag="serverconnectionnotifications" />
                     <ui:NavigationItem Content="Global Settings" PageType="{x:Type pages:GlobalSettingsPage}" Icon="Settings24" Tag="globalsettings" />
                     <ui:NavigationItem Content="{x:Static resources:Strings.Menu_Appearance_Title}" PageType="{x:Type pages:AppearancePage}" Icon="PaintBrush24" Tag="appearance" />
                     <ui:NavigationItem Content="{x:Static resources:Strings.Common_Shortcuts}" PageType="{x:Type pages:ShortcutsPage}" Icon="Apps28" Tag="shortcuts" />

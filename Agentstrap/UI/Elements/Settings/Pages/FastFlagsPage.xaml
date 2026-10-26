@@ -55,6 +55,18 @@
             </ComboBox>
         </controls:OptionControl>
 
+        <controls:OptionControl 
+            Header="Rendering distance"
+            Description="Controls how far Roblox renders the world.">
+            <ComboBox Margin="5,0,0,0" Padding="10,5,10,5" Width="200" ItemsSource="{Binding RenderingDistances.Keys, Mode=OneTime}" Text="{Binding SelectedRenderingDistance, Mode=TwoWay}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Path=., Converter={StaticResource EnumNameConverter}}" />
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+        </controls:OptionControl>
+
         <TextBlock Style="{StaticResource AgSectionHeader}" Text="Preset bundles" />
 
         <controls:OptionControl

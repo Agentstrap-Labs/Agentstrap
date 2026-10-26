@@ -154,6 +154,8 @@ namespace Agentstrap.UI.ViewModels.Settings
             set => App.Settings.Prop.CustomIntegrations = value;
         }
 
+        public ServerConnectionNotificationsViewModel ServerConnectionNotifications { get; } = new ServerConnectionNotificationsViewModel();
+
         public CustomIntegration? SelectedCustomIntegration { get; set; }
         public int SelectedCustomIntegrationIndex { get; set; }
         public bool IsCustomIntegrationSelected => SelectedCustomIntegration is not null;
