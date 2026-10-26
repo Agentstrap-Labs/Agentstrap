@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Roblox accounts &middot; Agentstrap Docs</title>
+<meta name="description" content="Save, switch and launch Roblox with a selected account.">
+<meta property="og:title" content="Roblox accounts &middot; Agentstrap Docs">
+<meta property="og:description" content="Save, switch and launch Roblox with a selected account.">
+<meta property="og:type" content="article">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="icon" href="../assets/Agentstrap.ico" type="image/x-icon">
+</head>
+<body data-page="features/accounts.html" data-base="../">
+<header class="topbar">
+  <button class="icon-btn menu-btn" id="menu-btn" aria-label="Toggle navigation">&#9776;</button>
+  <a class="brand" href="../index.html">
+    <span class="brand-mark"><img src="../assets/Agentstrap.ico" alt="" width="26" height="26"></span>
+    Agentstrap <small>Docs</small>
+  </a>
+  <span class="topbar-spacer"></span>
+  <div class="search-wrap">
+    <input id="search" type="search" placeholder="Search docs&hellip;" autocomplete="off" aria-label="Search documentation">
+    <div id="search-results"></div>
+  </div>
+  <button class="icon-btn" id="theme-btn" title="Toggle theme" aria-label="Toggle theme">&#9680;</button>
+</header>
+
+<div class="shell">
+  <aside class="sidebar" id="sidebar"></aside>
+  <main class="content">
+    <h1>Roblox accounts</h1>
+    <p class="page-lede">Save, switch and launch Roblox with a selected account.</p>
+
+<p>Agentstrap can save multiple Roblox accounts locally and use the selected one when launching Roblox.</p>
+
+<h2 id="adding-an-account">Adding an account</h2>
+<p>Open Settings &rarr; Accounts and use Quick Sign In. Agentstrap validates the session against Roblox and stores only
+the account profile locally. Credentials are protected with Windows DPAPI and are never written to logs.</p>
+
+<h2 id="logout">Logout</h2>
+<p>Use the Logout button to sign out of the active account. The saved account list remains available for switching.</p>
+
+<h2 id="switching">Switching</h2>
+<p>Select an account and press Switch. Only one account is active at a time. Roblox launches use the active account.</p>
+
+<div class="callout note">
+  <strong>Security.</strong> Credentials are stored locally with DPAPI and are never sent anywhere except Roblox during
+  validation.
+</div>
+
+    <nav class="page-nav" id="page-nav"></nav>
+    <p class="meta">Agentstrap 1.2.2 &middot; These docs describe Agentstrap 1.2.2. Features marked
+    <span class="badge new">new</span> are not present in upstream Bloxstrap.</p>
+  </main>
+</div>
+
+<script src="../assets/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Repairing a broken Roblox install &middot; Agentstrap Docs</title>
+<meta name="description" content="Force a clean reinstall of the Roblox client through Agentstrap.">
+<meta property="og:title" content="Repairing a broken Roblox install &middot; Agentstrap Docs">
+<meta property="og:description" content="Force a clean reinstall of the Roblox client through Agentstrap.">
+<meta property="og:type" content="article">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="icon" href="../assets/Agentstrap.ico" type="image/x-icon">
+</head>
+<body data-page="help/repairing-roblox-install.html" data-base="../">
+<header class="topbar">
+  <button class="icon-btn menu-btn" id="menu-btn" aria-label="Toggle navigation">&#9776;</button>
+  <a class="brand" href="../index.html">
+    <span class="brand-mark"><img src="../assets/Agentstrap.ico" alt="" width="26" height="26"></span>
+    Agentstrap <small>Docs</small>
+  </a>
+  <span class="topbar-spacer"></span>
+  <div class="search-wrap">
+    <input id="search" type="search" placeholder="Search docs&hellip;" autocomplete="off" aria-label="Search documentation">
+    <div id="search-results"></div>
+  </div>
+  <button class="icon-btn" id="theme-btn" title="Toggle theme" aria-label="Toggle theme">&#9680;</button>
+</header>
+
+<div class="shell">
+  <aside class="sidebar" id="sidebar"></aside>
+  <main class="content">
+    <h1>Repairing a broken Roblox install</h1>
+    <p class="page-lede">Force a clean reinstall of the Roblox client through Agentstrap.</p>
+
+<p>Sometimes the Roblox install gets into a state where the client is missing, half-extracted, or fails to start no
+matter what you change. Agentstrap can force a clean reinstall.</p>
+
+<h2 id="force-a-reinstall">Force a reinstall</h2>
+
+<ol class="steps">
+  <li>
+    <strong>Turn on forced reinstall.</strong>
+    Settings &rarr; <strong>Bootstrapper</strong> &rarr; <em>Force reinstall</em>, then press <strong>Save</strong>.
+  </li>
+  <li>
+    <strong>Launch Roblox.</strong>
+    Use Command Center &rarr; <strong>Launch Roblox</strong>.
+  </li>
+  <li>
+    <strong>Wait for it to finish.</strong>
+    The Roblox package is downloaded again and extracted over the existing files.
+  </li>
+  <li>
+    <strong>Check the result.</strong>
+    Command Center &rarr; <strong>Refresh status</strong> re-checks whether the player executable is present.
+  </li>
+</ol>
+
+<div class="callout note">
+  <strong>The flag is one-shot.</strong>
+  Forced reinstall applies to the next launch and then resets itself, so you don't have to remember to turn it back off.
+</div>
+
+<h2 id="when-that-s-not-enough">When that's not enough</h2>
+
+<p>If a forced reinstall doesn't fix it, the install folder itself is probably damaged. Delete the version folder and let
+Agentstrap download Roblox again from scratch.</p>
+
+<pre><code>%LOCALAPPDATA%\Agentstrap\Versions\</code></pre>
+
+<p>Close Roblox and Agentstrap first, then delete the contents of that folder. The next launch downloads and
+extracts a fresh copy. This does not touch your settings or your mods, because those live outside the Versions
+folder.</p>
+
+<div class="callout warning">
+  <strong>This needs a working internet connection and some disk space.</strong>
+  A full Roblox download is a few hundred megabytes.
+</div>
+
+<h2 id="deleting-the-whole-install">Deleting the whole install</h2>
+
+<p>If you want a completely clean slate, delete the whole <code>%LOCALAPPDATA%\Agentstrap</code> folder and run the
+installer again. You will lose your settings and mods. See <a href="uninstalling.html">Uninstalling Agentstrap</a>.</p>
+
+<h2 id="confirming-the-repair-worked">Confirming the repair worked</h2>
+
+<p>Run <a href="../features/diagnostics.html">Diagnostics</a> afterwards. The <em>Roblox installation</em> and
+<em>Roblox version state</em> checks should both come back clean.</p>
+
+    <nav class="page-nav" id="page-nav"></nav>
+    <p class="meta">Agentstrap 1.2.2 &middot; These docs describe Agentstrap 1.2.2. Features marked
+    <span class="badge new">new</span> are not present in upstream Bloxstrap.</p>
+  </main>
+</div>
+
+<script src="../assets/site.js"></script>
+</body>
+</html>
