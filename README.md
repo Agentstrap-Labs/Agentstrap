@@ -1,7 +1,24 @@
+# Agentstrap Documentation Site: APP-001
+Hiya! I was looking into the docs site, looking at all the existing features, cause I forgot some features, and didn't want to repeat 2 features.. And I noticed, I reloaded the page cause it wasn't loading, and it showed the APP-001 error. I am actively working to find the error, but the docs site has over 1,000 lines of code, WAY over. So many files, so please be patient while I work on fixing this error. Thank you!
+
+> [!NOTE]
+> This only effects the docs site, thankfully not the app.
+> It might be Cloudflare causing this error, but I will still actively look into the code, and I will see if it is actually Cloudflare.
+> 
+
+
+---
+
 > [!CAUTION]
 > The only official place to download Agentstrap is this GitHub repository and the
 > [Agentstrap documentation site](https://agentstrap-doc.pages.dev). Any other website offering downloads or
 > claiming to be us is not owned by us.
+
+
+> [!TIP]
+> The docs site is currently down.
+
+---
 
 <div align="center">
 
@@ -100,16 +117,7 @@ changes *how* Roblox is launched and *what* gets copied into the install folder,
 GitHub release check, and — if you turn them on — ipinfo.io server location lookups and per-mod update checks.
 See the [privacy policy](docs/info/privacy-policy.html).
 
-## Documentation
-
-The documentation site is in [`docs`](docs). It's plain static HTML with no build step — open
-`Docs Site/index.html` in a browser, or deploy the folder to any static host.
-
-To rebuild it after editing the content:
-
-```powershell
-node Docs Site/source/build.mjs
-```
+---
 
 ## Code
 
@@ -139,8 +147,8 @@ dotnet test Agentstrap.Tests/Agentstrap.Tests.csproj
 ## Credits
 
 Agentstrap is a fork of [Bloxstrap](https://github.com/bloxstraplabs/bloxstrap) by
-[pizzaboxer](https://github.com/pizzaboxer), and would not exist without it. Roblox and Roblox Studio are
-trademarks of Roblox Corporation. Okay, maybe it would, but Agentstrap would be WAY worse without Bloxstrap..
+[pizzaboxer](https://github.com/pizzaboxer), and would not exist without it. Okay, maybe it would, but Agentstrap would be WAY worse without Bloxstrap.. Anyways, Roblox and Roblox Studio are
+trademarks of Roblox Corporation. 
 
 [shield-repo-license]:  https://img.shields.io/github/license/agentxco2-dev/Agentstrap
 [shield-repo-releases]: https://img.shields.io/github/downloads/agentxco2-dev/Agentstrap/latest/total?color=981bfe
