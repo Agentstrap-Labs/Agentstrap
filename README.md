@@ -33,7 +33,7 @@ Agentstrap does. (Bloxstrap support/development has ended. It is a full ROBLOX b
 Running into a problem or need help with something? The documentation is in [`docs/`](docs) in this
 repository, and online at the [docs site](https://agentstrap-doc.pages.dev). If you can't find
 anything, or would like to suggest something, please
-[submit an issue](https://github.com/agentxco2-dev/Agentstrap/issues).
+[submit an issue](https://github.com/Agentstrap-Labs/Agentstrap/issues).
 
 Agentstrap is only supported for PCs running Windows.
 
@@ -67,7 +67,7 @@ Full documentation for every one of these lives in [`docs/`](dpcs).
 
 ## Installing
 
-Download the [latest release of Agentstrap](https://github.com/agentxco2-dev/Agentstrap/releases/latest) and run
+Download the [latest release of Agentstrap](https://github.com/Agentstrap-Labs/Agentstrap/releases/latest) and run
 it. The installer asks where you want the app to live, and whether you want desktop and Start Menu shortcuts.
 That's about it!
 
@@ -109,7 +109,7 @@ Agentstrap uses the [WPF UI](https://github.com/lepoco/wpfui) library for the us
 a submodule in `wpfui/`.
 
 ```powershell
-git clone --recurse-submodules https://github.com/agentxco2-dev/Agentstrap
+git clone --recurse-submodules https://github.com/Agentstrap-Labs/Agentstrap
 dotnet build Agentstrap/Agentstrap.csproj -c Release
 ```
 
@@ -134,10 +134,10 @@ Agentstrap is a fork of [Bloxstrap](https://github.com/bloxstraplabs/bloxstrap) 
 [pizzaboxer](https://github.com/pizzaboxer), and would not exist without it. Okay, maybe it would, but Agentstrap would be WAY worse without Bloxstrap.. Anyways, Roblox and Roblox Studio are
 trademarks of Roblox Corporation. 
 
-[shield-repo-license]:  https://img.shields.io/github/license/agentxco2-dev/Agentstrap
-[shield-repo-releases]: https://img.shields.io/github/downloads/agentxco2-dev/Agentstrap/latest/total?color=981bfe
-[shield-repo-latest]:   https://img.shields.io/github/v/release/agentxco2-dev/Agentstrap?color=7a39fb
+[shield-repo-license]:  https://img.shields.io/github/license/Agentstrap-Labs/Agentstrap
+[shield-repo-releases]: https://img.shields.io/github/downloads/Agentstrap-Labs/Agentstrap/latest/total?color=981bfe
+[shield-repo-latest]:   https://img.shields.io/github/v/release/Agentstrap-Labs/Agentstrap?color=7a39fb
 
-[repo-license]:  https://github.com/agentxco2-dev/Agentstrap/blob/main/LICENSE
-[repo-releases]: https://github.com/agentxco2-dev/Agentstrap/releases
-[repo-latest]:   https://github.com/agentxco2-dev/Agentstrap/releases/latest
+[repo-license]:  https://github.com/Agentstrap-Labs/Agentstrap/blob/main/LICENSE
+[repo-releases]: https://github.com/Agentstrap-Labs/Agentstrap/releases
+[repo-latest]:   https://github.com/Agentstrap-Labs/Agentstrap/releases/latest
