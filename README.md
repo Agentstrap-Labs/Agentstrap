@@ -2,11 +2,6 @@
 > The only official place to download Agentstrap is this GitHub repository and the
 > [Agentstrap documentation site](https://agentstrap-doc.pages.dev). Any other website offering downloads or
 > claiming to be us is not owned by us.
-
-
-> [!TIP]
-> The docs site is currently down.
-
 ---
 
 <div align="center">
