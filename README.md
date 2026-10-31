@@ -1,14 +1,3 @@
-# Agentstrap Documentation Site: APP-001
-Hiya! I was looking into the docs site, looking at all the existing features, cause I forgot some features, and didn't want to repeat 2 features.. And I noticed, I reloaded the page cause it wasn't loading, and it showed the APP-001 error. I am actively working to find the error, but the docs site has over 1,000 lines of code, WAY over. So many files, so please be patient while I work on fixing this error. Thank you!
-
-> [!NOTE]
-> This only effects the docs site, thankfully not the app.
-> It might be Cloudflare causing this error, but I will still actively look into the code, and I will see if it is actually Cloudflare.
-> 
-
-
----
-
 > [!CAUTION]
 > The only official place to download Agentstrap is this GitHub repository and the
 > [Agentstrap documentation site](https://agentstrap-doc.pages.dev). Any other website offering downloads or
